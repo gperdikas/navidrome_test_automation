@@ -21,28 +21,20 @@ export default defineConfig({
 
   projects: [
     {
-      name: 'chromium-ui-logged-in',
-      testDir: './tests/ui/logged-in',
+      name: 'logged-in',
+      testDir: './tests/logged-in',
       use: { 
         ...devices['Desktop Chrome'],
         storageState: 'auth.json',
       },
     },
     {
-      name: 'chromium-ui-logged-out',
-      testDir: './tests/ui/logged-out',
+      name: 'logged-out',
+      testDir: './tests/logged-out',
       use: { 
         ...devices['Desktop Chrome'],
         storageState: { cookies: [], origins: [] },
       },
-    },
-    {
-      name: 'api-logged-in',
-      testDir: './tests/api/logged-in',
-    },
-    {
-      name: 'api-logged-out',
-      testDir: './tests/api/logged-out',
     }
   ],
 });

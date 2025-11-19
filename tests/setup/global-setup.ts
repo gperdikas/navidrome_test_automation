@@ -1,5 +1,6 @@
 import { chromium, FullConfig } from '@playwright/test';
 import * as dotenv from 'dotenv';
+import * as fs from 'fs';
 
 dotenv.config();
 
@@ -11,8 +12,19 @@ async function globalSetup(config: FullConfig) {
   
   await page.locator('input[name="username"]').fill(process.env.TEST_USERNAME!);
   await page.locator('input[name="password"]').fill(process.env.TEST_PASSWORD!);
+  
+  const responsePromise = page.waitForResponse(
+    response => response.url().includes('/auth/login') && response.status() === 200
+  );
+
   await page.locator('button[type="submit"]').click();
   
+  const response = await responsePromise;
+  const responseBody = await response.json();
+  const token = responseBody.token;
+
+  fs.writeFileSync('api-token.json', JSON.stringify({ token }));
+
   await page.waitForURL('http://localhost:4533/**');
   
   await page.context().storageState({ path: 'auth.json' });
