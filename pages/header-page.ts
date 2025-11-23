@@ -23,7 +23,6 @@ export class HeaderPage {
     readonly scanInfoBox: any;
     readonly activityPopover: any;
     readonly settingsPopover: any;
-    // readonly usernameInfoBox: any;
     readonly userInfoBox: any;
     readonly personalInfoBox: any;
     readonly usersInfoBox: any;
@@ -63,7 +62,6 @@ export class HeaderPage {
         this.foldersScannedInfoBox = this.activityPopover.getByText('Total Folders Scanned');
         this.scanInfoBox = this.activityPopover.locator('button[title="Quick Scan"]');
         this.settingsPopover = page.locator('.MuiPaper-root.MuiPopover-paper');
-        // this.usernameInfoBox = this.settingsPopover.getByText();
         this.personalInfoBox = this.settingsPopover.getByText('Personal');
         this.usersInfoBox = this.settingsPopover.getByText('Users');
         this.playersInfoBox = this.settingsPopover.getByText('Players');

@@ -3,7 +3,6 @@ import { HeaderPage } from '../../../pages/header-page';
 
 test('Admin is able to see header', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
-    
     await headerPage.goto();
     
     await expect(headerPage.header).toBeVisible();
@@ -11,7 +10,6 @@ test('Admin is able to see header', {tag: ['@regression', '@smoke', '@header']},
 
 test('Admin is able to see the menu button', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
-    
     await headerPage.goto();
 
     await expect(headerPage.menuButton).toBeVisible();
@@ -19,7 +17,6 @@ test('Admin is able to see the menu button', {tag: ['@regression', '@smoke', '@h
 
 test('Admin is able to see the tile of the open tab', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
-    
     await headerPage.goto();
 
     await expect(headerPage.title).toBeVisible();
@@ -27,7 +24,6 @@ test('Admin is able to see the tile of the open tab', {tag: ['@regression', '@sm
 
 test('Admin is able to see the refresh button', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
-    
     await headerPage.goto();
 
     await expect(headerPage.refreshButton).toBeVisible();
@@ -35,7 +31,6 @@ test('Admin is able to see the refresh button', {tag: ['@regression', '@smoke', 
 
 test('Admin is able to see the Now Playing button', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
-    
     await headerPage.goto();
 
     await expect(headerPage.nowPlayingButton).toBeVisible();
@@ -43,7 +38,6 @@ test('Admin is able to see the Now Playing button', {tag: ['@regression', '@smok
 
 test('Admin is able to see the Activity button', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
-    
     await headerPage.goto();
 
     await expect(headerPage.activityButton).toBeVisible();
@@ -51,7 +45,6 @@ test('Admin is able to see the Activity button', {tag: ['@regression', '@smoke',
 
 test('Admin is able to see the Settings button', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
-    
     await headerPage.goto();
 
     await expect(headerPage.settingsButton).toBeVisible();
@@ -59,7 +52,6 @@ test('Admin is able to see the Settings button', {tag: ['@regression', '@smoke',
 
 test('When menu button is set on ON position, menu is visible', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
-    
     await headerPage.goto();
     await headerPage.openMenuTitles();
 
@@ -85,7 +77,7 @@ test('When menu button is set on ON position, menu is visible', {tag: ['@regress
 test('User clicks Refresh button and remain on homepage', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
-    
+
     await expect(headerPage.albumMenuTitle).toBeVisible();
     
     const url = await page.url();
