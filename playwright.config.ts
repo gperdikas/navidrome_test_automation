@@ -22,7 +22,8 @@ export default defineConfig({
   projects: [
     {
       name: 'logged-in',
-      testDir: './tests/logged-in',
+      testDir: './tests',  
+      testIgnore: '**/login/**',
       use: { 
         ...devices['Desktop Chrome'],
         storageState: 'auth.json',
@@ -30,7 +31,8 @@ export default defineConfig({
     },
     {
       name: 'logged-out',
-      testDir: './tests/logged-out',
+      testDir: './tests',  
+      testMatch: '**/login/**/*.spec.ts',
       use: { 
         ...devices['Desktop Chrome'],
         storageState: { cookies: [], origins: [] },
