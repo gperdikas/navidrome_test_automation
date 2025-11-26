@@ -20,23 +20,23 @@ test.describe.serial('Login Tests', () => {
            expect(response.status()).toBe(200);
         });
 
+        test('User is not able to log into Navidrome with invalid password provided', {tag: ['@regression', '@login']}, async ({page}) =>{
+            const response = await authService.login(process.env.NADM_USER_TEST3!, process.env.INVALID_PASSWORD!);
+            expect(response.status()).toBe(401);
+        });
+
         test('User is not able to log into Navidrome without password provided', {tag: ['@regression', '@login']}, async ({page}) =>{
             const response = await authService.login(process.env.NADM_USER_TEST3!, process.env.EMPTY_CREDENTIAL!);
             expect(response.status()).toBe(401);
         });
 
-        test('Login fails with valid username & empty password', {tag: ['@api', '@login', '@regression']}, async() => {
-            const response = await authService.login(process.env.NADM_USER_TEST3!, process.env.EMPTY_CREDENTIAL!);
+        test('Invalid password fails log in and sends error message', async ({ request }) => {
+            const response = await authService.login(process.env.NADM_USER_TEST3!, process.env.INVALID_PASSWORD!);
             expect(response.status()).toBe(401);
-        }); 
 
-        // test('Invalid password fails log in and sends error message', async ({ request }) => {
-        //      // test code
-        // });
-
-        // test('Invalid username fails log in and sends error message', async ({ request }) => {
-        //      // test code
-        // });
+            const errorResponse = await response.json();
+            expect(errorResponse.error).toBe('Invalid username or password');
+        });
 
         test('Login functionality is case-sensitive', async ({ request }) => {
             const response = await authService.login('ADMINtEST', 'ADMINtEST');
@@ -52,16 +52,24 @@ test.describe.serial('Login Tests', () => {
         });
 
         test('User is able to log in when using valid credentials', async ({ page }) => {
+            await loginPage.goto();
             await loginPage.login(process.env.TEST_USERNAME!, process.env.TEST_PASSWORD!);
             await expect(page).toHaveURL(/\/app\/#\/album\/recentlyAdded/);
         });
 
-        // test('User sees 'Unauthorized' popup when log in fails', async ({ page }) => {
-        
-        // });
+        test('User sees "Error: Unauthorized" popup when log in fails', async ({ page }) => {
+            await loginPage.goto();
+            await loginPage.login(process.env.TEST_USERNAME!, process.env.INVALID_PASSWORD!);
+            await expect(loginPage.unauthorizedLogErrorMsg).toBeVisible();
+            await expect(loginPage.unauthorizedLogErrorMsg).toHaveText('Error: Unauthorized');
+        });
 
-        // test('After fail to log in user is able to log in with valid credentials', async ({ page }) => {
-        
-        // });
+        test('After fail to log in user is able to log in with valid credentials', async ({ page }) => {
+            await loginPage.goto();
+            await loginPage.login(process.env.TEST_USERNAME!, process.env.INVALID_PASSWORD!);
+            await expect(loginPage.unauthorizedLogErrorMsg).toBeVisible();
+            await loginPage.login(process.env.TEST_USERNAME!, process.env.TEST_PASSWORD!);
+            await expect(page).toHaveURL(/\/app\/#\/album\/recentlyAdded/);
+        });
     });
 });
