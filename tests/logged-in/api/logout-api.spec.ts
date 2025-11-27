@@ -1,1 +1,0 @@
-// Navidrome does not have a server-side logout endpoint, it just clears the token and redirects to login page
