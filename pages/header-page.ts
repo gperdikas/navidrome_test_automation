@@ -40,22 +40,25 @@ export class HeaderPage {
     readonly recPlayedIntoAlbums: any;
     readonly mostIntoAlbums: any;
     readonly usernameInfoBox: any;
+    readonly menuContainer: any;
 
 
     constructor(page: Page) {
         this.page = page;
         this.header = page.locator('header.MuiPaper-root');
-        this.menuButton = page.locator('header button:has(svg path[d*="M3 18h18v-2H3v2z"])');        this.title = page.locator('#react-admin-title');    
+        this.menuButton = page.locator('header button:has(svg path[d*="M3 18h18v-2H3v2z"])');        
+        // this.menuButton = page.locator('header button.MuiIconButton-root').nth(2);
+        this.title = page.locator('#react-admin-title');    
         this.refreshButton = page.locator('button[aria-label="Refresh"]');
         this.nowPlayingButton = page.locator('button[aria-label="Now Playing"]');
         this.activityButton = page.locator('button[title="Activity"]');    
         this.settingsButton = page.locator('button[aria-label="Settings"]');
-        this.albumMenuTitle = page.getByRole('menuitem', {name: 'Albums'});
+        this.albumMenuTitle = page.getByText('Albums', { exact: true });
         this.artistsMenuTitle = page.locator('a', {hasText: 'Artists'});
         this.songsMenuTitle = page.locator('a', {hasText: 'Songs'});
         this.radiosMenuTitle = page.locator('a', {hasText: 'Radios'});
         this.playlistsMenuTitle = page.getByRole('menuitem', {name: 'Playlists'});
-        this.albumMenuText = page.getByText('Albums', { exact: true });
+        // this.albumMenuText = page.getByText('Albums', { exact: true });
         this.nowPlayingInfoBox = page.locator('#now-playing-title');
         this.activityPopover = page.locator('.MuiPopover-paper .MuiCard-root');
         this.uptimeInfoBox = this.activityPopover.getByText('Server Uptime');
@@ -79,6 +82,7 @@ export class HeaderPage {
         this.mostIntoAlbums = page.locator('a', {hasText: 'Most Played'});
         const usernameAllCapitals = process.env.TEST_USERNAME!.toUpperCase();
         this.usernameInfoBox = page.getByText(usernameAllCapitals);
+        this.menuContainer = page.locator('div.jss86').first();
     }
 
     // Define actions
@@ -98,18 +102,13 @@ export class HeaderPage {
     // Close menu
     async closeMenuTitles() {
         const menuVisible = await this.albumMenuTitle.isVisible();
-    console.log('menu visible?', menuVisible);    
        
     if (menuVisible) {
             await this.menuButton.click();
-    console.log('button clicked');
             await this.page.waitForTimeout(100); // tiny wait
         const stillVisible = await this.albumMenuTitle.isVisible();
-        console.log('Menu visible AFTER click?', stillVisible);
             await this.albumMenuText.waitFor({state: 'hidden'});
-        } else {
-    console.log('menu already closed');        
-        }
+        } 
     }
 
     // Opens 'Albums'
