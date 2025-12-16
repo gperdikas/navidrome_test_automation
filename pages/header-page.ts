@@ -105,7 +105,7 @@ export class HeaderPage {
        
     if (menuVisible) {
             await this.menuButton.click();
-            await this.page.waitForTimeout(100); // tiny wait
+            await this.page.waitForTimeout(100); 
         const stillVisible = await this.albumMenuTitle.isVisible();
             await this.albumMenuText.waitFor({state: 'hidden'});
         } 

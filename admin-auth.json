@@ -1,0 +1,67 @@
+{
+  "cookies": [
+    {
+      "name": "X-ND-Client-Unique-Id",
+      "value": "1e335d1c-ce0e-42d2-a81c-b91c3c887145",
+      "domain": "localhost",
+      "path": "/",
+      "expires": 1797412004.751626,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "nd-player-61646d696e54657374",
+      "value": "7NHY5NuDlUT1Fa4oQm1oB4",
+      "domain": "localhost",
+      "path": "/",
+      "expires": 1797412004.751684,
+      "httpOnly": true,
+      "secure": false,
+      "sameSite": "Strict"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "http://localhost:4533",
+      "localStorage": [
+        {
+          "name": "token",
+          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG0iOnRydWUsImV4cCI6MTc2NjA0ODgwNCwiaWF0IjoxNzY1ODc2MDA0LCJpc3MiOiJORCIsInN1YiI6ImFkbWluVGVzdCIsInVpZCI6InkxcG9xYlZzaTNPZXhZVGtuYzBybFUifQ.LGXS9_Pe_HEvZhqKm4k3x0w0bBY8EVASZX58R5zCTXw"
+        },
+        {
+          "name": "name",
+          "value": "Admintest"
+        },
+        {
+          "name": "subsonic-salt",
+          "value": "f3cd83"
+        },
+        {
+          "name": "state",
+          "value": "{\"theme\":\"DarkTheme\",\"library\":{\"userLibraries\":[{\"id\":1,\"name\":\"Music Library\",\"path\":\"/music\",\"remotePath\":\"\",\"lastScanAt\":\"0001-01-01T00:00:00Z\",\"lastScanStartedAt\":\"0001-01-01T00:00:00Z\",\"fullScanInProgress\":false,\"updatedAt\":\"0001-01-01T00:00:00Z\",\"createdAt\":\"0001-01-01T00:00:00Z\",\"totalSongs\":0,\"totalAlbums\":0,\"totalArtists\":0,\"totalFolders\":0,\"totalFiles\":0,\"totalMissingFiles\":0,\"totalSize\":0,\"totalDuration\":0,\"defaultNewUsers\":false}],\"selectedLibraries\":[1]},\"player\":{\"queue\":[],\"volume\":1,\"savedPlayIndex\":0},\"albumView\":{\"grid\":true},\"settings\":{\"notifications\":false,\"toggleableFields\":{\"album\":{\"artist\":true,\"songCount\":true,\"playCount\":true,\"year\":true,\"mood\":true,\"duration\":true,\"rating\":true,\"size\":true,\"createdAt\":true}},\"omittedFields\":{\"album\":[\"createdAt\",\"size\"]}}}"
+        },
+        {
+          "name": "subsonic-token",
+          "value": "c25bad3a4b9b821065554860a7009d8f"
+        },
+        {
+          "name": "is-authenticated",
+          "value": "true"
+        },
+        {
+          "name": "userId",
+          "value": "y1poqbVsi3OexYTknc0rlU"
+        },
+        {
+          "name": "username",
+          "value": "adminTest"
+        },
+        {
+          "name": "role",
+          "value": "admin"
+        }
+      ]
+    }
+  ]
+}
