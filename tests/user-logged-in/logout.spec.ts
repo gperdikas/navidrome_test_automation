@@ -9,7 +9,7 @@ test.describe('Logout UI Tests', () => {
         logoutPage = new LogoutPage(page);
     });
 
-    test('User is able to log out from Navidrome', {tag: ['@regression', '@smoke', '@logout']}, async ({page}) => {
+    test('User is able to log out from Navidrome', {tag: ['@loggedin', '@logout']}, async ({page}) => {
         const logoutPage = new LogoutPage(page);
         await logoutPage.goto();
         const tokenBeforeLogout = await page.evaluate(() => localStorage.getItem('token'));

@@ -1,56 +1,56 @@
 import { test, expect } from '@playwright/test';
 import { HeaderPage } from '../../pages/header-page';
 
-test('Admin is able to see header', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
+test('User is able to see header', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
     
     await expect(headerPage.header).toBeVisible();
 });
 
-test('Admin is able to see the menu button', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
+test('User is able to see the menu button', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
 
     await expect(headerPage.menuButton).toBeVisible();
 });
 
-test('Admin is able to see the tile of the open tab', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
+test('User is able to see the tile of the open tab', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
 
     await expect(headerPage.title).toBeVisible();
 });
 
-test('Admin is able to see the refresh button', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
+test('User is able to see the refresh button', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
 
     await expect(headerPage.refreshButton).toBeVisible();
 });
 
-test('Admin is able to see the Now Playing button', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
+test('User is able to see the Now Playing button', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
 
     await expect(headerPage.nowPlayingButton).toBeVisible();
 });
 
-test('Admin is able to see the Activity button', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
+test('User is able to see the Activity button', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
 
     await expect(headerPage.activityButton).toBeVisible();
 });
 
-test('Admin is able to see the Settings button', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
+test('User is able to see the Settings button', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
 
     await expect(headerPage.settingsButton).toBeVisible();
 });
 
-test('When menu button is set on ON position, menu is visible', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
+test('When menu button is set on ON position, menu is visible', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
     await headerPage.openMenuTitles();
@@ -62,7 +62,7 @@ test('When menu button is set on ON position, menu is visible', {tag: ['@regress
     await expect(headerPage.playlistsMenuTitle).toBeVisible();
 });
 
-test.skip('When menu button is set on OFF position, menu is not visible', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
+test.skip('When menu button is set on OFF position, menu is not visible', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
     await headerPage.closeMenuTitles();
@@ -70,7 +70,7 @@ test.skip('When menu button is set on OFF position, menu is not visible', {tag: 
     const actualClass = await headerPage.menuContainer.getAttribute('class');
 });
 
-test('User clicks Refresh button and remain on homepage', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
+test('User clicks Refresh button and remain on homepage', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
 
@@ -82,7 +82,7 @@ test('User clicks Refresh button and remain on homepage', {tag: ['@regression', 
     await expect(page).toHaveURL(url);
 });
 
-test('User clicks Now Playing button and popup opens', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
+test('User clicks Now Playing button and popup opens', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
     await headerPage.clickNowPlaying();
@@ -90,7 +90,7 @@ test('User clicks Now Playing button and popup opens', {tag: ['@regression', '@s
     await expect(headerPage.nowPlayingInfoBox).toBeVisible();
 });
 
-test('User clicks Activity button and popup opens', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
+test('User clicks Activity button and popup opens', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
     await headerPage.clickActivity();
@@ -101,7 +101,7 @@ test('User clicks Activity button and popup opens', {tag: ['@regression', '@smok
     await expect(headerPage.scanInfoBox).toBeVisible();
 });
 
-test('User clicks Settings button and settings menu opens', {tag: ['@regression', '@smoke', '@header']}, async ({page}) => {
+test('User clicks Settings button and settings menu opens', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
     await headerPage.clickSettings();
@@ -118,7 +118,7 @@ test('User clicks Settings button and settings menu opens', {tag: ['@regression'
     await expect(headerPage.logoutInfoBox).toBeVisible();
 });
 
-test('User clicks on "Albums>All" path and lands on proper page', {tag: ['@regression', '@header', '@menu']}, async ({page}) => {
+test('User clicks on "Albums>All" path and lands on proper page', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
     await headerPage.openAlbumMenu();
@@ -130,7 +130,7 @@ test('User clicks on "Albums>All" path and lands on proper page', {tag: ['@regre
     await expect(page).toHaveURL(/album\/all\?sort=name&order/);
 });
 
-test('User clicks on "Albums>Random" path and lands on proper page', {tag: ['@regression', '@header', '@menu']}, async ({page}) => {
+test('User clicks on "Albums>Random" path and lands on proper page', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
     await headerPage.openAlbumMenu();
@@ -142,7 +142,7 @@ test('User clicks on "Albums>Random" path and lands on proper page', {tag: ['@re
     await expect(page).toHaveURL(/album\/random\?sort=random&order/);
 });
 
-test('User clicks on "Albums>Favourites" path and lands on proper page', {tag: ['@regression', '@header', '@menu']}, async ({page}) => {
+test('User clicks on "Albums>Favourites" path and lands on proper page', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
     await headerPage.openAlbumMenu();
@@ -154,7 +154,7 @@ test('User clicks on "Albums>Favourites" path and lands on proper page', {tag: [
     await expect(page).toHaveURL(/album\/starred\?sort=starred_at&order/);
 });
 
-test('User clicks on "Albums>Top Rated" path and lands on proper page', {tag: ['@regression', '@header', '@menu']}, async ({page}) => {
+test('User clicks on "Albums>Top Rated" path and lands on proper page', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
     await headerPage.openAlbumMenu();
@@ -166,7 +166,7 @@ test('User clicks on "Albums>Top Rated" path and lands on proper page', {tag: ['
     await expect(page).toHaveURL(/album\/topRated\?sort=rating&order/);
 });
 
-test('User clicks on "Albums>Recently added" path and lands on proper page', {tag: ['@regression', '@header', '@menu']}, async ({page}) => {
+test('User clicks on "Albums>Recently added" path and lands on proper page', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
     await headerPage.openAlbumMenu();
@@ -178,7 +178,7 @@ test('User clicks on "Albums>Recently added" path and lands on proper page', {ta
     await expect(page).toHaveURL(/album\/recentlyAdded\?sort=recently_added&order/);
 });
 
-test('User clicks on "Albums>Recently played" path and lands on proper page', {tag: ['@regression', '@header', '@menu']}, async ({page}) => {
+test('User clicks on "Albums>Recently played" path and lands on proper page', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
     await headerPage.openAlbumMenu();
@@ -190,7 +190,7 @@ test('User clicks on "Albums>Recently played" path and lands on proper page', {t
     await expect(page).toHaveURL(/album\/recentlyPlayed\?sort=play_date&order/);
 });
 
-test('User clicks on "Albums>Most played" path and lands on proper page', {tag: ['@regression', '@header', '@menu']}, async ({page}) => {
+test('User clicks on "Albums>Most played" path and lands on proper page', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
     await headerPage.openAlbumMenu();
@@ -202,7 +202,7 @@ test('User clicks on "Albums>Most played" path and lands on proper page', {tag: 
     await expect(page).toHaveURL(/album\/mostPlayed\?sort=play_count&order/);
 });
 
-test('User clicks on "Artists" path and lands on proper page', {tag: ['@regression', '@header', '@menu']}, async ({page}) => {
+test('User clicks on "Artists" path and lands on proper page', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
     await headerPage.openAlbumMenu();
@@ -214,7 +214,7 @@ test('User clicks on "Artists" path and lands on proper page', {tag: ['@regressi
     await expect(page).toHaveURL(/\#\/artist/);
 });
 
-test('User clicks on "Songs" path and lands on proper page', {tag: ['@regression', '@header', '@menu']}, async ({page}) => {
+test('User clicks on "Songs" path and lands on proper page', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
     await headerPage.openAlbumMenu();
@@ -226,7 +226,7 @@ test('User clicks on "Songs" path and lands on proper page', {tag: ['@regression
     await expect(page).toHaveURL(/\#\/song/);
 });
 
-test('User clicks on "Radios" path and lands on proper page', {tag: ['@regression', '@header', '@menu']}, async ({page}) => {
+test('User clicks on "Radios" path and lands on proper page', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
     await headerPage.openAlbumMenu();
@@ -238,7 +238,7 @@ test('User clicks on "Radios" path and lands on proper page', {tag: ['@regressio
     await expect(page).toHaveURL(/\#\/radio/);
 });
 
-test('User clicks on "Playlists" path and lands on proper page', {tag: ['@regression', '@header', '@menu']}, async ({page}) => {
+test('User clicks on "Playlists" path and lands on proper page', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
     await headerPage.openAlbumMenu();
@@ -249,3 +249,7 @@ test('User clicks on "Playlists" path and lands on proper page', {tag: ['@regres
 
     await expect(page).toHaveURL(/\#\/playlist/);
 });
+
+// test('User clicks on "Playlists" edit icon and lands on proper page', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
+
+// });
