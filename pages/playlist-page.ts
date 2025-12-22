@@ -6,11 +6,13 @@ export class PlaylistPage {
     // Define locators
     readonly createPlaylistIcon: any;
     readonly createPlaylistForm: any;
-    readonly nameInputBox :any;
-    readonly commentInputBox :any;
-    readonly publicSwitch :any;
-    readonly saveButton :any;
-    // readonly  :any;
+    readonly nameInputBox: any;
+    readonly commentInputBox: any;
+    readonly publicSwitch: any;
+    readonly saveButton: any;
+    readonly playlistTableRow: any;
+    readonly playlistName :any;
+    readonly playlistPublicStateChecked : any;
     
     constructor(page: Page) {
         this.page = page;
@@ -20,8 +22,9 @@ export class PlaylistPage {
         this.commentInputBox = page.locator('textarea[name="comment"]');
         this.publicSwitch = page.locator('input[name="public"]')
         this.saveButton = page.getByRole('button', {name: "Save"});
-        // this. = 
-        // this. = 
+        this.playlistTableRow = page.locator('tr[resource="playlist"]');
+        this.playlistName = this.playlistTableRow.locator('td[class="column-name"]');
+        this.playlistPublicStateChecked = page.locator('span[class="Mui-checked"]'); 
     }
 
     // Define actions
@@ -30,10 +33,31 @@ export class PlaylistPage {
         await this.page.goto('/app/#/playlist');
     }
 
-    // Create playlist
-    async createTestingPlaylist() {
+    // Create not public playlist
+    async createTestingPlaylistNotPublic() {
+        await this.createPlaylistIcon.click();
         await this.nameInputBox.fill("Test playlist");
-        await this.commentInputBox.fill("This playlist is for testing purposes");
+        await this.commentInputBox.fill("This playlist is not public");
+        let checkedPublic = await this.publicSwitch.isChecked();
+        if(checkedPublic) { 
+            await this.publicSwitch.click(); 
+        } else { 
+        
+        }     
+        await this.page.waitForTimeout(1000);
+        await this.saveButton.click();
+    }
+
+    // Create public playlist
+    async createTestingPlaylistPublic() {
+        await this.createPlaylistIcon.click();
+        await this.nameInputBox.fill("Test playlist");
+        await this.commentInputBox.fill("This playlist is public");
+        let checkedPublic = await this.publicSwitch.isChecked();
+        if(checkedPublic) { 
+        } else { 
+            await this.publicSwitch.click(); 
+        }
         await this.saveButton.click();
     }
 }
