@@ -10,7 +10,7 @@ import { PlaylistPage } from '../../pages/playlist-page';
 //     await expect(createPlaylistForm).toBeVisible();
 // });
 
-test('Admin is able to create a playlist', {tag: ['@loggedin', '@ui', '@admin', '@createplaylist']}, async ({page}) => {
+test('Admin is able to create a not public playlist', {tag: ['@loggedin', '@ui', '@admin', '@createplaylist']}, async ({page}) => {
     const playlistPage = new PlaylistPage(page);
 
     await playlistPage.goto();
@@ -18,9 +18,9 @@ test('Admin is able to create a playlist', {tag: ['@loggedin', '@ui', '@admin', 
 await page.pause();
 await page.waitForTimeout(1000);
 
-    await expect(this.playlistTableRow).toBeVisible();
-    await expect(this.playlistName).toHaveText("Test playlist");
-    await expect(this.playlistPublicStateChecked).not.toBeVisible();
+    await expect(playlistPage.playlistsTable).toBeVisible();
+    await expect(playlistPage.playlistName).toHaveText("Test playlist");
+    await expect(playlistPage.playlistPublicStateChecked).not.toBeVisible();
 });
 
-// create playlist test fails. probably it is the locators on expect part bc the photo it takes when brakes shows the playlist created
+// create playlist works. need to create a after each to delete the playlist created

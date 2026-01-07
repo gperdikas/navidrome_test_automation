@@ -11,8 +11,9 @@ export class PlaylistPage {
     readonly publicSwitch: any;
     readonly saveButton: any;
     readonly playlistTableRow: any;
-    readonly playlistName :any;
-    readonly playlistPublicStateChecked : any;
+    readonly playlistName: any;
+    readonly playlistPublicStateChecked: any;
+    readonly playlistsTable: any;
     
     constructor(page: Page) {
         this.page = page;
@@ -22,8 +23,10 @@ export class PlaylistPage {
         this.commentInputBox = page.locator('textarea[name="comment"]');
         this.publicSwitch = page.locator('input[name="public"]')
         this.saveButton = page.getByRole('button', {name: "Save"});
-        this.playlistTableRow = page.locator('tr[resource="playlist"]');
-        this.playlistName = this.playlistTableRow.locator('td[class="column-name"]');
+        // this.playlistTableRow = page.locator('tr[resource="playlist"]');
+        this.playlistsTable = page.locator('table.MuiTable-root');
+        this.playlistTableRow = page.locator('tbody.datagrid-body');
+        this.playlistName = this.playlistTableRow.locator('td.column-name');
         this.playlistPublicStateChecked = page.locator('span[class="Mui-checked"]'); 
     }
 
