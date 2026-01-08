@@ -9,18 +9,25 @@ import { PlaylistPage } from '../../pages/playlist-page';
 //     await playlistPage.createPlaylistIcon.click();
 //     await expect(createPlaylistForm).toBeVisible();
 // });
+test.describe('Create playlist tests', () => {
+    
+    test.beforeEach(async () => {
+        playlistName = `Test playlist $Date.now()}`
+    });
 
-test('Admin is able to create a not public playlist', {tag: ['@loggedin', '@ui', '@admin', '@createplaylist']}, async ({page}) => {
-    const playlistPage = new PlaylistPage(page);
+    test('Admin is able to create a not public playlist', {tag: ['@loggedin', '@ui', '@admin', '@createplaylist']}, async ({page}) => {
+        const playlistPage = new PlaylistPage(page);
 
-    await playlistPage.goto();
-    await playlistPage.createTestingPlaylistNotPublic();
-await page.pause();
-await page.waitForTimeout(1000);
+        await playlistPage.goto();
+        await playlistPage.createTestingPlaylistNotPublic();
+        await page.waitForTimeout(1000);
+        await expect(playlistPage.playlistsTable).toBeVisible();
+        await expect(playlistPage.playlistName).toHaveText("Test playlist");
+        await expect(playlistPage.playlistPublicStateChecked).not.toBeVisible();
+    });
 
-    await expect(playlistPage.playlistsTable).toBeVisible();
-    await expect(playlistPage.playlistName).toHaveText("Test playlist");
-    await expect(playlistPage.playlistPublicStateChecked).not.toBeVisible();
+    test.afterEach(async () => {
+
+    });
 });
-
 // create playlist works. need to create a after each to delete the playlist created

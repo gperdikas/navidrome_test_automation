@@ -23,7 +23,6 @@ export class PlaylistPage {
         this.commentInputBox = page.locator('textarea[name="comment"]');
         this.publicSwitch = page.locator('input[name="public"]')
         this.saveButton = page.getByRole('button', {name: "Save"});
-        // this.playlistTableRow = page.locator('tr[resource="playlist"]');
         this.playlistsTable = page.locator('table.MuiTable-root');
         this.playlistTableRow = page.locator('tbody.datagrid-body');
         this.playlistName = this.playlistTableRow.locator('td.column-name');
@@ -37,24 +36,23 @@ export class PlaylistPage {
     }
 
     // Create not public playlist
-    async createTestingPlaylistNotPublic() {
+    async createTestingPlaylistNotPublic(playlistName: string) {
         await this.createPlaylistIcon.click();
-        await this.nameInputBox.fill("Test playlist");
+        await this.nameInputBox.fill(playlistName);
         await this.commentInputBox.fill("This playlist is not public");
         let checkedPublic = await this.publicSwitch.isChecked();
         if(checkedPublic) { 
             await this.publicSwitch.click(); 
         } else { 
-        
         }     
         await this.page.waitForTimeout(1000);
         await this.saveButton.click();
     }
 
     // Create public playlist
-    async createTestingPlaylistPublic() {
+    async createTestingPlaylistPublic(playlistName: string) {
         await this.createPlaylistIcon.click();
-        await this.nameInputBox.fill("Test playlist");
+        await this.nameInputBox.fill(playlistName);
         await this.commentInputBox.fill("This playlist is public");
         let checkedPublic = await this.publicSwitch.isChecked();
         if(checkedPublic) { 
