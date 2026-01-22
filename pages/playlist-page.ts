@@ -1,4 +1,4 @@
-import {Page} from '@playwright/test';
+import {Page, Locator} from '@playwright/test';
 
 export class PlaylistPage {
     readonly page: Page;
@@ -26,7 +26,7 @@ export class PlaylistPage {
         this.playlistsTable = page.locator('table.MuiTable-root');
         this.playlistTableRow = page.locator('tbody.datagrid-body');
         this.playlistName = this.playlistTableRow.locator('td.column-name');
-        this.playlistPublicStateChecked = page.locator('span[class="Mui-checked"]'); 
+        this.playlistPublicStateChecked = page.locator('span.Mui-checked'); 
     }
 
     // Define actions
@@ -62,4 +62,13 @@ export class PlaylistPage {
         await this.saveButton.click();
     }
 
+    // Get a specific playlist row by playlist's name
+    getPlaylistRowByName(playlistName: string): Locator {
+        return this.playlistsTable.locator('tr').filter({hasText: playlistName});
+    }
+
+    // Get the public check for a specific playlist
+    getPlaylistPublicCheckbox(playlistName: string) {
+        return this.getPlaylistRowByName(playlistName).locator('span.Mui-checked');
+    }
 }

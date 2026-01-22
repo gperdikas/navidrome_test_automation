@@ -12,23 +12,33 @@ test.describe('Create playlist tests', () => {
         playlistName = `Test playlist ${Date.now()}`
     });
 
+    // test.afterEach(async () => {
+    //     if (playlistId){
+    //         await playlistService.deletePlaylistById(playlistId);
+    //     }
+    //     await playlistService.dispose();
+    // });
+
     test('Admin is able to create a not public playlist', {tag: ['@loggedin', '@ui', '@admin', '@createplaylist']}, async ({page}) => {
         const playlistPage = new PlaylistPage(page);
-
         await playlistPage.goto();
         await playlistPage.createTestingPlaylistNotPublic(playlistName);
         await page.waitForTimeout(1000);
         playlistId = await playlistService.getPlaylistIdByName(playlistName);
-
         await expect(playlistPage.playlistsTable).toBeVisible();
-        await expect(playlistPage.playlistName).toHaveText("Test playlist");
-        await expect(playlistPage.playlistPublicStateChecked).not.toBeVisible();
+        await expect(playlistPage.getPlaylistRowByName(playlistName).locator('td.column-name')).toHaveText(playlistName);
+        await expect(playlistPage.getPlaylistPublicCheckbox(playlistName)).not.toBeVisible();
     });
 
-    test.afterEach(async () => {
-        if (playlistId){
-            await playlistService.deletePlaylistById(playlistId);
-        }
-        await playlistService.dispose();
+    test('Admin is able to create a public playlist', {tag: ['@loggedin', '@ui', '@admin', '@createplaylist']}, async ({page}) => {
+        const playlistPage = new PlaylistPage(page);
+        await playlistPage.goto();
+        await playlistPage.createTestingPlaylistPublic(playlistName);
+        await page.waitForTimeout(1000);
+        playlistId = await playlistService.getPlaylistIdByName(playlistName);
+
+        await expect(playlistPage.playlistsTable).toBeVisible();
+        await expect(playlistPage.playlistName.filter({ hasText: playlistName})).toHaveText(playlistName);
+        await expect(playlistPage.getPlaylistPublicCheckbox(playlistName)).toBeVisible();
     });
 });
