@@ -12,12 +12,12 @@ test.describe('Create playlist tests', () => {
         playlistName = `Test playlist ${Date.now()}`
     });
 
-    // test.afterEach(async () => {
-    //     if (playlistId){
-    //         await playlistService.deletePlaylistById(playlistId);
-    //     }
-    //     await playlistService.dispose();
-    // });
+    test.afterEach(async () => {
+    if (playlistId){
+        const response = await playlistService.deletePlaylistById(playlistId);
+    }
+    await playlistService.dispose();
+    });
 
     test('Admin is able to create a not public playlist', {tag: ['@loggedin', '@ui', '@admin', '@createplaylist']}, async ({page}) => {
         const playlistPage = new PlaylistPage(page);

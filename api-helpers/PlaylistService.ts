@@ -16,8 +16,8 @@ export class PlaylistService extends BaseApi {
     async getPlaylistIdByName(name: string): Promise<string | null> {
         await this.init();
         const response = await this.apiContext.get('/api/playlist');
-        const playlistsArray = await response.json();
-        // 2 lines above can be const playlistArray = await (await this.apiContext.get('/api/playlist')).json();      
+        const playlistsArray = await response.json();    
+        // const playlistArray = await (await this.apiContext.get('/api/playlist')).json();      
         for (let i=0; i<playlistsArray.length; i++) {
             if (playlistsArray[i].name === name) {
                 return playlistsArray[i].id;
