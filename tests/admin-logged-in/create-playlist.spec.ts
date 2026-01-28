@@ -6,15 +6,17 @@ test.describe('Create playlist tests', () => {
     let playlistService: PlaylistService;
     let playlistName: string;
     let playlistId: string | null;
+    let playlistIdArray: string[];
 
     test.beforeEach(async () => {
         playlistService = new PlaylistService();
-        playlistName = `Test playlist ${Date.now()}`
+        playlistName = `Test playlist ${Date.now()}`;
+        playlistIdArray = [];
     });
 
     test.afterEach(async () => {
-    if (playlistId){
-        const response = await playlistService.deletePlaylistById(playlistId);
+    for (let i=0; i<playlistIdArray.length; i++) {
+        const response = await playlistService.deletePlaylistById(playlistIdArray[i]);
     }
     await playlistService.dispose();
     });
@@ -25,6 +27,10 @@ test.describe('Create playlist tests', () => {
         await playlistPage.createTestingPlaylistNotPublic(playlistName);
         await page.waitForTimeout(1000);
         playlistId = await playlistService.getPlaylistIdByName(playlistName);
+        if (playlistId){
+            playlistIdArray.push(playlistId);
+        }
+        
         await expect(playlistPage.playlistsTable).toBeVisible();
         await expect(playlistPage.getPlaylistRowByName(playlistName).locator('td.column-name')).toHaveText(playlistName);
         await expect(playlistPage.getPlaylistPublicCheckbox(playlistName)).not.toBeVisible();
@@ -36,6 +42,9 @@ test.describe('Create playlist tests', () => {
         await playlistPage.createTestingPlaylistPublic(playlistName);
         await page.waitForTimeout(1000);
         playlistId = await playlistService.getPlaylistIdByName(playlistName);
+        if (playlistId) {
+        playlistIdArray.push(playlistId);
+        }
 
         await expect(playlistPage.playlistsTable).toBeVisible();
         await expect(playlistPage.playlistName.filter({ hasText: playlistName})).toHaveText(playlistName);
