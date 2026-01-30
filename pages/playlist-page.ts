@@ -14,6 +14,7 @@ export class PlaylistPage {
     readonly playlistName: any;
     readonly playlistPublicStateChecked: any;
     readonly playlistsTable: any;
+    readonly editPlaylistButton: any;
     
     constructor(page: Page) {
         this.page = page;
@@ -27,6 +28,7 @@ export class PlaylistPage {
         this.playlistTableRow = page.locator('tbody.datagrid-body');
         this.playlistName = this.playlistTableRow.locator('td.column-name');
         this.playlistPublicStateChecked = page.locator('span.Mui-checked'); 
+        this.editPlaylistButton = page.getByRole('button', {name: "Edit"});
     }
 
     // Define actions
@@ -71,4 +73,18 @@ export class PlaylistPage {
     getPlaylistPublicCheckbox(playlistName: string) {
         return this.getPlaylistRowByName(playlistName).locator('span.Mui-checked');
     }
+
+    // Edit playlist's name
+    async editPlaylistsName(playlistName: string) {
+        await (this.getPlaylistRowByName(playlistName)).locator(this.editPlaylistButton).click();
+        await this.nameInputBox.fill('editedName');
+        await this.saveButton.click();
+    }
+
+    // Edit playlist's comment
+    async editPlaylistsComment(playlistName: string) {
+        await (this.getPlaylistRowByName(playlistName)).locator(this.editPlaylistButton).click();
+        await this.commentInputBox.fill('editedComment');
+        await this.saveButton.click();
+    }    
 }

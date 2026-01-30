@@ -3,9 +3,11 @@ import { BaseApi } from './BaseApi';
 
 export class PlaylistService extends BaseApi {
   
-    // async createPlaylist(playlistName: string): Promise<APIResponse> {
-       
-    // }
+    async createPlaylist(playlistName: string, isPublic: boolean): Promise<APIResponse> {
+        await this.init();
+        const response = await this.apiContext.post('/api/playlist/', {data: {name: playlistName, public: isPublic}});
+        return response;
+    }
 
     async deletePlaylistById(playlistId: string): Promise<APIResponse> {
         await this.init();
