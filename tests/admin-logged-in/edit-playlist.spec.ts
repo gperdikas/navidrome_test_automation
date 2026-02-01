@@ -45,9 +45,14 @@ test.describe('Edit playlist tests', () => {
         await expect(playlistPage.commentInputBox).toHaveText('editedComment');
     });
 
-    // test('Admin is able to edit playlist Owner', {tag: ['@loggedin', '@ui', '@admin', '@editplaylist']}, async ({page}) => {
-    
-    // });
+    test('Admin is able to edit playlist Owner', {tag: ['@loggedin', '@ui', '@admin', '@editplaylist']}, async ({page}) => {
+        const playlistPage = new PlaylistPage(page);
+        await playlistService.createPlaylist(playlistName, isPublic);
+        await playlistPage.goto();
+
+        //need to add api calls for create user and delete user, in order to have a user to set as owner.
+        
+    });
 
     // test('Admin is able to edit playlist publicity status', {tag: ['@loggedin', '@ui', '@admin', '@editplaylist']}, async ({page}) => {
     

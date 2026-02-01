@@ -87,4 +87,10 @@ export class PlaylistPage {
         await this.commentInputBox.fill('editedComment');
         await this.saveButton.click();
     }    
+
+    // Edit playlist's owner
+    async editPlaylistsOwner(playlistName: string){
+        await (this.getPlaylistRowByName(playlistName)).locator(this.editPlaylistButton).click();
+        
+    }
 }
