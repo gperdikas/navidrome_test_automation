@@ -15,6 +15,9 @@ export class PlaylistPage {
     readonly playlistPublicStateChecked: any;
     readonly playlistsTable: any;
     readonly editPlaylistButton: any;
+    readonly ownerInputBox: any;
+    readonly ownerDropDownMenu: any;
+    readonly ownerDropDownOption: any;
     
     constructor(page: Page) {
         this.page = page;
@@ -29,6 +32,9 @@ export class PlaylistPage {
         this.playlistName = this.playlistTableRow.locator('td.column-name');
         this.playlistPublicStateChecked = page.locator('span.Mui-checked'); 
         this.editPlaylistButton = page.getByRole('button', {name: "Edit"});
+        this.ownerInputBox = page.locator('#ownerId');
+        this.ownerDropDownMenu = page.getByRole('listbox');
+        this.ownerDropDownOption = page.getByRole('option', {name: "userTestOwner1"});
     }
 
     // Define actions
@@ -91,6 +97,7 @@ export class PlaylistPage {
     // Edit playlist's owner
     async editPlaylistsOwner(playlistName: string){
         await (this.getPlaylistRowByName(playlistName)).locator(this.editPlaylistButton).click();
-        
+        await this.ownerInputBox.click();
+        await this.ownerDropDownOption.click();
     }
 }

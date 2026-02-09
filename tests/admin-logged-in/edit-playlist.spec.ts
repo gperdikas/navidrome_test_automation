@@ -47,10 +47,15 @@ test.describe('Edit playlist tests', () => {
 
     test('Admin is able to edit playlist Owner', {tag: ['@loggedin', '@ui', '@admin', '@editplaylist']}, async ({page}) => {
         const playlistPage = new PlaylistPage(page);
-        await playlistService.createPlaylist(playlistName, isPublic);
         await playlistPage.goto();
+        await playlistService.createPlaylist(playlistName, isPublic);
+        await playlistService.createTestUser();
+        await playlistPage.editPlaylistsOwner(playlistName);
+        await expect(playlistPage.ownerInputBox).toHaveText('userTestOwner1');
 
-        //need to add api calls for create user and delete user, in order to have a user to set as owner.
+
+    //     //need to add api call and delete user, in order to have a user to set as owner.
+           //it needs to get id cause it deletes by id, as on playlists
         
     });
 
