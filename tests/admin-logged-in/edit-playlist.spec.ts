@@ -10,12 +10,13 @@ test.describe('Edit playlist tests', () => {
     let isPublic: boolean;
     let playlistRow: any;
 
-    test.beforeEach(async () => {
+    test.beforeEach(async ({page}) => {
         playlistService = new PlaylistService();
-        playlistName = `Test playlist ${Date.now()}`;
+        const playlistPage = new PlaylistPage(page);
+        const randomsString = await playlistPage.randomString();
+        playlistName = `Test playlist ${Date.now()}_${randomsString}`;
         playlistIdArray = [];
         isPublic = true;
-        // playlistRow
     });
 
     test.afterEach(async () => {
@@ -28,6 +29,8 @@ test.describe('Edit playlist tests', () => {
     test('Admin is able to edit playlist Name', {tag: ['@loggedin', '@ui', '@admin', '@createplaylist']}, async ({page}) => {
         const playlistPage = new PlaylistPage(page);
         await playlistService.createPlaylist(playlistName, isPublic);
+        const playlistId = await playlistService.getPlaylistIdByName(playlistName);
+        playlistIdArray.push(playlistId!);
         await playlistPage.goto();
         await playlistPage.editPlaylistsName(playlistName);    
 
@@ -38,6 +41,8 @@ test.describe('Edit playlist tests', () => {
     test('Admin is able to edit playlist Comment', {tag: ['@loggedin', '@ui', '@admin', '@editplaylist']}, async ({page}) => {
         const playlistPage = new PlaylistPage(page);
         await playlistService.createPlaylist(playlistName, isPublic);
+        const playlistId = await playlistService.getPlaylistIdByName(playlistName);
+        playlistIdArray.push(playlistId!);
         await playlistPage.goto();
         await playlistPage.editPlaylistsComment(playlistName);
         await (playlistPage.getPlaylistRowByName(playlistName)).locator(playlistPage.editPlaylistButton).click();
@@ -49,8 +54,11 @@ test.describe('Edit playlist tests', () => {
         const playlistPage = new PlaylistPage(page);
         await playlistPage.goto();
         await playlistService.createPlaylist(playlistName, isPublic);
+        const playlistId = await playlistService.getPlaylistIdByName(playlistName);
+        playlistIdArray.push(playlistId!);
         await playlistService.createTestUser();
         await playlistPage.editPlaylistsOwner(playlistName);
+       
         await expect(playlistPage.ownerInputBox).toHaveText('userTestOwner1');
 
 

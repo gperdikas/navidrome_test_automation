@@ -17,12 +17,11 @@ export class PlaylistService extends BaseApi {
         return response;
     }
 
-    // Gets a playlists by playlist's name
+    // Gets a playlist's id by its name
     async getPlaylistIdByName(name: string): Promise<string | null> {
         await this.init();
         const response = await this.apiContext.get('/api/playlist');
         const playlistsArray = await response.json();    
-        // const playlistArray = await (await this.apiContext.get('/api/playlist')).json();      
         for (let i=0; i<playlistsArray.length; i++) {
             if (playlistsArray[i].name === name) {
                 return playlistsArray[i].id;
