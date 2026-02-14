@@ -37,6 +37,23 @@ export class PlaylistService extends BaseApi {
         return response;
     }
 
+    // Gets a user's id by their name
+    async getUserIdByName(userName: string): Promise<string | null> {
+        await this.init();
+        const response = await this.apiContext.get('/api/user');
+        const usersArray = await response.json();
+        for (let i=0; i<usersArray.length; i++) {
+            if (usersArray[i].userName === userName) {
+                return usersArray[i].id;
+            }
+        }    
+        return null;
+    }
+
     // Deletes a user
-    //deletes by id as on playlists
+    async deleteTestUser(userId: string): Promise<APIResponse> {
+        await this.init();
+        const response = await this.apiContext.delete(`api/user/${userId}`);
+        return response;
+    }
 }

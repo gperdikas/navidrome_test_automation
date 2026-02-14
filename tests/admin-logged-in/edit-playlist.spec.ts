@@ -61,10 +61,8 @@ test.describe('Edit playlist tests', () => {
        
         await expect(playlistPage.ownerInputBox).toHaveText('userTestOwner1');
 
-
-    //     //need to add api call and delete user, in order to have a user to set as owner.
-           //it needs to get id cause it deletes by id, as on playlists
-        
+        const userId = await playlistService.getUserIdByName('userTestOwner1');
+        await playlistService.deleteTestUser(userId!); 
     });
 
     // test('Admin is able to edit playlist publicity status', {tag: ['@loggedin', '@ui', '@admin', '@editplaylist']}, async ({page}) => {
