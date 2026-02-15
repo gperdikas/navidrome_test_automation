@@ -18,6 +18,7 @@ export class PlaylistPage {
     readonly ownerInputBox: any;
     readonly ownerDropDownMenu: any;
     readonly ownerDropDownOption: any;
+    readonly publicSwitchOnPlaylistBoard: any;
     
     constructor(page: Page) {
         this.page = page;
@@ -35,6 +36,7 @@ export class PlaylistPage {
         this.ownerInputBox = page.locator('#ownerId');
         this.ownerDropDownMenu = page.getByRole('listbox');
         this.ownerDropDownOption = page.getByRole('option', {name: "userTestOwner1"});
+        this.publicSwitchOnPlaylistBoard = page.locator('input.MuiSwitch-input');
     }
 
     // Define actions
@@ -109,5 +111,12 @@ export class PlaylistPage {
         await (this.getPlaylistRowByName(playlistName)).locator(this.editPlaylistButton).click();
         await this.ownerInputBox.click();
         await this.ownerDropDownOption.click();
+    }
+
+    // Edit playlist's publicity status
+    async editPublicityStatus(playlistName: string){
+        await (this.getPlaylistRowByName(playlistName)).locator(this.editPlaylistButton).click();
+        await this.publicSwitch.click();
+        await this.saveButton.click();
     }
 }

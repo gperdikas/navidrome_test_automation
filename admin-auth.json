@@ -2,12 +2,22 @@
   "cookies": [
     {
       "name": "X-ND-Client-Unique-Id",
-      "value": "297bff92-a33b-4e85-aac7-7ee60256c8cb",
+      "value": "57273696-7bd9-4c56-8cac-e711782e7344",
       "domain": "localhost",
       "path": "/",
-      "expires": 1802584612.794028,
+      "expires": 1802676927.092888,
       "httpOnly": true,
       "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "nd-player-61646d696e54657374",
+      "value": "6zEOoNeI8rhoi1ZiG8RRXe",
+      "domain": "localhost",
+      "path": "/",
+      "expires": 1802676927.092985,
+      "httpOnly": true,
+      "secure": false,
       "sameSite": "Strict"
     }
   ],
@@ -17,7 +27,7 @@
       "localStorage": [
         {
           "name": "token",
-          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG0iOnRydWUsImV4cCI6MTc3MTIyMTQxMiwiaWF0IjoxNzcxMDQ4NjEyLCJpc3MiOiJORCIsInN1YiI6ImFkbWluVGVzdCIsInVpZCI6InkxcG9xYlZzaTNPZXhZVGtuYzBybFUifQ.5tNna2WxVDLY20VWdJ2J_aa_q-1jTr9u-lRPDTu-j0s"
+          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG0iOnRydWUsImV4cCI6MTc3MTMxMzcyNywiaWF0IjoxNzcxMTQwOTI2LCJpc3MiOiJORCIsInN1YiI6ImFkbWluVGVzdCIsInVpZCI6InkxcG9xYlZzaTNPZXhZVGtuYzBybFUifQ.fiyINx9vJK6VQzdItJBbPqdvHx9TNmIUQRA6mgYNTu4"
         },
         {
           "name": "name",
@@ -25,7 +35,7 @@
         },
         {
           "name": "subsonic-salt",
-          "value": "d01cca"
+          "value": "91dc6b"
         },
         {
           "name": "state",
@@ -33,7 +43,7 @@
         },
         {
           "name": "subsonic-token",
-          "value": "10bde83b763cb42a2186a842537da3a8"
+          "value": "89bc8705320f32afc6db4d83a61740df"
         },
         {
           "name": "is-authenticated",

@@ -65,9 +65,14 @@ test.describe('Edit playlist tests', () => {
         await playlistService.deleteTestUser(userId!); 
     });
 
-    // test('Admin is able to edit playlist publicity status', {tag: ['@loggedin', '@ui', '@admin', '@editplaylist']}, async ({page}) => {
-    
-    // });
+    test('Admin is able to edit playlist publicity status', {tag: ['@loggedin', '@ui', '@admin', '@editplaylist']}, async ({page}) => {
+        const playlistPage = new PlaylistPage(page);
+        await playlistPage.goto();
+        await playlistService.createPlaylist(playlistName, isPublic);
+        await playlistPage.editPublicityStatus(playlistName);
+        let currentState = await  (playlistPage.getPlaylistRowByName(playlistName)).locator(playlistPage.publicSwitchOnPlaylistBoard).isChecked();
+        await expect(currentState).not.toBeTruthy();    
+    });
 
     // ADD one API test the confirms that edit, really edits and does not duplicate
     // GO TO playlist-page and change hard coded edited name to string vars and run each function with both string vars name/comment and edited name/comment
