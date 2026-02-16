@@ -19,6 +19,7 @@ export class PlaylistPage {
     readonly ownerDropDownMenu: any;
     readonly ownerDropDownOption: any;
     readonly publicSwitchOnPlaylistBoard: any;
+    readonly deleteButton: any;
     
     constructor(page: Page) {
         this.page = page;
@@ -37,6 +38,7 @@ export class PlaylistPage {
         this.ownerDropDownMenu = page.getByRole('listbox');
         this.ownerDropDownOption = page.getByRole('option', {name: "userTestOwner1"});
         this.publicSwitchOnPlaylistBoard = page.locator('input.MuiSwitch-input');
+        this.deleteButton = page.locator('button.ra-delete-button');
     }
 
     // Define actions
@@ -118,5 +120,11 @@ export class PlaylistPage {
         await (this.getPlaylistRowByName(playlistName)).locator(this.editPlaylistButton).click();
         await this.publicSwitch.click();
         await this.saveButton.click();
+    }
+
+    // Delete playlist
+    async deletePlaylist(playlistName: string){
+        await (this.getPlaylistRowByName(playlistName)).locator(this.editPlaylistButton).click();
+        await this.deleteButton.click();
     }
 }
