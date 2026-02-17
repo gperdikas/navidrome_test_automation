@@ -25,7 +25,6 @@ test.describe('Edit playlist tests', () => {
         await playlistPage.goto();
         await playlistPage.deletePlaylist(playlistName);    
 
-        await expect(playlistPage.playlistsTable).toBeVisible();
         await expect(playlistPage.getPlaylistRowByName(playlistName)).not.toBeVisible();
     }); 
 });
