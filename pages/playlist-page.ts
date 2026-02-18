@@ -47,16 +47,6 @@ export class PlaylistPage {
         await this.page.goto('/app/#/playlist');
     }
 
-    // Random string generator
-    async randomString() { 
-        const characters = "QAZWSXEDCRFVTGBYHNUJMIKOLPplokmijnuhbygvtfcrdxeszwaq0192837465"
-        let resultString = "";
-        for (let i = 0; i < 10; i++){
-            resultString += characters.charAt(Math.floor(Math.random()*characters.length));
-        }
-        return resultString;
-    };    
-
     // Create not public playlist
     async createTestingPlaylistNotPublic(playlistName: string) {
         await this.createPlaylistIcon.click();

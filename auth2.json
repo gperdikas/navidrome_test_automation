@@ -2,22 +2,12 @@
   "cookies": [
     {
       "name": "X-ND-Client-Unique-Id",
-      "value": "ad680863-50d6-4bea-b918-9a962e3f7417",
+      "value": "cd42ec1a-92d4-4340-9f54-88b88716f4e1",
       "domain": "localhost",
       "path": "/",
-      "expires": 1802966128.847512,
+      "expires": 1802966134.274662,
       "httpOnly": true,
       "secure": true,
-      "sameSite": "Strict"
-    },
-    {
-      "name": "nd-player-61646d696e54657374",
-      "value": "6zEOoNeI8rhoi1ZiG8RRXe",
-      "domain": "localhost",
-      "path": "/",
-      "expires": 1802966128.847627,
-      "httpOnly": true,
-      "secure": false,
       "sameSite": "Strict"
     }
   ],
@@ -27,15 +17,15 @@
       "localStorage": [
         {
           "name": "token",
-          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG0iOnRydWUsImV4cCI6MTc3MTYwMjkyOCwiaWF0IjoxNzcxNDMwMTI4LCJpc3MiOiJORCIsInN1YiI6ImFkbWluVGVzdCIsInVpZCI6InkxcG9xYlZzaTNPZXhZVGtuYzBybFUifQ.CcxnOjmKCbVugzlYfAm3MgaqmrurhEGkpAUqe4SR8_Y"
+          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG0iOmZhbHNlLCJleHAiOjE3NzE2MDI5MzQsImlhdCI6MTc3MTQzMDEzNCwiaXNzIjoiTkQiLCJzdWIiOiJ1c2VyVGVzdDIiLCJ1aWQiOiJ2a0t5R2xyRmE5Zk9yUlcySlVDNWJMIn0.6JauSbz-2Bw0PlnQoows46vmtFxAz_Vy685F6A8y4u8"
         },
         {
           "name": "name",
-          "value": "Admintest"
+          "value": "userTest2"
         },
         {
           "name": "subsonic-salt",
-          "value": "2d61a7"
+          "value": "e15423"
         },
         {
           "name": "state",
@@ -43,7 +33,7 @@
         },
         {
           "name": "subsonic-token",
-          "value": "cfde3e0e4b0b28bd4b18679a9b605981"
+          "value": "5d07b4c999c330cd870f25d0df3cde66"
         },
         {
           "name": "is-authenticated",
@@ -51,15 +41,15 @@
         },
         {
           "name": "userId",
-          "value": "y1poqbVsi3OexYTknc0rlU"
+          "value": "vkKyGlrFa9fOrRW2JUC5bL"
         },
         {
           "name": "username",
-          "value": "adminTest"
+          "value": "userTest2"
         },
         {
           "name": "role",
-          "value": "admin"
+          "value": "regular"
         }
       ]
     }

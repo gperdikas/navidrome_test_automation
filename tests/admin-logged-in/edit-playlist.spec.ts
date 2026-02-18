@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { PlaylistPage } from '../../pages/playlist-page';
 import { PlaylistService } from '../../api-helpers/PlaylistService';
+import { randomString } from '../../helpers/random-string-generator';
 
 test.describe('Edit playlist tests', () => {
     let playlistService: PlaylistService;
@@ -13,7 +14,7 @@ test.describe('Edit playlist tests', () => {
     test.beforeEach(async ({page}) => {
         playlistService = new PlaylistService();
         const playlistPage = new PlaylistPage(page);
-        const randomsString = await playlistPage.randomString();
+        const randomsString = randomString();
         playlistName = `Test playlist ${Date.now()}_${randomsString}`;
         playlistIdArray = [];
         isPublic = true;
