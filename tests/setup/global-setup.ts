@@ -33,6 +33,7 @@ async function loginAndSaveState(
 async function globalSetup(config: FullConfig) {
   await loginAndSaveState(process.env.TEST_USERNAME! , process.env.TEST_PASSWORD! , 'admin-api-token.json' , 'admin-auth.json');
   await loginAndSaveState(process.env.NADM_USER_TEST1! , process.env.NADM_PSW_TEST1! , 'api-token.json' , 'auth.json');
+  await loginAndSaveState(process.env.NADM_USER_TEST2! , process.env.NADM_PSW_TEST2! , 'api-token-user2.json' , 'auth2.json');
 }
 
 export default globalSetup;
