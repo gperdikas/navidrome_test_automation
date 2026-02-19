@@ -14,17 +14,17 @@ test.describe('Edit playlist tests', () => {
     test.beforeEach(async ({page}) => {
         playlistService = new PlaylistService();
         const playlistPage = new PlaylistPage(page);
-        const randomsString = randomString();
-        playlistName = `Test playlist ${Date.now()}_${randomsString}`;
+        const randomStringResult = randomString();
+        playlistName = `Test playlist ${Date.now()}_${randomStringResult}`;
         playlistIdArray = [];
         isPublic = true;
     });
 
     test.afterEach(async () => {
-    for (let i=0; i<playlistIdArray.length; i++) {
-        const response = await playlistService.deletePlaylistById(playlistIdArray[i]);
-    }
-    await playlistService.dispose();
+        for (let i=0; i<playlistIdArray.length; i++) {
+            const response = await playlistService.deletePlaylistById(playlistIdArray[i]);
+        }
+        await playlistService.dispose();
     });
 
     test('Admin is able to edit playlist Name', {tag: ['@loggedin', '@ui', '@admin', '@createplaylist']}, async ({page}) => {

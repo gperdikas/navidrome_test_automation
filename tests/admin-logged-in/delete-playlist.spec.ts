@@ -14,8 +14,8 @@ test.describe('Edit playlist tests', () => {
     test.beforeEach(async ({page}) => {
         playlistService = new PlaylistService();
         const playlistPage = new PlaylistPage(page);
-        const randomsString = randomString();
-        playlistName = `Test playlist ${Date.now()}_${randomsString}`;
+        const randomStringResult = randomString();
+        playlistName = `Test playlist ${Date.now()}_${randomStringResult}`;
         playlistIdArray = [];
         isPublic = true;
     });
