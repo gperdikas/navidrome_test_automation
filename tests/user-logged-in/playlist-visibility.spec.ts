@@ -10,18 +10,24 @@ test.describe('Public playlist visibility', () => {
     let playlistIdArray: string[];
     let isPublic: boolean;
     let playlistRow: any;
-
+    let context: any;
+    let page: any;
 
     test.beforeAll(async ({browser}) => {
-        // create public playlist
-        const page = await browser.newPage();
+        context = await browser.newContext({storageState: 'auth.json'});
+        page = await context.newPage();
         playlistService = new PlaylistService();
         const playlistPage = new PlaylistPage(page);
         const randomStringResult = randomString();
         playlistName = `Test playlist ${Date.now()}_${randomStringResult}`;
         playlistIdArray = [];
         isPublic = true;
-        await playlistService.createPlaylist(playlistName, isPublic); 
+        await playlistPage.goto();
+        await playlistPage.createTestingPlaylistPublic(playlistName);
+        playlistId = await playlistService.getPlaylistIdByName(playlistName);
+        if (playlistId){
+            playlistIdArray.push(playlistId);
+        }
     });
 
     test.afterAll(async () => {
@@ -29,14 +35,34 @@ test.describe('Public playlist visibility', () => {
             const response = await playlistService.deletePlaylistById(playlistIdArray[i]);
         }
         await playlistService.dispose();
+        await page.close();
+        await context.close();
     });
 
-    test('1', {tag: ['@loggedin', '@ui', '@user', '@playlistvisibility']}, async ({page}) => {
-        // login as admin -- able to see the playlist created
+    test('User public playlist is visible by Admin', {tag: ['@loggedin', '@ui', '@user', '@playlistvisibility']}, async ({browser}) => {
+        let context = await browser.newContext({storageState: 'admin-auth.json'});
+        let page = await context.newPage();
+        const playlistPage = new PlaylistPage(page);
+        await playlistPage.goto();
+        await playlistPage.openPlaylists(); 
+        
+        await expect(playlistPage.getPlaylistRowByName(playlistName)).toBeVisible();
+    
+        await page.close();
+        await context.close();
     });
 
-    test('2', {tag: ['@loggedin', '@ui', '@user', '@playlistvisibility']}, async ({page}) => {
-        // login as user2 -- able to see the playlist created
+    test('User public playlist is visible by other user', {tag: ['@loggedin', '@ui', '@user', '@playlistvisibility']}, async ({browser}) => {
+        let context = await browser.newContext({storageState: 'auth2.json'});
+        let page = await context.newPage();
+        const playlistPage = new PlaylistPage(page);
+        await playlistPage.goto();
+        await playlistPage.openPlaylists(); 
+        
+        await expect(playlistPage.getPlaylistRowByName(playlistName)).toBeVisible();
+    
+        await page.close();
+        await context.close();
     });
 });
 
@@ -47,15 +73,24 @@ test.describe('Private playlist visibility', () => {
     let playlistIdArray: string[];
     let isPublic: boolean;
     let playlistRow: any;
+    let context: any;
+    let page: any;
 
-    test.beforeAll(async ({page}) => {
+    test.beforeAll(async ({browser}) => {
+        context = await browser.newContext({storageState: 'auth.json'});
+        page = await context.newPage();
         playlistService = new PlaylistService();
         const playlistPage = new PlaylistPage(page);
-        const randomsString = randomString();
-        playlistName = `Test playlist ${Date.now()}_${randomsString}`;
+        const randomStringResult = randomString();
+        playlistName = `Test playlist ${Date.now()}_${randomStringResult}`;
         playlistIdArray = [];
         isPublic = false;
-        await playlistService.createPlaylist(playlistName, isPublic);
+        await playlistPage.goto();
+        await playlistPage.createTestingPlaylistNotPublic(playlistName);
+        playlistId = await playlistService.getPlaylistIdByName(playlistName);
+        if (playlistId){
+            playlistIdArray.push(playlistId);
+        }
     });
 
     test.afterAll(async () => {
@@ -63,13 +98,33 @@ test.describe('Private playlist visibility', () => {
             const response = await playlistService.deletePlaylistById(playlistIdArray[i]);
         }
         await playlistService.dispose();
+        await page.close();
+        await context.close();
     });
 
-    test('1', {tag: ['@loggedin', '@ui', '@user', '@playlistvisibility']}, async ({page}) => {
-        // login as admin -- able to see playlist
+    test('User private playlist is visible by Admin', {tag: ['@loggedin', '@ui', '@user', '@playlistvisibility']}, async ({browser}) => {
+        let context = await browser.newContext({storageState: 'admin-auth.json'});
+        let page = await context.newPage();
+        const playlistPage = new PlaylistPage(page);
+        await playlistPage.goto();
+        await playlistPage.openPlaylists(); 
+        
+        await expect(playlistPage.getPlaylistRowByName(playlistName)).toBeVisible();
+    
+        await page.close();
+        await context.close();   
     });
 
-    test('2', {tag: ['@loggedin', '@ui', '@user', '@playlistvisibility']}, async ({page}) => {
-        // login as user2 -- NOT able to see playlist created
+    test('User private playlist is not visible by other users', {tag: ['@loggedin', '@ui', '@user', '@playlistvisibility']}, async ({browser}) => {
+        let context = await browser.newContext({storageState: 'auth2.json'});
+        let page = await context.newPage();
+        const playlistPage = new PlaylistPage(page);
+        await playlistPage.goto();
+        await playlistPage.openPlaylists(); 
+        
+        await expect(playlistPage.getPlaylistRowByName(playlistName)).not.toBeAttached();
+    
+        await page.close();
+        await context.close();    
     });
 });

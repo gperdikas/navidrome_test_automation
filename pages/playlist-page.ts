@@ -20,6 +20,7 @@ export class PlaylistPage {
     readonly ownerDropDownOption: any;
     readonly publicSwitchOnPlaylistBoard: any;
     readonly deleteButton: any;
+    readonly playlistsButton: any;
     
     constructor(page: Page) {
         this.page = page;
@@ -39,12 +40,19 @@ export class PlaylistPage {
         this.ownerDropDownOption = page.getByRole('option', {name: "userTestOwner1"});
         this.publicSwitchOnPlaylistBoard = page.locator('input.MuiSwitch-input');
         this.deleteButton = page.locator('button.ra-delete-button');
+        // this.playlistsButton = page.locator('a[title="Playlists"]');
+        this.playlistsButton = page.getByRole('menuitem', {name: 'Playlists', exact: true});
     }
 
     // Define actions
     // Go to page
     async goto() {
         await this.page.goto('/app/#/playlist');
+    }
+
+    // Open playlists page
+    async openPlaylists() {
+        await this.playlistsButton.click();
     }
 
     // Create not public playlist
