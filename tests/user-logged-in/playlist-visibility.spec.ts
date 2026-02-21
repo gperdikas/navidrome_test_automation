@@ -9,7 +9,7 @@ test.describe('Public playlist visibility', () => {
     let playlistId: string | null;
     let playlistIdArray: string[];
     let isPublic: boolean;
-    let playlistRow: any;
+    // let playlistRow: any;
     let context: any;
     let page: any;
 
@@ -72,7 +72,7 @@ test.describe('Private playlist visibility', () => {
     let playlistId: string | null;
     let playlistIdArray: string[];
     let isPublic: boolean;
-    let playlistRow: any;
+    // let playlistRow: any;
     let context: any;
     let page: any;
 

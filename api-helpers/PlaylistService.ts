@@ -56,4 +56,25 @@ export class PlaylistService extends BaseApi {
         const response = await this.apiContext.delete(`api/user/${userId}`);
         return response;
     }
+
+    // Get song's Id
+    async getSongId(songName: string): Promise<APIResponse> {
+        await this.init();
+        const response = await this.apiContext.get(`api/song`);
+        const songsArray = await response.json();
+        const result = songsArray.filter(checkMissing);
+        function checkMissing(song) {
+            return song.missing === false;
+        }
+
+        // check into the result array
+        // find song.title === songName
+        // get that id
+        // return th id
+
+        return response;
+    }
+
+    // Add song to playlist
+    
 }
