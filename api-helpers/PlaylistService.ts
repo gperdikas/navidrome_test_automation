@@ -58,23 +58,28 @@ export class PlaylistService extends BaseApi {
     }
 
     // Get song's Id
-    async getSongId(songName: string): Promise<APIResponse> {
+
+    // what if song given does not exist?
+
+    async getSongIdByName(songName: string): Promise<string> {
         await this.init();
         const response = await this.apiContext.get(`api/song`);
         const songsArray = await response.json();
-        const result = songsArray.filter(checkMissing);
-        function checkMissing(song) {
+        function checkMissing(song: any) {
             return song.missing === false;
         }
-
-        // check into the result array
-        // find song.title === songName
-        // get that id
-        // return th id
-
-        return response;
+        const presentSongsArray = songsArray.filter(checkMissing);
+        function checkName(song: any) {
+            return song.title === songName
+        }
+        const foundSong = presentSongsArray.find(checkName);
+        return foundSong.id;
     }
 
     // Add song to playlist
-    
+    async addSongToPlaylist(playlistId: string, songIds: string[]): Promise<APIResponse> {
+        await this.init();
+        const response = await this.apiContext.post(`/api/playlist/${playlistId}/tracks`, {data: {ids: songIds}});
+        return response;
+    }
 }
