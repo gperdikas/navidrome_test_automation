@@ -13,10 +13,14 @@ export class PlaylistPage {
     }
 
     // Define actions
-    // Go to page
-    async goto() {
+    // Go to songs page
+    async gotosong() {
         await this.page.goto('/app/#/song'); 
     }
+
+    
+
+   
 
 
 

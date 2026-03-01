@@ -21,6 +21,7 @@ export class PlaylistPage {
     readonly publicSwitchOnPlaylistBoard: any;
     readonly deleteButton: any;
     readonly playlistsButton: any;
+    readonly playPlaylistButton: any;
     
     constructor(page: Page) {
         this.page = page;
@@ -42,10 +43,11 @@ export class PlaylistPage {
         this.deleteButton = page.locator('button.ra-delete-button');
         // this.playlistsButton = page.locator('a[title="Playlists"]');
         this.playlistsButton = page.getByRole('menuitem', {name: 'Playlists', exact: true});
+        this.playPlaylistButton = page.getByRole('button', {name: 'Play', exact: true});
     }
 
     // Define actions
-    // Go to page
+    // Go to playlists page
     async goto() {
         await this.page.goto('/app/#/playlist');
     }
@@ -124,5 +126,10 @@ export class PlaylistPage {
     async deletePlaylist(playlistName: string){
         await (this.getPlaylistRowByName(playlistName)).locator(this.editPlaylistButton).click();
         await this.deleteButton.click();
+    }
+
+    //Play whole playlist
+    async playWholePlaylist(){
+        await this.playPlaylistButton.click();
     }
 }
