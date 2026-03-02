@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-// import { PlayerPage } from '../../pages/player-page';
+import { PlayerPage } from '../../pages/player-page';
 import { PlaylistPage } from '../../pages/playlist-page';
 import { PlayerService } from '../../api-helpers/PlayerService';
 import { randomString } from '../../helpers/random-string-generator';
@@ -13,6 +13,7 @@ test.describe('Music player usability', () => {
     let playlistName: string;
     let playlistIdArray: string[];
     let playlistPage : PlaylistPage;
+    let playerPage : PlayerPage;
 
     test.beforeAll(async () => {
         playlistService = new PlaylistService();
@@ -48,93 +49,74 @@ test.describe('Music player usability', () => {
         await playlistPage.playWholePlaylist();
     });
 
-/*
-//      test 1  --  click pause, song pauses - ui
 
--- player opens --
--- song plays --
-step 1 - click pause on player
--- music pauses --
-*/
-test('User clicks "Pause" on player and playlist pauses', {tag: []}, async ({page}) => {
-    await page.waitForFunction(() => {
-        const audio = document.querySelector('audio') as HTMLAudioElement;
-        return audio?.currentTime > 0;
+    test('User clicks "Pause" on player and playlist pauses', {tag: []}, async ({page}) => {
+        await page.waitForFunction(() => {
+            const audio = document.querySelector('audio') as HTMLAudioElement;
+            return audio?.currentTime > 0;
+        });
+        const isPaused = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
+        expect(isPaused).toBe(false);
+
+        await playerPage.pauseSong();
+        await expect(playerPage.playButton).toBeVisible();
+        await expect(playerPage.pauseButton).not.toBeVisible();
+        expect(isPaused).toBe(true);
     });
-    
-    const isPaused = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
-    expect(isPaused).toBe(false);
 
-    //   continue test
-});
-/*
-//      test 2  --  click play after pause, resumes the song - ui
--- player opens --
--- song plays --
-step 1 - click pause on player
-step 2 - click play on player
--- music starts --
-*/
-test('User clicks "Play" on player after pausing and playlist continues playing', {tag: []}, async ({page}) => {
-    await page.waitForFunction(() => {
-        const audio = document.querySelector('audio') as HTMLAudioElement;
-        return audio?.currentTime > 0;
+    test('User clicks "Play" on player after pausing and playlist continues playing', {tag: []}, async ({page}) => {
+        await page.waitForFunction(() => {
+            const audio = document.querySelector('audio') as HTMLAudioElement;
+            return audio?.currentTime > 0;
+        });
+        const isPaused = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
+        expect(isPaused).toBe(false);
+
+        await playerPage.pauseAndResumeSong();
+        await expect(playerPage.playButton).not.toBeVisible();
+        await expect(playerPage.pauseButton).toBeVisible();    
+        expect(isPaused).toBe(false);
     });
-    
-    const isPaused = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
-    expect(isPaused).toBe(false);
 
-    //  continue test
-});
+    test('User clicks "Next" on player and next song starts playing', {tag: []}, async ({page}) => {
+        await page.waitForFunction(() => {
+            const audio = document.querySelector('audio') as HTMLAudioElement;
+            return audio?.currentTime > 0;
+        });
+        const isPaused = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
+        expect(isPaused).toBe(false);
 
-/*
-//      test 3  --  next goes to next song - ui
--- player opens --
--- song plays --
-step 1 - click next on player
--- next song plays --
-*/
-test('User clicks "Next" on player and next song starts playing', {tag: []}, async ({page}) => {
-    await page.waitForFunction(() => {
-        const audio = document.querySelector('audio') as HTMLAudioElement;
-        return audio?.currentTime > 0;
+        await playerPage.playNextSong();
+        expect(isPaused).toBe(false);
+        // expect title of next song maybe take title before click it, take after and find them different
+        // bad plan but ok for today
     });
-    
-    const isPaused = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
-    expect(isPaused).toBe(false);
 
-    //  continue test
-});
+    test('User clicks "Previous" on player and same song starts again', {tag: []}, async ({page}) => {
+        await page.waitForFunction(() => {
+            const audio = document.querySelector('audio') as HTMLAudioElement;
+            return audio?.currentTime > 0;
+        });
+        const isPaused = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
+        expect(isPaused).toBe(false);
 
-/*
-//      test 4  --  X icon close player - ui
--- player opens --
--- song plays --
-step 1 - click previous on player
--- previous song plays --
-
-*/
-test('User clicks "Previous" on player and same song starts again', {tag: []}, async ({page}) => {
-    await page.waitForFunction(() => {
-        const audio = document.querySelector('audio') as HTMLAudioElement;
-        return audio?.currentTime > 0;
+        await playerPage.playSongFromStart();
+        expect(isPaused).toBe(false);
+        //take name before and after and find them same
     });
-    
-    const isPaused = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
-    expect(isPaused).toBe(false);
 
-    //  continue test
-});
+    test('User clicks "Previous" on player twice and previous song starts playing', {tag: []}, async ({page}) => {
+        await page.waitForFunction(() => {
+            const audio = document.querySelector('audio') as HTMLAudioElement;
+            return audio?.currentTime > 0;
+        });
+        const isPaused = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
+        expect(isPaused).toBe(false);
 
-test('User clicks "Previous" on playertwice and previous song starts playing', {tag: []}, async ({page}) => {
-    await page.waitForFunction(() => {
-        const audio = document.querySelector('audio') as HTMLAudioElement;
-        return audio?.currentTime > 0;
+        await playerPage.playPreviousSong();
+        expect(isPaused).toBe(false);
+        // take name before and after and find them different
+
+        //  continue test
     });
-    
-    const isPaused = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
-    expect(isPaused).toBe(false);
-
-    //  continue test
-});
 });
