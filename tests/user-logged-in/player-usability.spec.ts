@@ -42,7 +42,8 @@ test.describe('Music player usability', () => {
     });
 
     test.beforeEach(async ({page}) => {
-        playlistPage = new PlaylistPage(page);
+        const playlistPage = new PlaylistPage(page);
+        playerPage = new PlayerPage(page);
         await playlistPage.goto();
         const playlistRow = playlistPage.getPlaylistRowByName(playlistName);
         await playlistRow.click();
@@ -55,13 +56,15 @@ test.describe('Music player usability', () => {
             const audio = document.querySelector('audio') as HTMLAudioElement;
             return audio?.currentTime > 0;
         });
-        const isPaused = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
-        expect(isPaused).toBe(false);
+        let isPausedCurrentValue = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
+        expect(isPausedCurrentValue).toBe(false);
 
         await playerPage.pauseSong();
+        await page.waitForTimeout(300);
         await expect(playerPage.playButton).toBeVisible();
         await expect(playerPage.pauseButton).not.toBeVisible();
-        expect(isPaused).toBe(true);
+        isPausedCurrentValue = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
+        expect(isPausedCurrentValue).toBe(true);
     });
 
     test('User clicks "Play" on player after pausing and playlist continues playing', {tag: []}, async ({page}) => {
@@ -69,13 +72,14 @@ test.describe('Music player usability', () => {
             const audio = document.querySelector('audio') as HTMLAudioElement;
             return audio?.currentTime > 0;
         });
-        const isPaused = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
-        expect(isPaused).toBe(false);
+        let isPausedCurrentValue = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
+        expect(isPausedCurrentValue).toBe(false);
 
         await playerPage.pauseAndResumeSong();
         await expect(playerPage.playButton).not.toBeVisible();
         await expect(playerPage.pauseButton).toBeVisible();    
-        expect(isPaused).toBe(false);
+        isPausedCurrentValue = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
+        expect(isPausedCurrentValue).toBe(false);
     });
 
     test('User clicks "Next" on player and next song starts playing', {tag: []}, async ({page}) => {
@@ -83,57 +87,59 @@ test.describe('Music player usability', () => {
             const audio = document.querySelector('audio') as HTMLAudioElement;
             return audio?.currentTime > 0;
         });
-        const isPaused = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
-        expect(isPaused).toBe(false);
+        let isPausedCurrentValue = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
+        expect(isPausedCurrentValue).toBe(false);
 
-        await playerPage.playNextSong();
-        expect(isPaused).toBe(false);
+        isPausedCurrentValue = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
+        expect(isPausedCurrentValue).toBe(false);
         const songBeforeClickNext = await page.locator('audio').getAttribute('title');
         expect(songBeforeClickNext).toBe("sonican-global-chase - [Unknown Artist]");
-        await playerPage.nextButton.click();
+        await playerPage.playNextSong();
         const songAfterClickNext = await page.locator('audio').getAttribute('title');
         expect(songAfterClickNext).toBe("sonican-uplifting-feelgood - [Unknown Artist]");
-        // this works for this case. If more song or shuffle on try:
+        // this works for this case. If playlist has more songs or shuffle is on try:
         // expect(songBeforeClickNext).not.toBe(songAfterClickNext);
-        // check currentTime < 1 sec (song start from beginning)
-       
+        await page.waitForTimeout(300);
+        const currentTimespotOnSong = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.currentTime);
+        expect(currentTimespotOnSong).toBeLessThan(1);
     });
 
     test('User clicks "Previous" on player and same song starts again', {tag: []}, async ({page}) => {
         await page.waitForFunction(() => {
             const audio = document.querySelector('audio') as HTMLAudioElement;
-            return audio?.currentTime > 0;
+            return audio?.currentTime > 1;
         });
-        const isPaused = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
-        expect(isPaused).toBe(false);
+        let isPausedCurrentValue = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
+        expect(isPausedCurrentValue).toBe(false);
 
-        await playerPage.playSongFromStart();
-        expect(isPaused).toBe(false);
+        isPausedCurrentValue = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
+        expect(isPausedCurrentValue).toBe(false);
         const songBeforeClickNext = await page.locator('audio').getAttribute('title');
         expect(songBeforeClickNext).toBe("sonican-global-chase - [Unknown Artist]");
-        await playerPage.previousButton.click();  
+        await playerPage.playSongFromStart();
         const songAfterClickNext = await page.locator('audio').getAttribute('title');
         expect(songBeforeClickNext).toBe(songAfterClickNext);
-        // check currentTime < 1 sec (song start from beginning)
+        await page.waitForTimeout(300);
+        const currentTimespotOnSong = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.currentTime);
+        expect(currentTimespotOnSong).toBeLessThan(1);
     });
 
     test('User clicks "Previous" on player twice and previous song starts playing', {tag: []}, async ({page}) => {
         await page.waitForFunction(() => {
             const audio = document.querySelector('audio') as HTMLAudioElement;
-            return audio?.currentTime > 0;
+            return audio?.currentTime > 1;
         });
         const isPaused = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.paused);
         expect(isPaused).toBe(false);
 
-        await playerPage.playPreviousSong();
         expect(isPaused).toBe(false);
          const songBeforeClickNext = await page.locator('audio').getAttribute('title');
         expect(songBeforeClickNext).toBe("sonican-global-chase - [Unknown Artist]");
-        await playerPage.previousButton.click();
-        await playerPage.previousButton.click();    
+        await playerPage.playPreviousSong();    
         const songAfterClickNext = await page.locator('audio').getAttribute('title');
         expect(songAfterClickNext).toBe("sonican-uplifting-feelgood - [Unknown Artist]");
-
-        // check currentTime < 1 sec (song start from beginning)
+        await page.waitForTimeout(300);
+        const currentTimespotOnSong = await page.locator('audio').evaluate((audio: HTMLAudioElement) => audio.currentTime);
+        expect(currentTimespotOnSong).toBeLessThan(1);
     });
 });

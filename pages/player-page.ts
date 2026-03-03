@@ -1,6 +1,6 @@
 import {Page, Locator} from '@playwright/test';
 
-export class PlaylistPage {
+export class PlayerPage {
     readonly page: Page;
     
     // Define locators
@@ -50,11 +50,6 @@ export class PlaylistPage {
     async playSongFromStart() {
         await this.previousButton.click();
     }  
-
-   
-
-
-
 }
 
 
