@@ -88,8 +88,15 @@ test.describe('Music player usability', () => {
 
         await playerPage.playNextSong();
         expect(isPaused).toBe(false);
-        // expect title of next song maybe take title before click it, take after and find them different
-        // bad plan but ok for today
+        const songBeforeClickNext = await page.locator('audio').getAttribute('title');
+        expect(songBeforeClickNext).toBe("sonican-global-chase - [Unknown Artist]");
+        await playerPage.nextButton.click();
+        const songAfterClickNext = await page.locator('audio').getAttribute('title');
+        expect(songAfterClickNext).toBe("sonican-uplifting-feelgood - [Unknown Artist]");
+        // this works for this case. If more song or shuffle on try:
+        // expect(songBeforeClickNext).not.toBe(songAfterClickNext);
+        // check currentTime < 1 sec (song start from beginning)
+       
     });
 
     test('User clicks "Previous" on player and same song starts again', {tag: []}, async ({page}) => {
@@ -102,7 +109,12 @@ test.describe('Music player usability', () => {
 
         await playerPage.playSongFromStart();
         expect(isPaused).toBe(false);
-        //take name before and after and find them same
+        const songBeforeClickNext = await page.locator('audio').getAttribute('title');
+        expect(songBeforeClickNext).toBe("sonican-global-chase - [Unknown Artist]");
+        await playerPage.previousButton.click();  
+        const songAfterClickNext = await page.locator('audio').getAttribute('title');
+        expect(songBeforeClickNext).toBe(songAfterClickNext);
+        // check currentTime < 1 sec (song start from beginning)
     });
 
     test('User clicks "Previous" on player twice and previous song starts playing', {tag: []}, async ({page}) => {
@@ -115,8 +127,13 @@ test.describe('Music player usability', () => {
 
         await playerPage.playPreviousSong();
         expect(isPaused).toBe(false);
-        // take name before and after and find them different
+         const songBeforeClickNext = await page.locator('audio').getAttribute('title');
+        expect(songBeforeClickNext).toBe("sonican-global-chase - [Unknown Artist]");
+        await playerPage.previousButton.click();
+        await playerPage.previousButton.click();    
+        const songAfterClickNext = await page.locator('audio').getAttribute('title');
+        expect(songAfterClickNext).toBe("sonican-uplifting-feelgood - [Unknown Artist]");
 
-        //  continue test
+        // check currentTime < 1 sec (song start from beginning)
     });
 });
