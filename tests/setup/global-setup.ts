@@ -13,7 +13,7 @@ async function loginAndSaveState(
   const browser = await chromium.launch();
   const page = await browser.newPage();
   
-  await page.goto('http://localhost:4533');
+  await page.goto(process.env.BASE_URL || 'http://localhost:4533');
   await page.locator('input[name="username"]').fill(username);
   await page.locator('input[name="password"]').fill(password);
   const responsePromise = page.waitForResponse(
@@ -25,7 +25,7 @@ async function loginAndSaveState(
   const responseBody = await response.json();
   const token = responseBody.token;
   fs.writeFileSync(tokenPath, JSON.stringify({ token }));
-  await page.waitForURL('http://localhost:4533/**');
+  await page.waitForURL(`${process.env.BASE_URL}/**`);  
   await page.context().storageState({ path: authPath });
   await browser.close();
 }

@@ -2,10 +2,10 @@
   "cookies": [
     {
       "name": "X-ND-Client-Unique-Id",
-      "value": "b841f9b8-9557-496d-abe1-7a7cf3908727",
+      "value": "2572c2c6-5a72-4883-8d1b-2af2f73e392b",
       "domain": "localhost",
       "path": "/",
-      "expires": 1804084958.173822,
+      "expires": 1804421671.059566,
       "httpOnly": true,
       "secure": true,
       "sameSite": "Strict"
@@ -17,7 +17,7 @@
       "localStorage": [
         {
           "name": "token",
-          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG0iOmZhbHNlLCJleHAiOjE3NzI3MjE3NTgsImlhdCI6MTc3MjU0ODk1OCwiaXNzIjoiTkQiLCJzdWIiOiJ1c2VyVGVzdDIiLCJ1aWQiOiJ2a0t5R2xyRmE5Zk9yUlcySlVDNWJMIn0.XR_uXYJyzpPGX4vsOyJrsV_gNClym545ThGgRVHyyY0"
+          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG0iOmZhbHNlLCJleHAiOjE3NzMwNTg0NzEsImlhdCI6MTc3Mjg4NTY3MCwiaXNzIjoiTkQiLCJzdWIiOiJ1c2VyVGVzdDIiLCJ1aWQiOiJ2a0t5R2xyRmE5Zk9yUlcySlVDNWJMIn0.Gb5aWqpiGhqXv4yMgvKEkhaDhmm6FvR2y_GXXOEZ2Kg"
         },
         {
           "name": "name",
@@ -25,15 +25,15 @@
         },
         {
           "name": "subsonic-salt",
-          "value": "e14403"
+          "value": "2ebd7c"
         },
         {
           "name": "state",
-          "value": "{\"theme\":\"DarkTheme\",\"library\":{\"userLibraries\":[],\"selectedLibraries\":[]},\"player\":{\"queue\":[],\"volume\":1,\"savedPlayIndex\":0},\"albumView\":{\"grid\":true},\"settings\":{\"notifications\":false,\"toggleableFields\":{\"album\":{\"artist\":true,\"songCount\":true,\"playCount\":true,\"year\":true,\"mood\":true,\"duration\":true,\"rating\":true,\"size\":true,\"createdAt\":true}},\"omittedFields\":{\"album\":[\"createdAt\",\"size\"]}}}"
+          "value": "{\"theme\":\"DarkTheme\",\"library\":{\"userLibraries\":[{\"id\":1,\"name\":\"Music Library\",\"path\":\"/music\",\"remotePath\":\"\",\"lastScanAt\":\"0001-01-01T00:00:00Z\",\"lastScanStartedAt\":\"0001-01-01T00:00:00Z\",\"fullScanInProgress\":false,\"updatedAt\":\"0001-01-01T00:00:00Z\",\"createdAt\":\"0001-01-01T00:00:00Z\",\"totalSongs\":0,\"totalAlbums\":0,\"totalArtists\":0,\"totalFolders\":0,\"totalFiles\":0,\"totalMissingFiles\":0,\"totalSize\":0,\"totalDuration\":0,\"defaultNewUsers\":false}],\"selectedLibraries\":[1]},\"player\":{\"queue\":[],\"volume\":1,\"savedPlayIndex\":0},\"albumView\":{\"grid\":true},\"settings\":{\"notifications\":false,\"toggleableFields\":{\"album\":{\"artist\":true,\"songCount\":true,\"playCount\":true,\"year\":true,\"mood\":true,\"duration\":true,\"rating\":true,\"size\":true,\"createdAt\":true}},\"omittedFields\":{\"album\":[\"createdAt\",\"size\"]}}}"
         },
         {
           "name": "subsonic-token",
-          "value": "d79e2c4781e50ec825f8a7f7937d8d97"
+          "value": "ad8cb0bab4e889058b824507f12ee5fd"
         },
         {
           "name": "is-authenticated",

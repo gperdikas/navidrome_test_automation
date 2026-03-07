@@ -8,6 +8,26 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    services:
+      navidrome:
+        image: deluan/navidrome:latest
+        ports:
+          - 4533:4533
+    env:
+      BASE_URL: ${{secrets.BASE_URL}}
+      TEST_USERNAME: ${{secrets.TEST_USERNAME}}
+      TEST_PASSWORD: ${{secrets.TEST_PASSWORD}}
+      INVALID_USERNAME: ${{secrets.INVALID_USERNAME}}
+      INVALID_PASSWORD: ${{secrets.INVALID_PASSWORD}}
+      HALF_USERNAME: ${{secrets.HALF_USERNAME}}
+      HALF_PASSWORD: ${{secrets.HALF_PASSWORD}}
+      NADM_USER_TEST1: ${{secrets.NADM_USER_TEST1}}
+      NADM_PSW_TEST1: ${{secrets.NADM_PSW_TEST1}}
+      NADM_USER_TEST2: ${{secrets.NADM_USER_TEST2}}
+      NADM_PSW_TEST2: ${{secrets.NADM_PSW_TEST2}}
+      NADM_USER_TEST3: ${{secrets.NADM_USER_TEST3}}
+      NADM_USER_TEST4: ${{secrets.NADM_USER_TEST4}}
+      EMPTY_CREDENTIAL: ${{secrets.EMPTY_CREDENTIAL}}
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -17,6 +37,17 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    - name: Create Navidrome admin user
+      run: |
+        sleep 10
+        curl -X POST http://localhost:4533/api/user \
+          -H "Content-Type: application/json" \
+          -d '{
+              "username": "${{ secrets.TEST_USERNAME }}",
+              "password": "${{ secrets.TEST_PASSWORD }}",
+              "name": "Test Admin",
+              "isAdmin": true
+            }'
     - name: Run Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v4

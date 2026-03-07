@@ -14,7 +14,7 @@ export default defineConfig({
   globalSetup: './tests/setup/global-setup.ts',
   
   use: {
-    baseURL: 'http://localhost:4533',
+    baseURL: process.env.BASE_URL || 'http://localhost:4533',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },
