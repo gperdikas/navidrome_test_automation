@@ -40,15 +40,29 @@ jobs:
     - name: Create Navidrome admin user
       run: |
         sleep 10
-        # Create admin user
-        curl -X POST http://localhost:4533/api/user \
-          -H "Content-Type: application/json" \
-          -d '{
-            "username": "${{ secrets.TEST_USERNAME }}",
-            "password": "${{ secrets.TEST_PASSWORD }}",
-            "name": "Test Admin",
-            "isAdmin": true
-          }'
+        node -e "
+        const https = require('http');
+        const data = JSON.stringify({
+          username: process.env.TEST_USERNAME,
+          password: process.env.TEST_PASSWORD,
+          name: 'Test Admin'
+        });
+        const options = {
+          hostname: 'localhost',
+          port: 4533,
+          path: '/auth/createAdmin',
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': data.length
+          }
+        };
+        const req = https.request(options, (res) => {
+          console.log('Status:', res.statusCode);
+        });
+        req.write(data);
+        req.end();
+        "
         # Create regular user 1
         curl -X POST http://localhost:4533/api/user \
           -H "Content-Type: application/json" \
