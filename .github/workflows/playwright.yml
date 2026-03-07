@@ -40,14 +40,33 @@ jobs:
     - name: Create Navidrome admin user
       run: |
         sleep 10
+        # Create admin user
         curl -X POST http://localhost:4533/api/user \
           -H "Content-Type: application/json" \
           -d '{
-              "username": "${{ secrets.TEST_USERNAME }}",
-              "password": "${{ secrets.TEST_PASSWORD }}",
-              "name": "Test Admin",
-              "isAdmin": true
-            }'
+            "username": "${{ secrets.TEST_USERNAME }}",
+            "password": "${{ secrets.TEST_PASSWORD }}",
+            "name": "Test Admin",
+            "isAdmin": true
+          }'
+        # Create regular user 1
+        curl -X POST http://localhost:4533/api/user \
+          -H "Content-Type: application/json" \
+          -d '{
+            "username": "${{ secrets.NADM_USER_TEST1 }}",
+            "password": "${{ secrets.NADM_PSW_TEST1 }}",
+            "name": "Test User 1",
+            "isAdmin": false
+          }'
+        # Create regular user 2
+        curl -X POST http://localhost:4533/api/user \
+          -H "Content-Type: application/json" \
+          -d '{
+            "username": "${{ secrets.NADM_USER_TEST2 }}",
+            "password": "${{ secrets.NADM_PSW_TEST2 }}",
+            "name": "Test User 2",
+            "isAdmin": false
+          }'
     - name: Run Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v4
