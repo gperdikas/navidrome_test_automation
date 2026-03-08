@@ -37,50 +37,43 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Create Navidrome admin user
+    - name: Create Navidrome admin user via signup page
       run: |
-        sleep 10
-        node -e "
-        const https = require('http');
-        const data = JSON.stringify({
-          username: process.env.TEST_USERNAME,
-          password: process.env.TEST_PASSWORD,
-          name: 'Test Admin'
-        });
-        const options = {
-          hostname: 'localhost',
-          port: 4533,
-          path: '/auth/createAdmin',
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Content-Length': data.length
-          }
-        };
-        const req = https.request(options, (res) => {
-          console.log('Status:', res.statusCode);
-        });
-        req.write(data);
-        req.end();
-        "
-        # Create regular user 1
+        sleep 15
+        # Create admin via signup page
+        cat > signup.js << 'EOF'
+        const { chromium } = require('playwright');
+        (async () => {
+          const browser = await chromium.launch();
+          const page = await browser.newPage();
+          await page.goto('http://localhost:4533');
+          await page.fill('input[name="username"]', process.env.TEST_USERNAME);
+          await page.fill('input[name="password"]', process.env.TEST_PASSWORD);
+          await page.fill('input[name="passwordConfirm"]', process.env.TEST_PASSWORD);
+          await page.click('button[type="submit"]');
+          await page.waitForTimeout(3000);
+          await browser.close();
+        })();
+        EOF
+        node signup.js
+
+        # Login and get token
+        TOKEN=$(curl -X POST http://localhost:4533/api/auth/login \
+          -H "Content-Type: application/json" \
+          -d "{\"username\":\"$TEST_USERNAME\",\"password\":\"$TEST_PASSWORD\"}" \
+          | grep -o '"token":"[^"]*' | cut -d'"' -f4)
+        
+        # Create user 1
         curl -X POST http://localhost:4533/api/user \
           -H "Content-Type: application/json" \
-          -d '{
-            "username": "${{ secrets.NADM_USER_TEST1 }}",
-            "password": "${{ secrets.NADM_PSW_TEST1 }}",
-            "name": "Test User 1",
-            "isAdmin": false
-          }'
-        # Create regular user 2
+          -H "x-nd-authorization: Bearer $TOKEN" \
+          -d "{\"username\":\"$NADM_USER_TEST1\",\"password\":\"$NADM_PSW_TEST1\",\"name\":\"Test User 1\",\"isAdmin\":false}"
+           
+        # Create user 2
         curl -X POST http://localhost:4533/api/user \
           -H "Content-Type: application/json" \
-          -d '{
-            "username": "${{ secrets.NADM_USER_TEST2 }}",
-            "password": "${{ secrets.NADM_PSW_TEST2 }}",
-            "name": "Test User 2",
-            "isAdmin": false
-          }'
+          -H "x-nd-authorization: Bearer $TOKEN" \
+          -d "{\"username\":\"$NADM_USER_TEST2\",\"password\":\"$NADM_PSW_TEST2\",\"name\":\"Test User 2\",\"isAdmin\":false}"
     - name: Run Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v4
