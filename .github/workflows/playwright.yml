@@ -52,15 +52,18 @@ jobs:
           await page.fill('input[name="password"]', process.env.TEST_PASSWORD);
           await page.fill('input[name="confirmPassword"]', process.env.TEST_PASSWORD);
           await page.click('button[type="submit"]');
-          await page.waitForTimeout(3000);
+          await page.waitForTimeout(5000);
           await browser.close();
         })();
         EOF
         node signup.js
 
+        echo "Signup complete, waiting for Navidrome to be ready..."
+        sleep 5
+
         # Login and get token (with debugging)
         echo "Attempting login..."
-        LOGIN_RESPONSE=$(curl -s -X POST http://localhost:4533/api/auth/login \
+        LOGIN_RESPONSE=$(curl -s -X POST http://localhost:4533/auth/login \
           -H "Content-Type: application/json" \
           -d "{\"username\":\"$TEST_USERNAME\",\"password\":\"$TEST_PASSWORD\"}")
     
