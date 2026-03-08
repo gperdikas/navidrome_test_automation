@@ -8,81 +8,34 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    services:
-      navidrome:
-        image: deluan/navidrome:latest
-        ports:
-          - 4533:4533
     env:
-      BASE_URL: ${{secrets.BASE_URL}}
+      BASE_URL: http://localhost:4533
       TEST_USERNAME: ${{secrets.TEST_USERNAME}}
       TEST_PASSWORD: ${{secrets.TEST_PASSWORD}}
-      INVALID_USERNAME: ${{secrets.INVALID_USERNAME}}
-      INVALID_PASSWORD: ${{secrets.INVALID_PASSWORD}}
-      HALF_USERNAME: ${{secrets.HALF_USERNAME}}
-      HALF_PASSWORD: ${{secrets.HALF_PASSWORD}}
       NADM_USER_TEST1: ${{secrets.NADM_USER_TEST1}}
       NADM_PSW_TEST1: ${{secrets.NADM_PSW_TEST1}}
       NADM_USER_TEST2: ${{secrets.NADM_USER_TEST2}}
       NADM_PSW_TEST2: ${{secrets.NADM_PSW_TEST2}}
       NADM_USER_TEST3: ${{secrets.NADM_USER_TEST3}}
-      NADM_USER_TEST4: ${{secrets.NADM_USER_TEST4}}
+      NADM_PSW_TEST3: ${{secrets.NADM_PSW_TEST3}}
+      INVALID_USERNAME: ${{secrets.INVALID_USERNAME}}
+      INVALID_PASSWORD: ${{secrets.INVALID_PASSWORD}}
+      HALF_USERNAME: ${{secrets.HALF_USERNAME}}
+      HALF_PASSWORD: ${{secrets.HALF_PASSWORD}}
       EMPTY_CREDENTIAL: ${{secrets.EMPTY_CREDENTIAL}}
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
+    - name: Start Navidrome
+      run: docker compose -f docker-compose.ci.yml up -d
+    - name: Wait for Navidrome
+      run: sleep 10
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Create Navidrome users
-      run: |
-        sleep 15
-        # Create admin via signup page
-        cat > signup.js << 'EOF'
-        const { chromium } = require('playwright');
-        (async () => {
-          const browser = await chromium.launch();
-          const page = await browser.newPage();
-          await page.goto('http://localhost:4533');
-          await page.waitForTimeout(2000);
-          await page.fill('input[name="username"]', process.env.TEST_USERNAME);
-          await page.fill('input[name="password"]', process.env.TEST_PASSWORD);
-          await page.fill('input[name="confirmPassword"]', process.env.TEST_PASSWORD);
-          await page.click('button[type="submit"]');
-          await page.waitForTimeout(5000);
-          await browser.close();
-        })();
-        EOF
-        node signup.js
-
-        echo "Signup complete, waiting for Navidrome to be ready..."
-        sleep 5
-
-        # Login and get token (with debugging)
-        echo "Attempting login..."
-        LOGIN_RESPONSE=$(curl -s -X POST http://localhost:4533/auth/login \
-          -H "Content-Type: application/json" \
-          -d "{\"username\":\"$TEST_USERNAME\",\"password\":\"$TEST_PASSWORD\"}")
-    
-        echo "Login response: $LOGIN_RESPONSE"
-    
-        TOKEN=$(echo $LOGIN_RESPONSE | grep -o '"token":"[^"]*' | cut -d'"' -f4)
-        echo "Extracted token: $TOKEN"
-
-        # Create user 1
-        curl -X POST http://localhost:4533/api/user \
-          -H "Content-Type: application/json" \
-          -H "x-nd-authorization: Bearer $TOKEN" \
-          -d "{\"username\":\"$NADM_USER_TEST1\",\"password\":\"$NADM_PSW_TEST1\",\"name\":\"Test User 1\",\"isAdmin\":false}"
-    
-        # Create user 2
-        curl -X POST http://localhost:4533/api/user \
-          -H "Content-Type: application/json" \
-          -H "x-nd-authorization: Bearer $TOKEN" \
-          -d "{\"username\":\"$NADM_USER_TEST2\",\"password\":\"$NADM_PSW_TEST2\",\"name\":\"Test User 2\",\"isAdmin\":false}"
     - name: Run Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v4
