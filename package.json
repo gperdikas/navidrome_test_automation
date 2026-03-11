@@ -9,7 +9,8 @@
     "test:ui-logged-out": "playwright test --project=chromium-ui-logged-out",
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
-    "report": "playwright show-report"
+    "report": "playwright show-report",
+    "test:run-allure": "npx playwright test & npx allure generate allure-results --clean -o allure-report & npx allure open allure-report"
   },
   "keywords": [],
   "author": "",
@@ -19,5 +20,9 @@
     "@playwright/test": "^1.56.1",
     "@types/node": "^24.10.1",
     "dotenv": "^17.2.3"
+  },
+  "dependencies": {
+    "allure-commandline": "^2.37.0",
+    "allure-playwright": "^3.6.0"
   }
 }

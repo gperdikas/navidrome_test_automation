@@ -9,7 +9,7 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 1,  //2 retries on CI & 1 retry local
   workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
+  reporter: [['html', {open: 'never'}], ['allure-playwright', {outputFolder: 'allure-results'}]],
   
   globalSetup: './tests/setup/global-setup.ts',
   

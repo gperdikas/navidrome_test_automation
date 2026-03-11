@@ -34,6 +34,10 @@ jobs:
       run: sleep 10
     - name: Install dependencies
       run: npm ci
+    - uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '21'  
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests

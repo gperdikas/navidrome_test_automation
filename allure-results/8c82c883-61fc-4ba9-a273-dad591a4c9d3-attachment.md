@@ -1,0 +1,393 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e6]:
+  - button "Skip to content" [ref=e7] [cursor=pointer]:
+    - generic [ref=e9]: Skip to content
+  - generic [ref=e10]:
+    - banner [ref=e11]:
+      - generic [ref=e12]:
+        - button "Close menu" [ref=e13] [cursor=pointer]:
+          - img [ref=e15]
+        - heading "Navidrome - Playlists" [level=6] [ref=e17]:
+          - generic [ref=e18]: Navidrome - Playlists
+        - button "Refresh" [ref=e19] [cursor=pointer]:
+          - img [ref=e21]
+        - button "Settings" [ref=e24] [cursor=pointer]:
+          - img [ref=e26]
+    - main [ref=e28]:
+      - generic [ref=e32]:
+        - menuitem "Albums" [ref=e34] [cursor=pointer]:
+          - img [ref=e36]
+          - generic [ref=e38]: Albums
+        - generic [ref=e42]:
+          - menuitem "All" [ref=e43] [cursor=pointer]:
+            - img [ref=e45]
+            - text: All
+          - menuitem "Random Random" [ref=e47] [cursor=pointer]:
+            - img "Random" [ref=e49]
+            - text: Random
+          - menuitem "Favourites" [ref=e51] [cursor=pointer]:
+            - img [ref=e53]
+            - text: Favourites
+          - menuitem "Top Rated" [ref=e55] [cursor=pointer]:
+            - img [ref=e57]
+            - text: Top Rated
+          - menuitem "Recently Added" [ref=e59] [cursor=pointer]:
+            - img [ref=e61]
+            - text: Recently Added
+          - menuitem "Recently Played" [ref=e63] [cursor=pointer]:
+            - img [ref=e65]
+            - text: Recently Played
+          - menuitem "Most Played Most Played" [ref=e67] [cursor=pointer]:
+            - img "Most Played" [ref=e69]
+            - text: Most Played
+        - menuitem "Artists" [ref=e71] [cursor=pointer]:
+          - img [ref=e73]
+          - text: Artists
+        - menuitem "Songs" [ref=e75] [cursor=pointer]:
+          - img [ref=e77]
+          - text: Songs
+        - menuitem "Radios" [ref=e79] [cursor=pointer]:
+          - img [ref=e81]
+          - text: Radios
+        - separator [ref=e84]
+        - menuitem "Playlists" [ref=e86] [cursor=pointer]:
+          - img [ref=e88]
+          - generic [ref=e90]: Playlists
+          - button [ref=e91]:
+            - img [ref=e93]
+        - menuitem "Test playlist 1773205534671_zRuhYiYzYo" [ref=e100] [cursor=pointer]:
+          - generic [ref=e101]: Test playlist 1773205534671_zRuhYiYzYo
+        - menuitem "Shared Playlists" [ref=e103] [cursor=pointer]:
+          - img [ref=e105]
+          - generic [ref=e107]: Shared Playlists
+        - generic [ref=e111]:
+          - menuitem "Test playlist 1772885681621_KWKeYdHoF6" [ref=e112] [cursor=pointer]:
+            - generic [ref=e113]: Test playlist 1772885681621_KWKeYdHoF6
+          - menuitem "Test playlist 1772885683636_2agrWp0JOj" [ref=e114] [cursor=pointer]:
+            - generic [ref=e115]: Test playlist 1772885683636_2agrWp0JOj
+          - menuitem "Test playlist 1773176597439_EGQw7DNoUO" [ref=e116] [cursor=pointer]:
+            - generic [ref=e117]: Test playlist 1773176597439_EGQw7DNoUO
+          - menuitem "Test playlist 1773176600908_P6DVw7Vjv6" [ref=e118] [cursor=pointer]:
+            - generic [ref=e119]: Test playlist 1773176600908_P6DVw7Vjv6
+          - menuitem "Test playlist 1773205431084_TwOoApEt7P" [ref=e120] [cursor=pointer]:
+            - generic [ref=e121]: Test playlist 1773205431084_TwOoApEt7P
+          - menuitem "Test playlist 1773205432979_KLr8L4tfWT" [ref=e122] [cursor=pointer]:
+            - generic [ref=e123]: Test playlist 1773205432979_KLr8L4tfWT
+          - menuitem "Test playlist 1773205538236_bAUmkvc7r5" [ref=e124] [cursor=pointer]:
+            - generic [ref=e125]: Test playlist 1773205538236_bAUmkvc7r5
+          - menuitem "Test playlist 1773205539810_LSfPQQCA7v" [ref=e126] [cursor=pointer]:
+            - generic [ref=e127]: Test playlist 1773205539810_LSfPQQCA7v
+          - menuitem "Test playlist 1773206504400_wAp93wo4iL" [ref=e128] [cursor=pointer]:
+            - generic [ref=e129]: Test playlist 1773206504400_wAp93wo4iL
+          - menuitem "Test playlist 1773206506604_Gp2Q5imiNu" [ref=e130] [cursor=pointer]:
+            - generic [ref=e131]: Test playlist 1773206506604_Gp2Q5imiNu
+          - menuitem "Test playlist 1773207443836_aYZWNx8cU2" [ref=e132] [cursor=pointer]:
+            - generic [ref=e133]: Test playlist 1773207443836_aYZWNx8cU2
+          - menuitem "Test playlist 1773207445717_KHElf7lOmE" [ref=e134] [cursor=pointer]:
+            - generic [ref=e135]: Test playlist 1773207445717_KHElf7lOmE
+          - menuitem "Test playlist 1773208578275_8tcipIjr8B" [ref=e136] [cursor=pointer]:
+            - generic [ref=e137]: Test playlist 1773208578275_8tcipIjr8B
+          - menuitem "Test playlist 1773208578288_2tjdB0Zfbx" [ref=e138] [cursor=pointer]:
+            - generic [ref=e139]: Test playlist 1773208578288_2tjdB0Zfbx
+          - menuitem "Test playlist 1773208578295_BpxjjMzSrs" [ref=e140] [cursor=pointer]:
+            - generic [ref=e141]: Test playlist 1773208578295_BpxjjMzSrs
+          - menuitem "Test playlist 1773208578321_S35Z735CkS" [ref=e142] [cursor=pointer]:
+            - generic [ref=e143]: Test playlist 1773208578321_S35Z735CkS
+          - menuitem "Test playlist 1773208578879_BjctpKhAR3" [ref=e144] [cursor=pointer]:
+            - generic [ref=e145]: Test playlist 1773208578879_BjctpKhAR3
+          - menuitem "qwer" [ref=e146] [cursor=pointer]:
+            - generic [ref=e147]: qwer
+      - generic [ref=e149]:
+        - generic [ref=e150]:
+          - generic [ref=e152]:
+            - generic [ref=e153]:
+              - textbox "Search" [ref=e154]
+              - img [ref=e156]
+              - group
+            - paragraph
+          - generic [ref=e159]:
+            - button "Create" [ref=e160] [cursor=pointer]:
+              - generic [ref=e161]:
+                - img [ref=e162]
+                - generic [ref=e164]: Create
+            - button "more" [ref=e166] [cursor=pointer]:
+              - img [ref=e168]
+        - generic [ref=e171]:
+          - generic:
+            - generic [ref=e172]:
+              - button "Unselect" [ref=e173] [cursor=pointer]:
+                - img [ref=e175]
+              - heading "0 items selected" [level=6] [ref=e177]
+            - generic [ref=e178]:
+              - button "Make Public" [ref=e179] [cursor=pointer]:
+                - generic [ref=e180]:
+                  - img [ref=e181]
+                  - generic [ref=e183]: Make Public
+              - button "Make Private" [ref=e184] [cursor=pointer]:
+                - generic [ref=e185]:
+                  - img [ref=e186]
+                  - generic [ref=e188]: Make Private
+              - button "Delete" [ref=e189] [cursor=pointer]:
+                - generic [ref=e190]:
+                  - img [ref=e191]
+                  - generic [ref=e193]: Delete
+          - table [ref=e194]:
+            - rowgroup [ref=e195]:
+              - row "Select all Name Owner Songs Duration Updated at Public Auto-import" [ref=e196]:
+                - columnheader "Select all" [ref=e197]:
+                  - generic "Select all" [ref=e198] [cursor=pointer]:
+                    - generic [ref=e199]:
+                      - checkbox [ref=e200]
+                      - img [ref=e201]
+                - columnheader "Name" [ref=e203]:
+                  - button "Name" [ref=e204] [cursor=pointer]:
+                    - generic [ref=e205]: Name
+                - columnheader "Owner" [ref=e206]:
+                  - button "Owner" [ref=e207] [cursor=pointer]:
+                    - generic [ref=e208]: Owner
+                - columnheader "Songs" [ref=e209]:
+                  - button "Songs" [ref=e210] [cursor=pointer]:
+                    - generic [ref=e211]: Songs
+                - columnheader "Duration" [ref=e212]:
+                  - button "Duration" [ref=e213] [cursor=pointer]:
+                    - generic [ref=e214]: Duration
+                - columnheader "Updated at" [ref=e215]:
+                  - button "Updated at" [ref=e216] [cursor=pointer]:
+                    - generic [ref=e217]: Updated at
+                - columnheader "Public" [ref=e218]:
+                  - button "Public" [ref=e219] [cursor=pointer]:
+                    - generic [ref=e220]: Public
+                - columnheader "Auto-import" [ref=e221]:
+                  - button "Auto-import" [ref=e222] [cursor=pointer]:
+                    - generic [ref=e223]: Auto-import
+                - columnheader [ref=e224]
+            - rowgroup [ref=e225]:
+              - row "Test playlist 1773205539810_LSfPQQCA7v adminTest 0 00:00 3/11/2026" [ref=e226] [cursor=pointer]:
+                - cell [ref=e227]
+                - cell "Test playlist 1773205539810_LSfPQQCA7v" [ref=e228]
+                - cell "adminTest" [ref=e229]
+                - cell "0" [ref=e230]
+                - cell "00:00" [ref=e231]
+                - cell "3/11/2026" [ref=e232]
+                - cell [ref=e233]:
+                  - generic [ref=e234]:
+                    - generic:
+                      - generic:
+                        - checkbox [checked] [disabled]
+                - cell [ref=e236]
+                - cell [ref=e237]
+              - row "qwer adminTest 2 01:03 2/28/2026" [ref=e238] [cursor=pointer]:
+                - cell [ref=e239]
+                - cell "qwer" [ref=e240]
+                - cell "adminTest" [ref=e241]
+                - cell "2" [ref=e242]
+                - cell "01:03" [ref=e243]
+                - cell "2/28/2026" [ref=e244]
+                - cell [ref=e245]:
+                  - generic [ref=e246]:
+                    - generic:
+                      - generic:
+                        - checkbox [checked] [disabled]
+                - cell [ref=e248]
+                - cell [ref=e249]
+              - row "Test playlist 1773205538236_bAUmkvc7r5 adminTest 0 00:00 3/11/2026" [ref=e250] [cursor=pointer]:
+                - cell [ref=e251]
+                - cell "Test playlist 1773205538236_bAUmkvc7r5" [ref=e252]
+                - cell "adminTest" [ref=e253]
+                - cell "0" [ref=e254]
+                - cell "00:00" [ref=e255]
+                - cell "3/11/2026" [ref=e256]
+                - cell [ref=e257]:
+                  - generic [ref=e258]:
+                    - generic:
+                      - generic:
+                        - checkbox [checked] [disabled]
+                - cell [ref=e260]
+                - cell [ref=e261]
+              - row "Test playlist 1773208578275_8tcipIjr8B adminTest 2 01:03 3/11/2026" [ref=e262] [cursor=pointer]:
+                - cell [ref=e263]
+                - cell "Test playlist 1773208578275_8tcipIjr8B" [ref=e264]
+                - cell "adminTest" [ref=e265]
+                - cell "2" [ref=e266]
+                - cell "01:03" [ref=e267]
+                - cell "3/11/2026" [ref=e268]
+                - cell [ref=e269]:
+                  - generic [ref=e270]:
+                    - generic:
+                      - generic:
+                        - checkbox [checked] [disabled]
+                - cell [ref=e272]
+                - cell [ref=e273]
+              - row "Test playlist 1773207443836_aYZWNx8cU2 adminTest 0 00:00 3/11/2026" [ref=e274] [cursor=pointer]:
+                - cell [ref=e275]
+                - cell "Test playlist 1773207443836_aYZWNx8cU2" [ref=e276]
+                - cell "adminTest" [ref=e277]
+                - cell "0" [ref=e278]
+                - cell "00:00" [ref=e279]
+                - cell "3/11/2026" [ref=e280]
+                - cell [ref=e281]:
+                  - generic [ref=e282]:
+                    - generic:
+                      - generic:
+                        - checkbox [checked] [disabled]
+                - cell [ref=e284]
+                - cell [ref=e285]
+              - row "Test playlist 1773205432979_KLr8L4tfWT adminTest 0 00:00 3/11/2026" [ref=e286] [cursor=pointer]:
+                - cell [ref=e287]
+                - cell "Test playlist 1773205432979_KLr8L4tfWT" [ref=e288]
+                - cell "adminTest" [ref=e289]
+                - cell "0" [ref=e290]
+                - cell "00:00" [ref=e291]
+                - cell "3/11/2026" [ref=e292]
+                - cell [ref=e293]:
+                  - generic [ref=e294]:
+                    - generic:
+                      - generic:
+                        - checkbox [checked] [disabled]
+                - cell [ref=e296]
+                - cell [ref=e297]
+              - row "Test playlist 1772885681621_KWKeYdHoF6 adminTest 0 00:00 3/7/2026" [ref=e298] [cursor=pointer]:
+                - cell [ref=e299]
+                - cell "Test playlist 1772885681621_KWKeYdHoF6" [ref=e300]
+                - cell "adminTest" [ref=e301]
+                - cell "0" [ref=e302]
+                - cell "00:00" [ref=e303]
+                - cell "3/7/2026" [ref=e304]
+                - cell [ref=e305]:
+                  - generic [ref=e306]:
+                    - generic:
+                      - generic:
+                        - checkbox [checked] [disabled]
+                - cell [ref=e308]
+                - cell [ref=e309]
+              - row "Test playlist 1773208578321_S35Z735CkS adminTest 2 01:03 3/11/2026" [ref=e310] [cursor=pointer]:
+                - cell [ref=e311]
+                - cell "Test playlist 1773208578321_S35Z735CkS" [ref=e312]
+                - cell "adminTest" [ref=e313]
+                - cell "2" [ref=e314]
+                - cell "01:03" [ref=e315]
+                - cell "3/11/2026" [ref=e316]
+                - cell [ref=e317]:
+                  - generic [ref=e318]:
+                    - generic:
+                      - generic:
+                        - checkbox [checked] [disabled]
+                - cell [ref=e320]
+                - cell [ref=e321]
+              - row "Test playlist 1773176600908_P6DVw7Vjv6 adminTest 0 00:00 3/10/2026" [ref=e322] [cursor=pointer]:
+                - cell [ref=e323]
+                - cell "Test playlist 1773176600908_P6DVw7Vjv6" [ref=e324]
+                - cell "adminTest" [ref=e325]
+                - cell "0" [ref=e326]
+                - cell "00:00" [ref=e327]
+                - cell "3/10/2026" [ref=e328]
+                - cell [ref=e329]:
+                  - generic [ref=e330]:
+                    - generic:
+                      - generic:
+                        - checkbox [checked] [disabled]
+                - cell [ref=e332]
+                - cell [ref=e333]
+              - row "Test playlist 1773207445717_KHElf7lOmE adminTest 0 00:00 3/11/2026" [ref=e334] [cursor=pointer]:
+                - cell [ref=e335]
+                - cell "Test playlist 1773207445717_KHElf7lOmE" [ref=e336]
+                - cell "adminTest" [ref=e337]
+                - cell "0" [ref=e338]
+                - cell "00:00" [ref=e339]
+                - cell "3/11/2026" [ref=e340]
+                - cell [ref=e341]:
+                  - generic [ref=e342]:
+                    - generic:
+                      - generic:
+                        - checkbox [checked] [disabled]
+                - cell [ref=e344]
+                - cell [ref=e345]
+              - row "Test playlist 1773206506604_Gp2Q5imiNu adminTest 0 00:00 3/11/2026" [ref=e346] [cursor=pointer]:
+                - cell [ref=e347]
+                - cell "Test playlist 1773206506604_Gp2Q5imiNu" [ref=e348]
+                - cell "adminTest" [ref=e349]
+                - cell "0" [ref=e350]
+                - cell "00:00" [ref=e351]
+                - cell "3/11/2026" [ref=e352]
+                - cell [ref=e353]:
+                  - generic [ref=e354]:
+                    - generic:
+                      - generic:
+                        - checkbox [checked] [disabled]
+                - cell [ref=e356]
+                - cell [ref=e357]
+              - row "Test playlist 1773176597439_EGQw7DNoUO adminTest 0 00:00 3/10/2026" [ref=e358] [cursor=pointer]:
+                - cell [ref=e359]
+                - cell "Test playlist 1773176597439_EGQw7DNoUO" [ref=e360]
+                - cell "adminTest" [ref=e361]
+                - cell "0" [ref=e362]
+                - cell "00:00" [ref=e363]
+                - cell "3/10/2026" [ref=e364]
+                - cell [ref=e365]:
+                  - generic [ref=e366]:
+                    - generic:
+                      - generic:
+                        - checkbox [checked] [disabled]
+                - cell [ref=e368]
+                - cell [ref=e369]
+              - row "Test playlist 1773208578295_BpxjjMzSrs adminTest 2 01:03 3/11/2026" [ref=e370] [cursor=pointer]:
+                - cell [ref=e371]
+                - cell "Test playlist 1773208578295_BpxjjMzSrs" [ref=e372]
+                - cell "adminTest" [ref=e373]
+                - cell "2" [ref=e374]
+                - cell "01:03" [ref=e375]
+                - cell "3/11/2026" [ref=e376]
+                - cell [ref=e377]:
+                  - generic [ref=e378]:
+                    - generic:
+                      - generic:
+                        - checkbox [checked] [disabled]
+                - cell [ref=e380]
+                - cell [ref=e381]
+              - row "Test playlist 1773208578288_2tjdB0Zfbx adminTest 2 01:03 3/11/2026" [ref=e382] [cursor=pointer]:
+                - cell [ref=e383]
+                - cell "Test playlist 1773208578288_2tjdB0Zfbx" [ref=e384]
+                - cell "adminTest" [ref=e385]
+                - cell "2" [ref=e386]
+                - cell "01:03" [ref=e387]
+                - cell "3/11/2026" [ref=e388]
+                - cell [ref=e389]:
+                  - generic [ref=e390]:
+                    - generic:
+                      - generic:
+                        - checkbox [checked] [disabled]
+                - cell [ref=e392]
+                - cell [ref=e393]
+              - row "Test playlist 1772885683636_2agrWp0JOj adminTest 0 00:00 3/7/2026" [ref=e394] [cursor=pointer]:
+                - cell [ref=e395]
+                - cell "Test playlist 1772885683636_2agrWp0JOj" [ref=e396]
+                - cell "adminTest" [ref=e397]
+                - cell "0" [ref=e398]
+                - cell "00:00" [ref=e399]
+                - cell "3/7/2026" [ref=e400]
+                - cell [ref=e401]:
+                  - generic [ref=e402]:
+                    - generic:
+                      - generic:
+                        - checkbox [checked] [disabled]
+                - cell [ref=e404]
+                - cell [ref=e405]
+          - generic [ref=e407]:
+            - paragraph [ref=e408]: "Items per page:"
+            - generic [ref=e409]:
+              - 'button "Items per page: 15" [ref=e410] [cursor=pointer]': "15"
+              - textbox: "15"
+              - img
+            - paragraph [ref=e411]: 1-15 of 19
+            - generic [ref=e412]:
+              - button "1" [ref=e413] [cursor=pointer]:
+                - generic [ref=e414]: "1"
+              - button "2" [ref=e415] [cursor=pointer]:
+                - generic [ref=e416]: "2"
+              - button "Next" [ref=e417] [cursor=pointer]:
+                - generic [ref=e418]:
+                  - text: Next
+                  - img [ref=e419]
+```
