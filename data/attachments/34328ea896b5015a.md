@@ -1,0 +1,487 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e6]:
+  - button "Skip to content" [ref=e7] [cursor=pointer]:
+    - generic [ref=e9]: Skip to content
+  - generic [ref=e10]:
+    - banner [ref=e11]:
+      - generic [ref=e12]:
+        - button "Close menu" [ref=e13] [cursor=pointer]:
+          - img [ref=e15]
+        - heading "Navidrome - Playlists" [level=6] [ref=e17]:
+          - generic [ref=e18]: Navidrome - Playlists
+        - button "Refresh" [ref=e19] [cursor=pointer]:
+          - img [ref=e21]
+        - button "Now Playing" [ref=e24] [cursor=pointer]:
+          - generic [ref=e26]:
+            - img [ref=e27]
+            - generic [ref=e29]: "5"
+        - button "Activity" [ref=e31] [cursor=pointer]:
+          - img [ref=e33]
+        - button "Settings" [ref=e36] [cursor=pointer]:
+          - img [ref=e38]
+    - main [ref=e40]:
+      - generic [ref=e44]:
+        - menuitem "Albums" [ref=e46] [cursor=pointer]:
+          - img [ref=e48]
+          - generic [ref=e50]: Albums
+        - generic [ref=e54]:
+          - menuitem "All" [ref=e55] [cursor=pointer]:
+            - img [ref=e57]
+            - text: All
+          - menuitem "Random Random" [ref=e59] [cursor=pointer]:
+            - img "Random" [ref=e61]
+            - text: Random
+          - menuitem "Favourites" [ref=e63] [cursor=pointer]:
+            - img [ref=e65]
+            - text: Favourites
+          - menuitem "Top Rated" [ref=e67] [cursor=pointer]:
+            - img [ref=e69]
+            - text: Top Rated
+          - menuitem "Recently Added" [ref=e71] [cursor=pointer]:
+            - img [ref=e73]
+            - text: Recently Added
+          - menuitem "Recently Played" [ref=e75] [cursor=pointer]:
+            - img [ref=e77]
+            - text: Recently Played
+          - menuitem "Most Played Most Played" [ref=e79] [cursor=pointer]:
+            - img "Most Played" [ref=e81]
+            - text: Most Played
+        - menuitem "Artists" [ref=e83] [cursor=pointer]:
+          - img [ref=e85]
+          - text: Artists
+        - menuitem "Songs" [ref=e87] [cursor=pointer]:
+          - img [ref=e89]
+          - text: Songs
+        - menuitem "Radios" [ref=e91] [cursor=pointer]:
+          - img [ref=e93]
+          - text: Radios
+        - separator [ref=e96]
+        - menuitem "Playlists" [ref=e98] [cursor=pointer]:
+          - img [ref=e100]
+          - generic [ref=e102]: Playlists
+          - button [ref=e103]:
+            - img [ref=e105]
+        - generic [ref=e111]:
+          - menuitem "Test playlist 1772885681621_KWKeYdHoF6" [ref=e112] [cursor=pointer]:
+            - generic [ref=e113]: Test playlist 1772885681621_KWKeYdHoF6
+          - menuitem "Test playlist 1772885683636_2agrWp0JOj" [ref=e114] [cursor=pointer]:
+            - generic [ref=e115]: Test playlist 1772885683636_2agrWp0JOj
+          - menuitem "Test playlist 1773176597439_EGQw7DNoUO" [ref=e116] [cursor=pointer]:
+            - generic [ref=e117]: Test playlist 1773176597439_EGQw7DNoUO
+          - menuitem "Test playlist 1773176600908_P6DVw7Vjv6" [ref=e118] [cursor=pointer]:
+            - generic [ref=e119]: Test playlist 1773176600908_P6DVw7Vjv6
+          - menuitem "Test playlist 1773205431084_TwOoApEt7P" [ref=e120] [cursor=pointer]:
+            - generic [ref=e121]: Test playlist 1773205431084_TwOoApEt7P
+          - menuitem "Test playlist 1773205432979_KLr8L4tfWT" [ref=e122] [cursor=pointer]:
+            - generic [ref=e123]: Test playlist 1773205432979_KLr8L4tfWT
+          - menuitem "Test playlist 1773205538236_bAUmkvc7r5" [ref=e124] [cursor=pointer]:
+            - generic [ref=e125]: Test playlist 1773205538236_bAUmkvc7r5
+          - menuitem "Test playlist 1773205539810_LSfPQQCA7v" [ref=e126] [cursor=pointer]:
+            - generic [ref=e127]: Test playlist 1773205539810_LSfPQQCA7v
+          - menuitem "Test playlist 1773206504400_wAp93wo4iL" [ref=e128] [cursor=pointer]:
+            - generic [ref=e129]: Test playlist 1773206504400_wAp93wo4iL
+          - menuitem "Test playlist 1773206506604_Gp2Q5imiNu" [ref=e130] [cursor=pointer]:
+            - generic [ref=e131]: Test playlist 1773206506604_Gp2Q5imiNu
+          - menuitem "Test playlist 1773207443836_aYZWNx8cU2" [ref=e132] [cursor=pointer]:
+            - generic [ref=e133]: Test playlist 1773207443836_aYZWNx8cU2
+          - menuitem "Test playlist 1773207445717_KHElf7lOmE" [ref=e134] [cursor=pointer]:
+            - generic [ref=e135]: Test playlist 1773207445717_KHElf7lOmE
+          - menuitem "Test playlist 1773208578879_BjctpKhAR3" [ref=e136] [cursor=pointer]:
+            - generic [ref=e137]: Test playlist 1773208578879_BjctpKhAR3
+          - menuitem "Test playlist 1773208582311" [ref=e138] [cursor=pointer]:
+            - generic [ref=e139]: Test playlist 1773208582311
+          - menuitem "Test playlist 1773208583013" [ref=e140] [cursor=pointer]:
+            - generic [ref=e141]: Test playlist 1773208583013
+          - menuitem "Test playlist 1773208585120_BRL175EPLL" [ref=e142] [cursor=pointer]:
+            - generic [ref=e143]: Test playlist 1773208585120_BRL175EPLL
+          - menuitem "Test playlist 1773208585349_doYtOjC8nm" [ref=e144] [cursor=pointer]:
+            - generic [ref=e145]: Test playlist 1773208585349_doYtOjC8nm
+          - menuitem "Test playlist 1773208585350_mddO38sO54" [ref=e146] [cursor=pointer]:
+            - generic [ref=e147]: Test playlist 1773208585350_mddO38sO54
+          - menuitem "Test playlist 1773208585352_tt7QwEDkb1" [ref=e148] [cursor=pointer]:
+            - generic [ref=e149]: Test playlist 1773208585352_tt7QwEDkb1
+          - menuitem "qwer" [ref=e150] [cursor=pointer]:
+            - generic [ref=e151]: qwer
+        - menuitem "Shared Playlists" [ref=e153] [cursor=pointer]:
+          - img [ref=e155]
+          - generic [ref=e157]: Shared Playlists
+        - menuitem "Test playlist 1773205534671_zRuhYiYzYo" [ref=e162] [cursor=pointer]:
+          - generic [ref=e163]: Test playlist 1773205534671_zRuhYiYzYo
+      - generic [ref=e165]:
+        - generic [ref=e166]:
+          - generic:
+            - generic [ref=e168]:
+              - generic [ref=e169]:
+                - textbox "Search" [ref=e170]
+                - img [ref=e172]
+                - group
+              - paragraph
+            - generic [ref=e176]:
+              - generic: Owner
+              - generic [ref=e177]:
+                - button "Owner" [ref=e178] [cursor=pointer]
+                - textbox
+                - img
+                - group
+              - paragraph
+          - generic [ref=e180]:
+            - button "Create" [ref=e181] [cursor=pointer]:
+              - generic [ref=e182]:
+                - img [ref=e183]
+                - generic [ref=e185]: Create
+            - button "more" [ref=e187] [cursor=pointer]:
+              - img [ref=e189]
+        - generic [ref=e192]:
+          - generic:
+            - generic [ref=e193]:
+              - button "Unselect" [ref=e194] [cursor=pointer]:
+                - img [ref=e196]
+              - heading "0 items selected" [level=6] [ref=e198]
+            - generic [ref=e199]:
+              - button "Make Public" [ref=e200] [cursor=pointer]:
+                - generic [ref=e201]:
+                  - img [ref=e202]
+                  - generic [ref=e204]: Make Public
+              - button "Make Private" [ref=e205] [cursor=pointer]:
+                - generic [ref=e206]:
+                  - img [ref=e207]
+                  - generic [ref=e209]: Make Private
+              - button "Delete" [ref=e210] [cursor=pointer]:
+                - generic [ref=e211]:
+                  - img [ref=e212]
+                  - generic [ref=e214]: Delete
+          - table [ref=e215]:
+            - rowgroup [ref=e216]:
+              - row "Select all Name Owner Songs Duration Updated at Public Auto-import" [ref=e217]:
+                - columnheader "Select all" [ref=e218]:
+                  - generic "Select all" [ref=e219] [cursor=pointer]:
+                    - generic [ref=e220]:
+                      - checkbox [ref=e221]
+                      - img [ref=e222]
+                - columnheader "Name" [ref=e224]:
+                  - button "Name" [ref=e225] [cursor=pointer]:
+                    - generic [ref=e226]: Name
+                - columnheader "Owner" [ref=e227]:
+                  - button "Owner" [ref=e228] [cursor=pointer]:
+                    - generic [ref=e229]: Owner
+                - columnheader "Songs" [ref=e230]:
+                  - button "Songs" [ref=e231] [cursor=pointer]:
+                    - generic [ref=e232]: Songs
+                - columnheader "Duration" [ref=e233]:
+                  - button "Duration" [ref=e234] [cursor=pointer]:
+                    - generic [ref=e235]: Duration
+                - columnheader "Updated at" [ref=e236]:
+                  - button "Updated at" [ref=e237] [cursor=pointer]:
+                    - generic [ref=e238]: Updated at
+                - columnheader "Public" [ref=e239]:
+                  - button "Public" [ref=e240] [cursor=pointer]:
+                    - generic [ref=e241]: Public
+                - columnheader "Auto-import" [ref=e242]:
+                  - button "Auto-import" [ref=e243] [cursor=pointer]:
+                    - generic [ref=e244]: Auto-import
+                - columnheader [ref=e245]
+            - rowgroup [ref=e246]:
+              - row "Select this row Test playlist 1773205539810_LSfPQQCA7v adminTest 0 00:00 3/11/2026 Edit" [ref=e247] [cursor=pointer]:
+                - cell "Select this row" [ref=e248]:
+                  - generic "Select this row" [ref=e249]:
+                    - generic [ref=e250]:
+                      - checkbox [ref=e251]
+                      - img [ref=e252]
+                - cell "Test playlist 1773205539810_LSfPQQCA7v" [ref=e254]
+                - cell "adminTest" [ref=e255]
+                - cell "0" [ref=e256]
+                - cell "00:00" [ref=e257]
+                - cell "3/11/2026" [ref=e258]
+                - cell [ref=e259]:
+                  - checkbox [checked] [ref=e263]
+                - cell [ref=e266]
+                - cell "Edit" [ref=e267]:
+                  - button "Edit" [ref=e268]:
+                    - generic [ref=e269]:
+                      - img [ref=e270]
+                      - generic [ref=e272]: Edit
+              - row "Select this row qwer adminTest 2 01:03 2/28/2026 Edit" [ref=e273] [cursor=pointer]:
+                - cell "Select this row" [ref=e274]:
+                  - generic "Select this row" [ref=e275]:
+                    - generic [ref=e276]:
+                      - checkbox [ref=e277]
+                      - img [ref=e278]
+                - cell "qwer" [ref=e280]
+                - cell "adminTest" [ref=e281]
+                - cell "2" [ref=e282]
+                - cell "01:03" [ref=e283]
+                - cell "2/28/2026" [ref=e284]
+                - cell [ref=e285]:
+                  - checkbox [checked] [ref=e289]
+                - cell [ref=e292]
+                - cell "Edit" [ref=e293]:
+                  - button "Edit" [ref=e294]:
+                    - generic [ref=e295]:
+                      - img [ref=e296]
+                      - generic [ref=e298]: Edit
+              - row "Select this row Test playlist 1773205538236_bAUmkvc7r5 adminTest 0 00:00 3/11/2026 Edit" [ref=e299] [cursor=pointer]:
+                - cell "Select this row" [ref=e300]:
+                  - generic "Select this row" [ref=e301]:
+                    - generic [ref=e302]:
+                      - checkbox [ref=e303]
+                      - img [ref=e304]
+                - cell "Test playlist 1773205538236_bAUmkvc7r5" [ref=e306]
+                - cell "adminTest" [ref=e307]
+                - cell "0" [ref=e308]
+                - cell "00:00" [ref=e309]
+                - cell "3/11/2026" [ref=e310]
+                - cell [ref=e311]:
+                  - checkbox [checked] [ref=e315]
+                - cell [ref=e318]
+                - cell "Edit" [ref=e319]:
+                  - button "Edit" [ref=e320]:
+                    - generic [ref=e321]:
+                      - img [ref=e322]
+                      - generic [ref=e324]: Edit
+              - row "Select this row Test playlist 1773207443836_aYZWNx8cU2 adminTest 0 00:00 3/11/2026 Edit" [ref=e325] [cursor=pointer]:
+                - cell "Select this row" [ref=e326]:
+                  - generic "Select this row" [ref=e327]:
+                    - generic [ref=e328]:
+                      - checkbox [ref=e329]
+                      - img [ref=e330]
+                - cell "Test playlist 1773207443836_aYZWNx8cU2" [ref=e332]
+                - cell "adminTest" [ref=e333]
+                - cell "0" [ref=e334]
+                - cell "00:00" [ref=e335]
+                - cell "3/11/2026" [ref=e336]
+                - cell [ref=e337]:
+                  - checkbox [checked] [ref=e341]
+                - cell [ref=e344]
+                - cell "Edit" [ref=e345]:
+                  - button "Edit" [ref=e346]:
+                    - generic [ref=e347]:
+                      - img [ref=e348]
+                      - generic [ref=e350]: Edit
+              - row "Select this row Test playlist 1773205432979_KLr8L4tfWT adminTest 0 00:00 3/11/2026 Edit" [ref=e351] [cursor=pointer]:
+                - cell "Select this row" [ref=e352]:
+                  - generic "Select this row" [ref=e353]:
+                    - generic [ref=e354]:
+                      - checkbox [ref=e355]
+                      - img [ref=e356]
+                - cell "Test playlist 1773205432979_KLr8L4tfWT" [ref=e358]
+                - cell "adminTest" [ref=e359]
+                - cell "0" [ref=e360]
+                - cell "00:00" [ref=e361]
+                - cell "3/11/2026" [ref=e362]
+                - cell [ref=e363]:
+                  - checkbox [checked] [ref=e367]
+                - cell [ref=e370]
+                - cell "Edit" [ref=e371]:
+                  - button "Edit" [ref=e372]:
+                    - generic [ref=e373]:
+                      - img [ref=e374]
+                      - generic [ref=e376]: Edit
+              - row "Select this row Test playlist 1772885681621_KWKeYdHoF6 adminTest 0 00:00 3/7/2026 Edit" [ref=e377] [cursor=pointer]:
+                - cell "Select this row" [ref=e378]:
+                  - generic "Select this row" [ref=e379]:
+                    - generic [ref=e380]:
+                      - checkbox [ref=e381]
+                      - img [ref=e382]
+                - cell "Test playlist 1772885681621_KWKeYdHoF6" [ref=e384]
+                - cell "adminTest" [ref=e385]
+                - cell "0" [ref=e386]
+                - cell "00:00" [ref=e387]
+                - cell "3/7/2026" [ref=e388]
+                - cell [ref=e389]:
+                  - checkbox [checked] [ref=e393]
+                - cell [ref=e396]
+                - cell "Edit" [ref=e397]:
+                  - button "Edit" [ref=e398]:
+                    - generic [ref=e399]:
+                      - img [ref=e400]
+                      - generic [ref=e402]: Edit
+              - row "Select this row Test playlist 1773208583013 adminTest 0 00:00 3/11/2026 Edit" [ref=e403] [cursor=pointer]:
+                - cell "Select this row" [ref=e404]:
+                  - generic "Select this row" [ref=e405]:
+                    - generic [ref=e406]:
+                      - checkbox [ref=e407]
+                      - img [ref=e408]
+                - cell "Test playlist 1773208583013" [ref=e410]
+                - cell "adminTest" [ref=e411]
+                - cell "0" [ref=e412]
+                - cell "00:00" [ref=e413]
+                - cell "3/11/2026" [ref=e414]
+                - cell [ref=e415]:
+                  - checkbox [checked] [ref=e419]
+                - cell [ref=e422]
+                - cell "Edit" [ref=e423]:
+                  - button "Edit" [ref=e424]:
+                    - generic [ref=e425]:
+                      - img [ref=e426]
+                      - generic [ref=e428]: Edit
+              - row "Select this row Test playlist 1773176600908_P6DVw7Vjv6 adminTest 0 00:00 3/10/2026 Edit" [ref=e429] [cursor=pointer]:
+                - cell "Select this row" [ref=e430]:
+                  - generic "Select this row" [ref=e431]:
+                    - generic [ref=e432]:
+                      - checkbox [ref=e433]
+                      - img [ref=e434]
+                - cell "Test playlist 1773176600908_P6DVw7Vjv6" [ref=e436]
+                - cell "adminTest" [ref=e437]
+                - cell "0" [ref=e438]
+                - cell "00:00" [ref=e439]
+                - cell "3/10/2026" [ref=e440]
+                - cell [ref=e441]:
+                  - checkbox [checked] [ref=e445]
+                - cell [ref=e448]
+                - cell "Edit" [ref=e449]:
+                  - button "Edit" [ref=e450]:
+                    - generic [ref=e451]:
+                      - img [ref=e452]
+                      - generic [ref=e454]: Edit
+              - row "Select this row Test playlist 1773207445717_KHElf7lOmE adminTest 0 00:00 3/11/2026 Edit" [ref=e455] [cursor=pointer]:
+                - cell "Select this row" [ref=e456]:
+                  - generic "Select this row" [ref=e457]:
+                    - generic [ref=e458]:
+                      - checkbox [ref=e459]
+                      - img [ref=e460]
+                - cell "Test playlist 1773207445717_KHElf7lOmE" [ref=e462]
+                - cell "adminTest" [ref=e463]
+                - cell "0" [ref=e464]
+                - cell "00:00" [ref=e465]
+                - cell "3/11/2026" [ref=e466]
+                - cell [ref=e467]:
+                  - checkbox [checked] [ref=e471]
+                - cell [ref=e474]
+                - cell "Edit" [ref=e475]:
+                  - button "Edit" [ref=e476]:
+                    - generic [ref=e477]:
+                      - img [ref=e478]
+                      - generic [ref=e480]: Edit
+              - row "Select this row Test playlist 1773208582311 adminTest 0 00:00 3/11/2026 Edit" [ref=e481] [cursor=pointer]:
+                - cell "Select this row" [ref=e482]:
+                  - generic "Select this row" [ref=e483]:
+                    - generic [ref=e484]:
+                      - checkbox [ref=e485]
+                      - img [ref=e486]
+                - cell "Test playlist 1773208582311" [ref=e488]
+                - cell "adminTest" [ref=e489]
+                - cell "0" [ref=e490]
+                - cell "00:00" [ref=e491]
+                - cell "3/11/2026" [ref=e492]
+                - cell [ref=e493]:
+                  - checkbox [ref=e497]
+                - cell [ref=e500]
+                - cell "Edit" [ref=e501]:
+                  - button "Edit" [ref=e502]:
+                    - generic [ref=e503]:
+                      - img [ref=e504]
+                      - generic [ref=e506]: Edit
+              - row "Select this row Test playlist 1773206506604_Gp2Q5imiNu adminTest 0 00:00 3/11/2026 Edit" [ref=e507] [cursor=pointer]:
+                - cell "Select this row" [ref=e508]:
+                  - generic "Select this row" [ref=e509]:
+                    - generic [ref=e510]:
+                      - checkbox [ref=e511]
+                      - img [ref=e512]
+                - cell "Test playlist 1773206506604_Gp2Q5imiNu" [ref=e514]
+                - cell "adminTest" [ref=e515]
+                - cell "0" [ref=e516]
+                - cell "00:00" [ref=e517]
+                - cell "3/11/2026" [ref=e518]
+                - cell [ref=e519]:
+                  - checkbox [checked] [ref=e523]
+                - cell [ref=e526]
+                - cell "Edit" [ref=e527]:
+                  - button "Edit" [ref=e528]:
+                    - generic [ref=e529]:
+                      - img [ref=e530]
+                      - generic [ref=e532]: Edit
+              - row "Select this row Test playlist 1773176597439_EGQw7DNoUO adminTest 0 00:00 3/10/2026 Edit" [ref=e533] [cursor=pointer]:
+                - cell "Select this row" [ref=e534]:
+                  - generic "Select this row" [ref=e535]:
+                    - generic [ref=e536]:
+                      - checkbox [ref=e537]
+                      - img [ref=e538]
+                - cell "Test playlist 1773176597439_EGQw7DNoUO" [ref=e540]
+                - cell "adminTest" [ref=e541]
+                - cell "0" [ref=e542]
+                - cell "00:00" [ref=e543]
+                - cell "3/10/2026" [ref=e544]
+                - cell [ref=e545]:
+                  - checkbox [checked] [ref=e549]
+                - cell [ref=e552]
+                - cell "Edit" [ref=e553]:
+                  - button "Edit" [ref=e554]:
+                    - generic [ref=e555]:
+                      - img [ref=e556]
+                      - generic [ref=e558]: Edit
+              - row "Select this row Test playlist 1772885683636_2agrWp0JOj adminTest 0 00:00 3/7/2026 Edit" [ref=e559] [cursor=pointer]:
+                - cell "Select this row" [ref=e560]:
+                  - generic "Select this row" [ref=e561]:
+                    - generic [ref=e562]:
+                      - checkbox [ref=e563]
+                      - img [ref=e564]
+                - cell "Test playlist 1772885683636_2agrWp0JOj" [ref=e566]
+                - cell "adminTest" [ref=e567]
+                - cell "0" [ref=e568]
+                - cell "00:00" [ref=e569]
+                - cell "3/7/2026" [ref=e570]
+                - cell [ref=e571]:
+                  - checkbox [checked] [ref=e575]
+                - cell [ref=e578]
+                - cell "Edit" [ref=e579]:
+                  - button "Edit" [ref=e580]:
+                    - generic [ref=e581]:
+                      - img [ref=e582]
+                      - generic [ref=e584]: Edit
+              - row "Select this row Test playlist 1773208578879_BjctpKhAR3 adminTest 2 01:03 3/11/2026 Edit" [ref=e585] [cursor=pointer]:
+                - cell "Select this row" [ref=e586]:
+                  - generic "Select this row" [ref=e587]:
+                    - generic [ref=e588]:
+                      - checkbox [ref=e589]
+                      - img [ref=e590]
+                - cell "Test playlist 1773208578879_BjctpKhAR3" [ref=e592]
+                - cell "adminTest" [ref=e593]
+                - cell "2" [ref=e594]
+                - cell "01:03" [ref=e595]
+                - cell "3/11/2026" [ref=e596]
+                - cell [ref=e597]:
+                  - checkbox [checked] [ref=e601]
+                - cell [ref=e604]
+                - cell "Edit" [ref=e605]:
+                  - button "Edit" [ref=e606]:
+                    - generic [ref=e607]:
+                      - img [ref=e608]
+                      - generic [ref=e610]: Edit
+              - row "Select this row Test playlist 1773208585350_mddO38sO54 adminTest 0 00:00 3/11/2026 Edit" [ref=e611] [cursor=pointer]:
+                - cell "Select this row" [ref=e612]:
+                  - generic "Select this row" [ref=e613]:
+                    - generic [ref=e614]:
+                      - checkbox [ref=e615]
+                      - img [ref=e616]
+                - cell "Test playlist 1773208585350_mddO38sO54" [ref=e618]
+                - cell "adminTest" [ref=e619]
+                - cell "0" [ref=e620]
+                - cell "00:00" [ref=e621]
+                - cell "3/11/2026" [ref=e622]
+                - cell [ref=e623]:
+                  - checkbox [checked] [ref=e627]
+                - cell [ref=e630]
+                - cell "Edit" [ref=e631]:
+                  - button "Edit" [ref=e632]:
+                    - generic [ref=e633]:
+                      - img [ref=e634]
+                      - generic [ref=e636]: Edit
+          - generic [ref=e638]:
+            - paragraph [ref=e639]: "Items per page:"
+            - generic [ref=e640]:
+              - 'button "Items per page: 15" [ref=e641] [cursor=pointer]': "15"
+              - textbox: "15"
+              - img
+            - paragraph [ref=e642]: 1-15 of 21
+            - generic [ref=e643]:
+              - button "1" [ref=e644] [cursor=pointer]:
+                - generic [ref=e645]: "1"
+              - button "2" [ref=e646] [cursor=pointer]:
+                - generic [ref=e647]: "2"
+              - button "Next" [ref=e648] [cursor=pointer]:
+                - generic [ref=e649]:
+                  - text: Next
+                  - img [ref=e650]
+```
