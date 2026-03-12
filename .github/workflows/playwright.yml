@@ -28,23 +28,45 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
+   
     - name: Start Navidrome
       run: docker compose -f docker-compose.ci.yml up -d
+    
     - name: Wait for Navidrome
       run: sleep 10
+    
     - name: Install dependencies
       run: npm ci
     - uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
         java-version: '21'  
+    
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    
+    - name: Download previous Allure history
+      continue-on-error: true
+      run: |
+        mkdir -p allure-results/history
+        if wget -q https://${{github.repository_owner}}.github.io/${{github.event.repository.name}}/history.zip; then
+          unzip -o history.zip -d allure-results
+          rm history.zip
+        fi
     - name: Run Playwright tests
       run: npx playwright test
+    
     - name: Generate Allure report
       if: ${{!cancelled()}}                               
       run: npx allure generate allure-results --clean -o allure-report
+
+    - name: Save Allure history
+      if: ${{!cancelled()}}
+      run: |
+        cp -r allure-report/history allure-results/history
+        cd allure-results && zip -r ../history.zip history && cd ..
+        mv history.zip allure-report/
+        
     - uses: actions/upload-artifact@v4
       if: ${{!cancelled()}}
       with:
@@ -57,3 +79,11 @@ jobs:
         name: allure-report
         path: allure-report/
         retention-days: 30
+    
+    - name: Deploy Allure report to HitHub Pages
+      if: ${{!cancelled()}}
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        publish_dir: allure-report
+        keep_files: true
