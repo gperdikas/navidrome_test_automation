@@ -1,0 +1,101 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e6]:
+  - button "Skip to content" [ref=e7] [cursor=pointer]:
+    - generic [ref=e9]: Skip to content
+  - generic [ref=e10]:
+    - banner [ref=e11]:
+      - generic [ref=e12]:
+        - button "Close menu" [ref=e13] [cursor=pointer]:
+          - img [ref=e15]
+        - heading "Navidrome - Albums - Recently Added" [level=6] [ref=e17]:
+          - generic [ref=e18]: Navidrome - Albums - Recently Added
+        - button "Refresh" [ref=e19] [cursor=pointer]:
+          - img [ref=e21]
+        - button "Settings" [ref=e24] [cursor=pointer]:
+          - img [ref=e26]
+    - main [ref=e28]:
+      - generic [ref=e32]:
+        - menuitem "Albums" [ref=e34] [cursor=pointer]:
+          - img [ref=e36]
+          - generic [ref=e38]: Albums
+        - generic [ref=e42]:
+          - menuitem "All" [ref=e43] [cursor=pointer]:
+            - img [ref=e45]
+            - text: All
+          - menuitem "Random Random" [ref=e47] [cursor=pointer]:
+            - img "Random" [ref=e49]
+            - text: Random
+          - menuitem "Favourites" [ref=e51] [cursor=pointer]:
+            - img [ref=e53]
+            - text: Favourites
+          - menuitem "Top Rated" [ref=e55] [cursor=pointer]:
+            - img [ref=e57]
+            - text: Top Rated
+          - menuitem "Recently Added" [ref=e59] [cursor=pointer]:
+            - img [ref=e61]
+            - text: Recently Added
+          - menuitem "Recently Played" [ref=e63] [cursor=pointer]:
+            - img [ref=e65]
+            - text: Recently Played
+          - menuitem "Most Played Most Played" [ref=e67] [cursor=pointer]:
+            - img "Most Played" [ref=e69]
+            - text: Most Played
+        - menuitem "Artists" [ref=e71] [cursor=pointer]:
+          - img [ref=e73]
+          - text: Artists
+        - menuitem "Songs" [ref=e75] [cursor=pointer]:
+          - img [ref=e77]
+          - text: Songs
+        - menuitem "Radios" [ref=e79] [cursor=pointer]:
+          - img [ref=e81]
+          - text: Radios
+        - separator [ref=e84]
+        - menuitem "Playlists" [ref=e86] [cursor=pointer]:
+          - img [ref=e88]
+          - generic [ref=e90]: Playlists
+          - button [ref=e91]:
+            - img [ref=e93]
+      - generic [ref=e97]:
+        - generic [ref=e98]:
+          - generic [ref=e100]:
+            - generic [ref=e101]:
+              - textbox "Search" [ref=e102]
+              - img [ref=e104]
+              - group
+            - paragraph
+          - generic [ref=e107]:
+            - button "Add filter" [ref=e109] [cursor=pointer]:
+              - generic [ref=e110]:
+                - img [ref=e111]
+                - generic [ref=e113]: Add filter
+            - button "more" [ref=e115] [cursor=pointer]:
+              - img [ref=e117]
+        - generic [ref=e120]:
+          - listitem [ref=e123]:
+            - generic [ref=e125]:
+              - link "[Unknown Album] play more" [ref=e126] [cursor=pointer]:
+                - /url: "#/album/69IwB2p7tQDejD3lowUIFo/show"
+                - img "[Unknown Album]" [ref=e129]
+                - generic [ref=e130]:
+                  - button "play" [ref=e133]:
+                    - img [ref=e135]
+                  - generic [ref=e138]:
+                    - button [ref=e139]:
+                      - img [ref=e141]
+                    - button "more" [ref=e143]:
+                      - img [ref=e145]
+              - link "[Unknown Album]" [ref=e147] [cursor=pointer]:
+                - /url: "#/album/69IwB2p7tQDejD3lowUIFo/show"
+                - paragraph [ref=e149]: "[Unknown Album]"
+              - link "[Unknown Artist]" [ref=e151] [cursor=pointer]:
+                - /url: "#/artist/6QiT23Pg8GAJHZop58uMKH/show"
+          - generic [ref=e153]:
+            - paragraph [ref=e154]: "Items per page:"
+            - generic [ref=e155]:
+              - 'button "Items per page: 18" [ref=e156] [cursor=pointer]': "18"
+              - textbox: "18"
+              - img
+            - paragraph [ref=e157]: 1-1 of 1
+```
