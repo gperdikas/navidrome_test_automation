@@ -1,8 +1,17 @@
 
 # Playwright
 node_modules/
-.env
-auth.json
 playwright-report/
 test-results/
 TODO.md
+
+# Environment
+.env
+
+# Auth tokens and state
+auth.json
+auth2.json
+admin-auth.json
+api-token.json
+api-token-user2.json
+admin-api-token.json
