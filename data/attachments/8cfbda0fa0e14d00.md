@@ -1,0 +1,121 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e6]:
+  - button "Skip to content" [ref=e7] [cursor=pointer]:
+    - generic [ref=e9]: Skip to content
+  - generic [ref=e10]:
+    - banner [ref=e11]:
+      - generic [ref=e12]:
+        - button "Close menu" [ref=e13] [cursor=pointer]:
+          - img [ref=e15]
+        - heading "Navidrome - Albums - Recently Added" [level=6] [ref=e17]:
+          - generic [ref=e18]: Navidrome - Albums - Recently Added
+        - button "Refresh" [ref=e19] [cursor=pointer]:
+          - img [ref=e21]
+        - button "Settings" [ref=e24] [cursor=pointer]:
+          - img [ref=e26]
+    - main [ref=e28]:
+      - generic [ref=e32]:
+        - menuitem "Albums" [ref=e34] [cursor=pointer]:
+          - img [ref=e36]
+          - generic [ref=e38]: Albums
+        - generic [ref=e42]:
+          - menuitem "All" [ref=e43] [cursor=pointer]:
+            - img [ref=e45]
+            - text: All
+          - menuitem "Random Random" [ref=e47] [cursor=pointer]:
+            - img "Random" [ref=e49]
+            - text: Random
+          - menuitem "Favourites" [ref=e51] [cursor=pointer]:
+            - img [ref=e53]
+            - text: Favourites
+          - menuitem "Top Rated" [ref=e55] [cursor=pointer]:
+            - img [ref=e57]
+            - text: Top Rated
+          - menuitem "Recently Added" [ref=e59] [cursor=pointer]:
+            - img [ref=e61]
+            - text: Recently Added
+          - menuitem "Recently Played" [ref=e63] [cursor=pointer]:
+            - img [ref=e65]
+            - text: Recently Played
+          - menuitem "Most Played Most Played" [ref=e67] [cursor=pointer]:
+            - img "Most Played" [ref=e69]
+            - text: Most Played
+        - menuitem "Artists" [ref=e71] [cursor=pointer]:
+          - img [ref=e73]
+          - text: Artists
+        - menuitem "Songs" [ref=e75] [cursor=pointer]:
+          - img [ref=e77]
+          - text: Songs
+        - menuitem "Radios" [ref=e79] [cursor=pointer]:
+          - img [ref=e81]
+          - text: Radios
+        - separator [ref=e84]
+        - menuitem "Playlists" [ref=e86] [cursor=pointer]:
+          - img [ref=e88]
+          - generic [ref=e90]: Playlists
+          - button [ref=e91]:
+            - img [ref=e93]
+        - menuitem "Shared Playlists" [ref=e97] [cursor=pointer]:
+          - img [ref=e99]
+          - generic [ref=e101]: Shared Playlists
+        - generic [ref=e105]:
+          - menuitem "Test playlist 1772885681621_KWKeYdHoF6" [ref=e106] [cursor=pointer]:
+            - generic [ref=e107]: Test playlist 1772885681621_KWKeYdHoF6
+          - menuitem "Test playlist 1772885683636_2agrWp0JOj" [ref=e108] [cursor=pointer]:
+            - generic [ref=e109]: Test playlist 1772885683636_2agrWp0JOj
+          - menuitem "Test playlist 1773176597439_EGQw7DNoUO" [ref=e110] [cursor=pointer]:
+            - generic [ref=e111]: Test playlist 1773176597439_EGQw7DNoUO
+          - menuitem "Test playlist 1773176600908_P6DVw7Vjv6" [ref=e112] [cursor=pointer]:
+            - generic [ref=e113]: Test playlist 1773176600908_P6DVw7Vjv6
+          - menuitem "Test playlist 1773205425837_lQLSc71POV" [ref=e114] [cursor=pointer]:
+            - generic [ref=e115]: Test playlist 1773205425837_lQLSc71POV
+          - menuitem "Test playlist 1773205425865_leAIaBKkI2" [ref=e116] [cursor=pointer]:
+            - generic [ref=e117]: Test playlist 1773205425865_leAIaBKkI2
+          - menuitem "Test playlist 1773205426305_IB7wH62cBt" [ref=e118] [cursor=pointer]:
+            - generic [ref=e119]: Test playlist 1773205426305_IB7wH62cBt
+          - menuitem "qwer" [ref=e120] [cursor=pointer]:
+            - generic [ref=e121]: qwer
+      - generic [ref=e123]:
+        - generic [ref=e124]:
+          - generic [ref=e126]:
+            - generic [ref=e127]:
+              - textbox "Search" [ref=e128]
+              - img [ref=e130]
+              - group
+            - paragraph
+          - generic [ref=e133]:
+            - button "Add filter" [ref=e135] [cursor=pointer]:
+              - generic [ref=e136]:
+                - img [ref=e137]
+                - generic [ref=e139]: Add filter
+            - button "more" [ref=e141] [cursor=pointer]:
+              - img [ref=e143]
+        - generic [ref=e146]:
+          - listitem [ref=e149]:
+            - generic [ref=e151]:
+              - link "[Unknown Album] play more" [ref=e152] [cursor=pointer]:
+                - /url: "#/album/69IwB2p7tQDejD3lowUIFo/show"
+                - img "[Unknown Album]" [ref=e155]
+                - generic [ref=e156]:
+                  - button "play" [ref=e159]:
+                    - img [ref=e161]
+                  - generic [ref=e164]:
+                    - button [ref=e165]:
+                      - img [ref=e167]
+                    - button "more" [ref=e169]:
+                      - img [ref=e171]
+              - link "[Unknown Album]" [ref=e173] [cursor=pointer]:
+                - /url: "#/album/69IwB2p7tQDejD3lowUIFo/show"
+                - paragraph [ref=e175]: "[Unknown Album]"
+              - link "[Unknown Artist]" [ref=e177] [cursor=pointer]:
+                - /url: "#/artist/6QiT23Pg8GAJHZop58uMKH/show"
+          - generic [ref=e179]:
+            - paragraph [ref=e180]: "Items per page:"
+            - generic [ref=e181]:
+              - 'button "Items per page: 18" [ref=e182] [cursor=pointer]': "18"
+              - textbox: "18"
+              - img
+            - paragraph [ref=e183]: 1-1 of 1
+```
