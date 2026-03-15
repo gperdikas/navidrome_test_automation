@@ -1,0 +1,121 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e6]:
+  - button [ref=e7] [cursor=pointer]:
+    - generic [ref=e9]: Skip to content
+  - generic [ref=e10]:
+    - banner [ref=e11]:
+      - generic [ref=e12]:
+        - button [ref=e13] [cursor=pointer]:
+          - img [ref=e15]
+        - heading [level=6] [ref=e17]:
+          - generic [ref=e18]: Navidrome - Albums - Recently Added
+        - button [ref=e19] [cursor=pointer]:
+          - img [ref=e21]
+        - button [ref=e24] [cursor=pointer]:
+          - img [ref=e26]
+          - menu [ref=e30]:
+            - generic [ref=e32]: userTest1
+            - separator [ref=e33]
+            - menuitem "Personal" [ref=e34]:
+              - img [ref=e36]
+              - text: Personal
+            - separator [ref=e39]
+            - menuitem "User" [ref=e40]:
+              - img [ref=e42]
+              - text: User
+            - menuitem "Players" [ref=e45]:
+              - img [ref=e47]
+              - text: Players
+            - separator [ref=e50]
+            - menuitem "About About" [ref=e51]:
+              - img "About" [ref=e53]
+              - text: About
+            - menuitem "Logout" [ref=e57]:
+              - img [ref=e59]
+              - text: Logout
+    - main [ref=e61]:
+      - generic [ref=e65]:
+        - menuitem [ref=e67] [cursor=pointer]:
+          - img [ref=e69]
+          - generic [ref=e71]: Albums
+        - generic [ref=e75]:
+          - menuitem [ref=e76] [cursor=pointer]:
+            - img [ref=e78]
+            - text: All
+          - menuitem [ref=e80] [cursor=pointer]:
+            - img [ref=e82]
+            - text: Random
+          - menuitem [ref=e84] [cursor=pointer]:
+            - img [ref=e86]
+            - text: Favourites
+          - menuitem [ref=e88] [cursor=pointer]:
+            - img [ref=e90]
+            - text: Top Rated
+          - menuitem [ref=e92] [cursor=pointer]:
+            - img [ref=e94]
+            - text: Recently Added
+          - menuitem [ref=e96] [cursor=pointer]:
+            - img [ref=e98]
+            - text: Recently Played
+          - menuitem [ref=e100] [cursor=pointer]:
+            - img [ref=e102]
+            - text: Most Played
+        - menuitem [ref=e104] [cursor=pointer]:
+          - img [ref=e106]
+          - text: Artists
+        - menuitem [ref=e108] [cursor=pointer]:
+          - img [ref=e110]
+          - text: Songs
+        - menuitem [ref=e112] [cursor=pointer]:
+          - img [ref=e114]
+          - text: Radios
+        - separator [ref=e117]
+        - menuitem [ref=e119] [cursor=pointer]:
+          - img [ref=e121]
+          - generic [ref=e123]: Playlists
+          - button [ref=e124]:
+            - img [ref=e126]
+      - generic [ref=e130]:
+        - generic [ref=e131]:
+          - generic [ref=e134]:
+            - textbox [ref=e135]:
+              - /placeholder: Search
+            - img [ref=e137]
+            - group
+          - generic [ref=e140]:
+            - button [ref=e142] [cursor=pointer]:
+              - generic [ref=e143]:
+                - img [ref=e144]
+                - generic [ref=e146]: Add filter
+            - button [ref=e148] [cursor=pointer]:
+              - img [ref=e150]
+        - generic [ref=e153]:
+          - listitem [ref=e156]:
+            - generic [ref=e158]:
+              - link [ref=e159] [cursor=pointer]:
+                - /url: "#/album/69IwB2p7tQDejD3lowUIFo/show"
+                - img [ref=e162]
+                - generic [ref=e163]:
+                  - button [ref=e166]:
+                    - img [ref=e168]
+                  - generic [ref=e171]:
+                    - button [ref=e172]:
+                      - img [ref=e174]
+                    - button [ref=e176]:
+                      - img [ref=e178]
+              - link [ref=e180] [cursor=pointer]:
+                - /url: "#/album/69IwB2p7tQDejD3lowUIFo/show"
+                - paragraph [ref=e182]: "[Unknown Album]"
+              - link [ref=e184] [cursor=pointer]:
+                - /url: "#/artist/6QiT23Pg8GAJHZop58uMKH/show"
+                - text: "[Unknown Artist]"
+          - generic [ref=e186]:
+            - paragraph [ref=e187]: "Items per page:"
+            - generic [ref=e188]:
+              - button [ref=e189] [cursor=pointer]: "18"
+              - textbox: "18"
+              - img
+            - paragraph [ref=e190]: 1-1 of 1
+```
