@@ -3,7 +3,6 @@
 node_modules/
 playwright-report/
 test-results/
-TODO.md
 
 # Environment
 .env
@@ -15,3 +14,10 @@ admin-auth.json
 api-token.json
 api-token-user2.json
 admin-api-token.json
+
+# Allure
+allure-report/
+allure-results/
+
+# Notes
+TODO.md
