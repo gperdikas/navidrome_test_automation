@@ -1,0 +1,110 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e6]:
+  - button "Skip to content" [ref=e7] [cursor=pointer]:
+    - generic [ref=e9]: Skip to content
+  - generic [ref=e10]:
+    - banner [ref=e11]:
+      - generic [ref=e12]:
+        - button "Close menu" [ref=e13] [cursor=pointer]:
+          - img [ref=e15]
+        - heading "Navidrome - Albums - Recently Added" [level=6] [ref=e17]:
+          - generic [ref=e18]: Navidrome - Albums - Recently Added
+        - button "Refresh" [ref=e19] [cursor=pointer]:
+          - img [ref=e21]
+        - button "Settings" [ref=e24] [cursor=pointer]:
+          - img [ref=e26]
+    - main [ref=e28]:
+      - generic [ref=e32]:
+        - menuitem "Albums" [ref=e34] [cursor=pointer]:
+          - img [ref=e36]
+          - generic [ref=e38]: Albums
+        - generic [ref=e42]:
+          - menuitem "All" [ref=e43] [cursor=pointer]:
+            - img [ref=e45]
+            - text: All
+          - menuitem "Random Random" [ref=e47] [cursor=pointer]:
+            - img "Random" [ref=e49]
+            - text: Random
+          - menuitem "Favourites" [ref=e51] [cursor=pointer]:
+            - img [ref=e53]
+            - text: Favourites
+          - menuitem "Top Rated" [ref=e55] [cursor=pointer]:
+            - img [ref=e57]
+            - text: Top Rated
+          - menuitem "Recently Added" [ref=e59] [cursor=pointer]:
+            - img [ref=e61]
+            - text: Recently Added
+          - menuitem "Recently Played" [ref=e63] [cursor=pointer]:
+            - img [ref=e65]
+            - text: Recently Played
+          - menuitem "Most Played Most Played" [ref=e67] [cursor=pointer]:
+            - img "Most Played" [ref=e69]
+            - text: Most Played
+        - menuitem "Artists" [ref=e71] [cursor=pointer]:
+          - img [ref=e73]
+          - text: Artists
+        - menuitem "Songs" [ref=e75] [cursor=pointer]:
+          - img [ref=e77]
+          - text: Songs
+        - menuitem "Radios" [ref=e79] [cursor=pointer]:
+          - img [ref=e81]
+          - text: Radios
+        - menuitem "Shares" [ref=e84] [cursor=pointer]:
+          - img [ref=e86]
+          - text: Shares
+        - separator [ref=e88]
+        - menuitem "Playlists" [ref=e90] [cursor=pointer]:
+          - img [ref=e92]
+          - generic [ref=e94]: Playlists
+          - button [ref=e95]:
+            - img [ref=e97]
+      - generic [ref=e101]:
+        - generic [ref=e102]:
+          - generic [ref=e104]:
+            - generic [ref=e105]:
+              - textbox "Search" [ref=e106]
+              - img [ref=e108]
+              - group
+            - paragraph
+          - generic [ref=e111]:
+            - button "Add filter" [ref=e113] [cursor=pointer]:
+              - generic [ref=e114]:
+                - img [ref=e115]
+                - generic [ref=e117]: Add filter
+            - button "more" [ref=e119] [cursor=pointer]:
+              - img [ref=e121]
+        - generic [ref=e124]:
+          - listitem [ref=e127]:
+            - generic [ref=e129]:
+              - link "[Unknown Album] play more" [ref=e130] [cursor=pointer]:
+                - /url: "#/album/69IwB2p7tQDejD3lowUIFo/show"
+                - img "[Unknown Album]" [ref=e133]
+                - generic:
+                  - generic:
+                    - generic:
+                      - button "play":
+                        - generic:
+                          - img
+                  - generic:
+                    - generic:
+                      - button:
+                        - generic:
+                          - img
+                      - button "more":
+                        - generic:
+                          - img
+              - link "[Unknown Album]" [ref=e134] [cursor=pointer]:
+                - /url: "#/album/69IwB2p7tQDejD3lowUIFo/show"
+                - paragraph [ref=e136]: "[Unknown Album]"
+              - link "[Unknown Artist]" [ref=e138] [cursor=pointer]:
+                - /url: "#/artist/6QiT23Pg8GAJHZop58uMKH/show"
+          - generic [ref=e140]:
+            - paragraph [ref=e141]: "Items per page:"
+            - generic [ref=e142]:
+              - 'button "Items per page: 18" [ref=e143] [cursor=pointer]': "18"
+              - textbox: "18"
+              - img
+            - paragraph [ref=e144]: 1-1 of 1
+```
