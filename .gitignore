@@ -19,5 +19,9 @@ admin-api-token.json
 allure-report/
 allure-results/
 
+# Navidrome generated data
+test-data/data/cache/
+test-data/data/plugins/
+
 # Notes
 TODO.md
