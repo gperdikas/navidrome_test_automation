@@ -1,11 +1,13 @@
 version: "3"
 services:
   navidrome:
-    image: deluan/navidrome:latest
+    image: deluan/navidrome:0.63.2
     ports:
       - "4533:4533"
     environment:
       ND_LOGLEVEL: info
+      ND_AUTHREQUESTLIMIT: 100
+      ND_AUTHWINDOWLENGTH: 60s
     volumes:
       - "./test-data/data:/data"
       - "./test-data/music:/music:ro"
