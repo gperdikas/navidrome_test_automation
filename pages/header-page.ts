@@ -1,4 +1,4 @@
-import {Page} from '@playwright/test';
+import {Page, Locator} from '@playwright/test';
 
 export class HeaderPage {
     readonly page: Page;
@@ -9,7 +9,7 @@ export class HeaderPage {
     readonly title: any;
     readonly refreshButton: any;
     readonly nowPlayingButton: any;
-    readonly activityButton: any;
+    readonly activityButton: Locator;
     readonly settingsButton: any;
     readonly albumMenuTitle: any;
     readonly artistsMenuTitle: any;
@@ -51,13 +51,13 @@ export class HeaderPage {
         this.title = page.locator('#react-admin-title');    
         this.refreshButton = page.locator('button[aria-label="Refresh"]');
         this.nowPlayingButton = page.locator('button[aria-label="Now Playing"]');
-        this.activityButton = page.locator('button[title="Activity"]');    
+        this.activityButton = page.locator('button:has(svg[data-testid^="activity-"])');      
         this.settingsButton = page.locator('button[aria-label="Settings"]');
         this.albumMenuTitle = page.getByText('Albums', { exact: true });
         this.artistsMenuTitle = page.locator('a', {hasText: 'Artists'});
         this.songsMenuTitle = page.locator('a', {hasText: 'Songs'});
         this.radiosMenuTitle = page.locator('a', {hasText: 'Radios'});
-        this.playlistsMenuTitle = page.getByRole('menuitem', {name: 'Playlists'});
+        this.playlistsMenuTitle = page.getByRole('menuitem', {name: 'Playlists', exact: true});
         // this.albumMenuText = page.getByText('Albums', { exact: true });
         this.nowPlayingInfoBox = page.locator('#now-playing-title');
         this.activityPopover = page.locator('.MuiPopover-paper .MuiCard-root');

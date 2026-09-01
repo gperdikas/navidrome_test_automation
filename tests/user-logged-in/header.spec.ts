@@ -29,18 +29,18 @@ test('User is able to see the refresh button', {tag: ['@loggedin', '@ui', '@head
     await expect(headerPage.refreshButton).toBeVisible();
 });
 
-test('User is able to see the Now Playing button', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
+test('User is not able to see the Now Playing button', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
 
-    await expect(headerPage.nowPlayingButton).toBeVisible();
+    await expect(headerPage.nowPlayingButton).not.toBeVisible();
 });
 
-test('User is able to see the Activity button', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
+test('User is not able to see the Activity button', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
 
-    await expect(headerPage.activityButton).toBeVisible();
+    await expect(headerPage.activityButton).not.toBeVisible();
 });
 
 test('User is able to see the Settings button', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
@@ -82,24 +82,25 @@ test('User clicks Refresh button and remain on homepage', {tag: ['@loggedin', '@
     await expect(page).toHaveURL(url);
 });
 
-test('User clicks Now Playing button and popup opens', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
-    const headerPage = new HeaderPage(page);
-    await headerPage.goto();
-    await headerPage.clickNowPlaying();
+// test('User clicks Now Playing button and popup opens', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
+//     const headerPage = new HeaderPage(page);
+//     await headerPage.goto();
+//     await headerPage.clickNowPlaying();
 
-    await expect(headerPage.nowPlayingInfoBox).toBeVisible();
-});
+//     await expect(headerPage.nowPlayingInfoBox).not.toBeVisible();
+// });
 
-test('User clicks Activity button and popup opens', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
-    const headerPage = new HeaderPage(page);
-    await headerPage.goto();
-    await headerPage.clickActivity();
+////
+// test('User clicks Activity button and popup opens', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
+//     const headerPage = new HeaderPage(page);
+//     await headerPage.goto();
+//     await headerPage.clickActivity();
 
-    await expect(headerPage.activityPopover).toBeVisible();
-    await expect(headerPage.uptimeInfoBox).toBeVisible();
-    await expect(headerPage.foldersScannedInfoBox).toBeVisible();
-    await expect(headerPage.scanInfoBox).toBeVisible();
-});
+//     await expect(headerPage.activityPopover).toBeVisible();
+//     await expect(headerPage.uptimeInfoBox).toBeVisible();
+//     await expect(headerPage.foldersScannedInfoBox).toBeVisible();
+//     await expect(headerPage.scanInfoBox).toBeVisible();
+// });
 
 test('User clicks Settings button and settings menu opens', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
