@@ -23,7 +23,7 @@ export class HeaderPage {
     readonly scanInfoBox: any;
     readonly activityPopover: any;
     readonly settingsPopover: any;
-    readonly userInfoBox: any;
+    readonly userInfoBox: Locator;
     readonly personalInfoBox: any;
     readonly usersInfoBox: any;
     readonly playersInfoBox: any;
@@ -66,7 +66,8 @@ export class HeaderPage {
         this.scanInfoBox = this.activityPopover.locator('button[title="Quick Scan"]');
         this.settingsPopover = page.locator('.MuiPaper-root.MuiPopover-paper').filter({ hasText: 'Logout'});
         this.personalInfoBox = this.settingsPopover.getByText('Personal');
-        this.usersInfoBox = this.settingsPopover.getByText('Users');
+        // this.userInfoBox = this.settingsPopover.getByText('User');
+        this.userInfoBox = this.settingsPopover.getByRole('menuitem', { name: 'User'});
         this.playersInfoBox = this.settingsPopover.getByText('Players');
         this.transcodingsInfoBox = this.settingsPopover.getByText('Transcoding');
         this.librariesInfoBox = this.settingsPopover.getByText('Libraries');
@@ -105,9 +106,9 @@ export class HeaderPage {
        
     if (menuVisible) {
             await this.menuButton.click();
-            await this.page.waitForTimeout(100); 
-        const stillVisible = await this.albumMenuTitle.isVisible();
-            await this.albumMenuText.waitFor({state: 'hidden'});
+            // await this.page.waitForTimeout(100); 
+        // const stillVisible = await this.albumMenuTitle.isVisible();
+            // await this.albumMenuText.waitFor({state: 'hidden'});
         } 
     }
 

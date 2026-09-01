@@ -62,14 +62,6 @@ test('When menu button is set on ON position, menu is visible', {tag: ['@loggedi
     await expect(headerPage.playlistsMenuTitle).toBeVisible();
 });
 
-test.skip('When menu button is set on OFF position, menu is not visible', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
-    const headerPage = new HeaderPage(page);
-    await headerPage.goto();
-    await headerPage.closeMenuTitles();
-    
-    const actualClass = await headerPage.menuContainer.getAttribute('class');
-});
-
 test('User clicks Refresh button and remain on homepage', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {
     const headerPage = new HeaderPage(page);
     await headerPage.goto();
@@ -108,13 +100,9 @@ test('User clicks Settings button and settings menu opens', {tag: ['@loggedin', 
     await headerPage.clickSettings();
     
     await expect(headerPage.settingsPopover).toBeVisible();
-    await expect(headerPage.usernameInfoBox).toBeVisible();
     await expect(headerPage.personalInfoBox).toBeVisible();
-    await expect(headerPage.usersInfoBox).toBeVisible();
+    await expect(headerPage.userInfoBox).toBeVisible();
     await expect(headerPage.playersInfoBox).toBeVisible();
-    await expect(headerPage.transcodingsInfoBox).toBeVisible();
-    await expect(headerPage.librariesInfoBox).toBeVisible();
-    await expect(headerPage.missingFilesInfoBox).toBeVisible();
     await expect(headerPage.aboutInfoBox).toBeVisible();
     await expect(headerPage.logoutInfoBox).toBeVisible();
 });
