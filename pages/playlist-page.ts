@@ -124,8 +124,12 @@ export class PlaylistPage {
 
     // Delete playlist
     async deletePlaylist(playlistName: string){
+        const deleteResponse = this.page.waitForResponse(
+            res => res.request().method() === 'DELETE' && res.url().includes('/api/playlist/')
+        );
         await (this.getPlaylistRowByName(playlistName)).locator(this.editPlaylistButton).click();
         await this.deleteButton.click();
+        await deleteResponse;
     }
 
     //Play whole playlist

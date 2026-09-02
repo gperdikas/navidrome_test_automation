@@ -3,7 +3,7 @@ import { PlaylistPage } from '../../pages/playlist-page';
 import { PlaylistService } from '../../api-helpers/PlaylistService';
 import { randomString } from '../../helpers/random-string-generator';
 
-test.describe('Edit playlist tests', () => {
+test.describe('Delete playlist tests', () => {
     let playlistService: PlaylistService;
     let playlistName: string;
     let playlistId: string | null;
@@ -23,8 +23,12 @@ test.describe('Edit playlist tests', () => {
     test('Delete playlist', {tag: ['@loggedin', '@ui', '@admin', '@deleteplaylist']}, async ({page}) => {
         const playlistPage = new PlaylistPage(page);
         await playlistService.createPlaylist(playlistName, isPublic);
-        await playlistPage.goto();
-        await playlistPage.deletePlaylist(playlistName);    
+        await playlistPage.goto();    
+        playlistId = await playlistService.getPlaylistIdByName(playlistName);
+        if (playlistId){
+            playlistIdArray.push(playlistId);
+        }
+        await playlistPage.deletePlaylist(playlistName);
 
         await expect(playlistPage.getPlaylistRowByName(playlistName)).not.toBeVisible();
     }); 
