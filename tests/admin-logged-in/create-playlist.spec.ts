@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { PlaylistPage } from '../../pages/playlist-page';
 import { PlaylistService } from '../../api-helpers/PlaylistService';
+import { randomString } from '../../helpers/random-string-generator';
 
 test.describe('Create playlist tests', () => {
     let playlistService: PlaylistService;
@@ -10,7 +11,8 @@ test.describe('Create playlist tests', () => {
 
     test.beforeEach(async () => {
         playlistService = new PlaylistService();
-        playlistName = `Test playlist ${Date.now()}`;
+        const randomStringResult = randomString();
+        playlistName = `Test playlist ${Date.now()}_${randomStringResult}`;
         playlistIdArray = [];
     });
 

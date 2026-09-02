@@ -59,7 +59,7 @@ test.describe('Edit playlist tests', () => {
         playlistIdArray.push(playlistId!);
         await playlistService.createTestUser();
         await playlistPage.editPlaylistsOwner(playlistName);
-       
+    
         await expect(playlistPage.ownerInputBox).toHaveText('userTestOwner1');
 
         const userId = await playlistService.getUserIdByName('userTestOwner1');
@@ -70,11 +70,10 @@ test.describe('Edit playlist tests', () => {
         const playlistPage = new PlaylistPage(page);
         await playlistPage.goto();
         await playlistService.createPlaylist(playlistName, isPublic);
+        const playlistId = await playlistService.getPlaylistIdByName(playlistName);
+        playlistIdArray.push(playlistId!);
         await playlistPage.editPublicityStatus(playlistName);
         let currentState = await  (playlistPage.getPlaylistRowByName(playlistName)).locator(playlistPage.publicSwitchOnPlaylistBoard).isChecked();
         await expect(currentState).not.toBeTruthy();    
     });
-
-    // ADD one API test the confirms that edit, really edits and does not duplicate
-    // GO TO playlist-page and change hard coded edited name to string vars and run each function with both string vars name/comment and edited name/comment
 });
