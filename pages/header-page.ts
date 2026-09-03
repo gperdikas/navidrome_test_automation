@@ -63,7 +63,7 @@ export class HeaderPage {
         this.activityPopover = page.locator('.MuiPopover-paper .MuiCard-root');
         this.uptimeInfoBox = this.activityPopover.getByText('Server Uptime');
         this.foldersScannedInfoBox = this.activityPopover.getByText('Total Folders Scanned');
-        this.scanInfoBox = this.activityPopover.locator('button[title="Quick Scan"]');
+        this.scanInfoBox = this.activityPopover.locator('button[title="Quick"]');
         this.settingsPopover = page.locator('.MuiPaper-root.MuiPopover-paper').filter({ hasText: 'Logout'});
         this.personalInfoBox = this.settingsPopover.getByText('Personal');
         // this.userInfoBox = this.settingsPopover.getByText('User');
