@@ -1,0 +1,343 @@
+{
+  "info": {
+    "_postman_id": "10236c15-1207-4c3f-9447-f10a210df9d9",
+    "name": "Authorization_tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "57930824",
+    "_collection_link": "https://go.postman.co/collection/57930824-10236c15-1207-4c3f-9447-f10a210df9d9?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "User1 logs in",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const response = pm.response.json();\r\nconst token_user1 = response.token;\r\npm.environment.set(\"token_user1\", token_user1);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"userTest1\",\r\n    \"password\": \"userTest1\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/auth/login",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User1 creates playlist",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const playlistName = `pm_crud_${Date.now()}`;\r\npm.collectionVariables.set(\"playlistName\", playlistName);"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst body = pm.response.json();\r\nconst publicPlaylistId = body.id;\r\npm.collectionVariables.set(\"publicPlaylistId\", publicPlaylistId);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-nd-authorization",
+            "value": "Bearer {{token_user1}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"{{playlistName}}\",\r\n    \"public\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/playlist",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "playlist"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User2 logs in",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const response = pm.response.json();\r\nconst token_user2 = response.token;\r\npm.environment.set(\"token_user2\", token_user2);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"userTest2\",\r\n    \"password\": \"userTest2\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/auth/login",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User2 sees User1 public playlist",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-nd-authorization",
+            "value": "Bearer {{token_user2}}"
+          },
+          {
+            "key": "x-nd-authorization",
+            "value": "Bearer {{token_user2}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/playlist",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "playlist"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User2 fails to edit User1 public playlist",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 403\", function () {\r\n    pm.response.to.have.status(403);\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "x-nd-authorization",
+            "value": "Bearer {{token_user2}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"New name for public playlist\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/playlist/{{publicPlaylistId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "playlist",
+            "{{publicPlaylistId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User2 fails to delete User1 public playlist",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 403\", function () {\r\n    pm.response.to.have.status(403);\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "x-nd-authorization",
+            "value": "Bearer {{token_user2}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/playlist/{{publicPlaylistId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "playlist",
+            "{{publicPlaylistId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User1 deletes public playlist",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n}); "
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "x-nd-authorization",
+            "value": "Bearer {{token_user1}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/playlist/{{publicPlaylistId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "playlist",
+            "{{publicPlaylistId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User1 does not find the deleted playlist",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst body = pm.response.json();\r\npm.test(\"Response is an array\", function () {\r\n    pm.expect(body).to.be.an('array');\r\n});\r\n\r\nconst foundPlaylist = body.some(item => item.id === pm.collectionVariables.get(\"publicPlaylistId\"));\r\npm.test(\"Deleted playlist cannot be found\", function() {\r\n    pm.expect(foundPlaylist).to.be.false;\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-nd-authorization",
+            "value": "Bearer {{token_user1}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/playlist",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "playlist"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "playlistName",
+      "value": ""
+    },
+    {
+      "key": "playlistId",
+      "value": ""
+    },
+    {
+      "key": "publicPlaylistId",
+      "value": ""
+    },
+    {
+      "key": "privatePlaylistId",
+      "value": ""
+    }
+  ]
+}
