@@ -1,0 +1,209 @@
+{
+  "info": {
+    "_postman_id": "3439829f-94bb-474f-9df0-5f548656af1f",
+    "name": "Navidrome_crud",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "57930824",
+    "_collection_link": "https://go.postman.co/collection/57930824-3439829f-94bb-474f-9df0-5f548656af1f?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "POST Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const response = pm.response.json();\r\nconst token = response.token;\r\npm.environment.set(\"token\", token);\r\n\r\n\r\n"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"adminTest\",\r\n    \"password\": \"adminTest\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/auth/login",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST playlist",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst body = pm.response.json();\r\nconst playlistId = body.id;\r\npm.collectionVariables.set(\"playlistId\", playlistId);\r\n"
+            ]
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const playlistName = `pm_crud_${Date.now()}`;\r\npm.collectionVariables.set(\"playlistName\", playlistName);\r\n"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"{{playlistName}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/playlist",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "playlist"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET playlist",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const body = pm.response.json();\r\n\r\n/*\r\nconst playlistId = body[0].id;\r\npm.environment.set(\"playlistId\", playlistId);\r\n*/\r\n\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response is an array\", function () {\r\n    pm.expect(body).to.be.an('array');\r\n});\r\n\r\npm.test(\"Response object contains all 16 properties\", function () {\r\n    pm.expect(body[0]).to.have.property('id');\r\n    pm.expect(body[0]).to.have.property('name');\r\n    pm.expect(body[0]).to.have.property('comment');\r\n    pm.expect(body[0]).to.have.property('duration');\r\n    pm.expect(body[0]).to.have.property('size');\r\n    pm.expect(body[0]).to.have.property('songCount');\r\n    pm.expect(body[0]).to.have.property('ownerName');\r\n    pm.expect(body[0]).to.have.property('ownerId');\r\n    pm.expect(body[0]).to.have.property('public');\r\n    pm.expect(body[0]).to.have.property('path');\r\n    pm.expect(body[0]).to.have.property('sync');\r\n    pm.expect(body[0]).to.have.property('uploadedImage');\r\n    pm.expect(body[0]).to.have.property('createdAt');\r\n    pm.expect(body[0]).to.have.property('updatedAt');\r\n    pm.expect(body[0]).to.have.property('rules');\r\n    pm.expect(body[0]).to.have.property('evaluatedAt');\r\n})\r\n\r\n"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/playlist",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "playlist"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE playlist",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/playlist/{{playlistId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "playlist",
+            "{{playlistId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET playlist",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst body = pm.response.json();\r\npm.test(\"Response is an array\", function () {\r\n    pm.expect(body).to.be.an('array');\r\n});\r\n\r\nconst foundPlaylist = body.some(item => item.id === pm.collectionVariables.get(\"playlistId\"));\r\npm.test(\"Deleted playlist cannot be found\", function() {\r\n    pm.expect(foundPlaylist).to.be.false;\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/playlist",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "playlist"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-nd-authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "Bearer {{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "playlistName",
+      "value": ""
+    },
+    {
+      "key": "playlistId",
+      "value": ""
+    }
+  ]
+}
