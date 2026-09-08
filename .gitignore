@@ -22,6 +22,8 @@ allure-results/
 # Navidrome generated data
 test-data/data/cache/
 test-data/data/plugins/
+test-data/data/navidrome.db-shm
+test-data/data/navidrome.db-wal
 
 # Notes
 TODO.md
