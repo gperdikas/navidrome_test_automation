@@ -8,7 +8,7 @@
   },
   "item": [
     {
-      "name": "POST Login",
+      "name": "Admin logs in",
       "event": [
         {
           "listen": "test",
@@ -46,7 +46,7 @@
       "response": []
     },
     {
-      "name": "POST playlist",
+      "name": "Admin creates a playlist",
       "event": [
         {
           "listen": "test",
@@ -93,14 +93,14 @@
       "response": []
     },
     {
-      "name": "GET playlist",
+      "name": "Admin sees the playlist",
       "event": [
         {
           "listen": "test",
           "script": {
             "type": "text/javascript",
             "exec": [
-              "const body = pm.response.json();\r\n\r\n/*\r\nconst playlistId = body[0].id;\r\npm.environment.set(\"playlistId\", playlistId);\r\n*/\r\n\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response is an array\", function () {\r\n    pm.expect(body).to.be.an('array');\r\n});\r\n\r\npm.test(\"Response object contains all 16 properties\", function () {\r\n    pm.expect(body[0]).to.have.property('id');\r\n    pm.expect(body[0]).to.have.property('name');\r\n    pm.expect(body[0]).to.have.property('comment');\r\n    pm.expect(body[0]).to.have.property('duration');\r\n    pm.expect(body[0]).to.have.property('size');\r\n    pm.expect(body[0]).to.have.property('songCount');\r\n    pm.expect(body[0]).to.have.property('ownerName');\r\n    pm.expect(body[0]).to.have.property('ownerId');\r\n    pm.expect(body[0]).to.have.property('public');\r\n    pm.expect(body[0]).to.have.property('path');\r\n    pm.expect(body[0]).to.have.property('sync');\r\n    pm.expect(body[0]).to.have.property('uploadedImage');\r\n    pm.expect(body[0]).to.have.property('createdAt');\r\n    pm.expect(body[0]).to.have.property('updatedAt');\r\n    pm.expect(body[0]).to.have.property('rules');\r\n    pm.expect(body[0]).to.have.property('evaluatedAt');\r\n})\r\n\r\n"
+              "const body = pm.response.json();\r\n\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Response is an array\", function () {\r\n    pm.expect(body).to.be.an('array');\r\n});\r\n\r\npm.test(\"Response object contains all 16 properties\", function () {\r\n    pm.expect(body[0]).to.have.property('id');\r\n    pm.expect(body[0]).to.have.property('name');\r\n    pm.expect(body[0]).to.have.property('comment');\r\n    pm.expect(body[0]).to.have.property('duration');\r\n    pm.expect(body[0]).to.have.property('size');\r\n    pm.expect(body[0]).to.have.property('songCount');\r\n    pm.expect(body[0]).to.have.property('ownerName');\r\n    pm.expect(body[0]).to.have.property('ownerId');\r\n    pm.expect(body[0]).to.have.property('public');\r\n    pm.expect(body[0]).to.have.property('path');\r\n    pm.expect(body[0]).to.have.property('sync');\r\n    pm.expect(body[0]).to.have.property('uploadedImage');\r\n    pm.expect(body[0]).to.have.property('createdAt');\r\n    pm.expect(body[0]).to.have.property('updatedAt');\r\n    pm.expect(body[0]).to.have.property('rules');\r\n    pm.expect(body[0]).to.have.property('evaluatedAt');\r\n})\r\n\r\n"
             ]
           }
         }
@@ -122,7 +122,7 @@
       "response": []
     },
     {
-      "name": "DELETE playlist",
+      "name": "Admin deletes the playlist",
       "event": [
         {
           "listen": "test",
@@ -152,7 +152,7 @@
       "response": []
     },
     {
-      "name": "GET playlist",
+      "name": "Admin does not find the deleted playlsit",
       "event": [
         {
           "listen": "test",
