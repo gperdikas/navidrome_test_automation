@@ -16,6 +16,7 @@ This project is actively developed. As of 7 Sept 2026 it contains 50 cases, all 
 - **Docker** — Navidrome 0.63.2, pinned, so every run tests the same version
 - **GitHub Actions** — the full suite runs on every push
 - **Allure** — the test report, published automatically (see the link above)
+- **Postman** - a CRUD collection for the playlist API, with a preconfigured environment
 
 ## How it works
 - **Page Object Model** — Each part of the app has a page file that holds its locators and methods. A spec file imports the page it needs. That means a locator lives in one spot, so a change is made once instead of in every test that uses it.
@@ -68,7 +69,6 @@ Run the suite and open the Allure report: `npm run test:run-allure`
 - Expand API test coverage beyond login
 - Move data cleanup to the start of a run instead of the end
 - Add k6 for baseline and load testing
-- Add a Postman collection for API exploration and documentation
 - Replace the remaining fragile Material UI locators
 
 ## License 
