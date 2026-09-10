@@ -53,7 +53,10 @@ Nineteen tests failed in a single run. I opened the failure screenshot on one of
 `cd navidrome_test_automation`
 2. Install depedencies: `npm ci`
 3. Install playwright browsers: `npx playwright install`
-4. Copy `.env.example` to `.env`. The credentials are already filled in — they are throwaway accounts for a local-only Navidrome whose database ships with this repo, so there is nothing to protect.
+4. Run:\
+   `cp .env.example .env` or\
+   `copy .env.example .env` for Windows Command Prompt.\
+   The `.env.example` contains credentials (already filled in) for throwaway accounts for the local-only Navidrome whose database ships with this repo. Don't change the existing credentials.
 5. Start navidrome: `docker compose -f docker-compose.ci.yml up -d`
 
 ### Usage
