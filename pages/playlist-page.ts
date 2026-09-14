@@ -41,8 +41,7 @@ export class PlaylistPage {
         this.ownerDropDownOption = page.getByRole('option', {name: "userTestOwner1"});
         this.publicSwitchOnPlaylistBoard = page.locator('input.MuiSwitch-input');
         this.deleteButton = page.locator('button.ra-delete-button');
-        // this.playlistsButton = page.locator('a[title="Playlists"]');
-        this.playlistsButton = page.getByRole('menuitem', {name: 'Playlists', exact: true});
+        this.playlistsButton = page.getByRole('menuitem').filter({ hasText: 'Playlists' }).filter({ hasNotText: 'Shared' });
         this.playPlaylistButton = page.getByRole('button', {name: 'Play', exact: true});
     }
 

@@ -41,6 +41,7 @@ export class HeaderPage {
     readonly mostIntoAlbums: any;
     readonly usernameInfoBox: any;
     readonly menuContainer: any;
+    readonly playlistsListButton: Locator;
 
 
     constructor(page: Page) {
@@ -57,7 +58,12 @@ export class HeaderPage {
         this.artistsMenuTitle = page.locator('a', {hasText: 'Artists'});
         this.songsMenuTitle = page.locator('a', {hasText: 'Songs'});
         this.radiosMenuTitle = page.locator('a', {hasText: 'Radios'});
-        this.playlistsMenuTitle = page.getByRole('menuitem', {name: 'Playlists', exact: true});
+       
+       
+        // this.playlistsMenuTitle = page.getByRole('menuitem').filter({hasText: 'Playlists'});
+        this.playlistsMenuTitle = page.getByRole('menuitem').filter({hasText: 'Playlists'});
+        this.playlistsListButton = page.getByRole('menuitem').filter({ hasText: 'Playlists' }).filter({ hasNotText: 'Shared' }).getByRole('button').last();
+       
         // this.albumMenuText = page.getByText('Albums', { exact: true });
         this.nowPlayingInfoBox = page.locator('#now-playing-title');
         this.activityPopover = page.locator('.MuiPopover-paper .MuiCard-root');

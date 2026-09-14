@@ -215,7 +215,7 @@ test.describe('User is able to see Headers', () => {
 
         await expect(headerPage.playlistsMenuTitle).toBeVisible();
 
-        await headerPage.playlistsMenuTitle.click();
+        await headerPage.playlistsListButton.click();
 
         await expect(page).toHaveURL(/\#\/playlist/);
     });
