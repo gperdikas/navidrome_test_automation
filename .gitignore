@@ -24,6 +24,7 @@ test-data/data/cache/
 test-data/data/plugins/
 test-data/data/navidrome.db-shm
 test-data/data/navidrome.db-wal
+test-data/data-*
 
 # Notes
 TODO.md
