@@ -213,7 +213,7 @@ test.describe('User is able to see Headers', () => {
         await headerPage.goto();
         await headerPage.openAlbumMenu();
 
-        await expect(headerPage.playlistsMenuTitle).toBeVisible();
+        await expect(headerPage.playlistsListButton).toBeVisible();
 
         await headerPage.playlistsListButton.click();
 

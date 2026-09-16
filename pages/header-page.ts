@@ -61,7 +61,7 @@ export class HeaderPage {
        
        
         // this.playlistsMenuTitle = page.getByRole('menuitem').filter({hasText: 'Playlists'});
-        this.playlistsMenuTitle = page.getByRole('menuitem').filter({hasText: 'Playlists'});
+        this.playlistsMenuTitle = page.getByRole('menuitem').filter({hasText: 'Playlists'}).filter({ hasNotText: 'Shared' });
         this.playlistsListButton = page.getByRole('menuitem').filter({ hasText: 'Playlists' }).filter({ hasNotText: 'Shared' }).getByRole('button').last();
        
         // this.albumMenuText = page.getByText('Albums', { exact: true });
