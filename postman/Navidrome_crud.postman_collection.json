@@ -15,7 +15,7 @@
           "script": {
             "type": "text/javascript",
             "exec": [
-              "const response = pm.response.json();\r\nconst token = response.token;\r\npm.environment.set(\"token\", token);\r\n\r\n\r\n"
+              "const response = pm.response.json();\r\nconst token = response.token;\r\npm.environment.set(\"token_admin\", token);\r\n"
             ]
           }
         }
@@ -191,7 +191,7 @@
       },
       {
         "key": "value",
-        "value": "Bearer {{token}}",
+        "value": "Bearer {{token_admin}}",
         "type": "string"
       }
     ]

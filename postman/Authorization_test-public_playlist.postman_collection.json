@@ -1,7 +1,7 @@
 {
   "info": {
     "_postman_id": "10236c15-1207-4c3f-9447-f10a210df9d9",
-    "name": "Authorization_tests",
+    "name": "Authorization_test-public_playlist",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "57930824",
     "_collection_link": "https://go.postman.co/collection/57930824-10236c15-1207-4c3f-9447-f10a210df9d9?source=collection_link"
@@ -53,7 +53,7 @@
           "script": {
             "type": "text/javascript",
             "exec": [
-              "const playlistName = `pm_crud_${Date.now()}`;\r\npm.collectionVariables.set(\"playlistName\", playlistName);"
+              "const playlistName = `pm_auth_${Date.now()}`;\r\npm.collectionVariables.set(\"playlistName\", playlistName);"
             ]
           }
         },

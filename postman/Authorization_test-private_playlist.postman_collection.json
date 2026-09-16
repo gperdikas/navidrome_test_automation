@@ -1,0 +1,278 @@
+{
+  "info": {
+    "_postman_id": "5c7b7d87-b9d6-4e1a-805a-ead97481b903",
+    "name": "Authorization_test-private_playlist",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "57930824",
+    "_collection_link": "https://go.postman.co/collection/57930824-5c7b7d87-b9d6-4e1a-805a-ead97481b903?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "User1 logs in",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const response = pm.response.json();\r\nconst token_user1 = response.token;\r\npm.environment.set(\"token_user1\", token_user1);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"userTest1\",\r\n    \"password\": \"userTest1\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/auth/login",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User1 creates private playlist",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Playlist is private\", function () {\r\n    pm.response.to.have.public(false);\r\n});\r\n\r\nconst body = pm.response.json();\r\nconst privatePlaylistId = body.id;\r\npm.collectionVariables.set(\"privatePlaylistId\", privatePlaylistId);"
+            ]
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const playlistName = `pm_auth_${Date.now()}`;\r\npm.collectionVariables.set(\"playlistName\", playlistName);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-nd-authorization",
+            "value": "Bearer {{token_user1}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"{{playlistName}}\",\r\n    \"public\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/playlist",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "playlist"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User1 is able to see their private playlist",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-nd-authorization",
+            "value": "Bearer {{token_user1}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/playlist/{{privatePlaylistId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "playlist",
+            "{{privatePlaylistId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User2 logs in",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const response = pm.response.json();\r\nconst token_user2 = response.token;\r\npm.environment.set(\"token_user2\", token_user2);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"userTest2\",\r\n    \"password\": \"userTest2\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/auth/login",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User2 fails to see User1 private playlist",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 404\", function () {\r\n    pm.response.to.have.status(404);\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-nd-authorization",
+            "value": "Bearer {{token_user2}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/playlist/{{privatePlaylistId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "playlist",
+            "{{privatePlaylistId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Admin logs in",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Admin is able to see User1 private playlist",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Admin is able to edit User1 private playlist",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Admin is able to delete User1 private playlist",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User1 fails to see their private playlist",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "playlistName",
+      "value": ""
+    },
+    {
+      "key": "PlaylistId",
+      "value": ""
+    },
+    {
+      "key": "privatePlaylistId",
+      "value": ""
+    }
+  ]
+}
