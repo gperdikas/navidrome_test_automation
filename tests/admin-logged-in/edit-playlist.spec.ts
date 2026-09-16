@@ -68,8 +68,8 @@ test.describe('Edit playlist tests', () => {
 
     test('Admin is able to edit playlist publicity status', {tag: ['@loggedin', '@ui', '@admin', '@editplaylist']}, async ({page}) => {
         const playlistPage = new PlaylistPage(page);
-        await playlistPage.goto();
         await playlistService.createPlaylist(playlistName, isPublic);
+        await playlistPage.goto();
         const playlistId = await playlistService.getPlaylistIdByName(playlistName);
         playlistIdArray.push(playlistId!);
         await playlistPage.editPublicityStatus(playlistName);
