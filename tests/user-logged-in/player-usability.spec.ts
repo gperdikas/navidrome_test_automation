@@ -37,6 +37,7 @@ test.describe('Music player usability', () => {
     test.afterAll(async () => {
         for (let i=0; i<playlistIdArray.length; i++) {
             const response = await playlistService.deletePlaylistById(playlistIdArray[i]);
+            console.log(`DELETE ${playlistIdArray[i]} -> ${response?.status()}`);
         }
         await playlistService.dispose();
     });

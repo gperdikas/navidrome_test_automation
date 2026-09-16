@@ -68,6 +68,7 @@ export class PlaylistPage {
         }     
         await this.page.waitForTimeout(1000);
         await this.saveButton.click();
+        await this.getPlaylistRowByName(playlistName).waitFor();
     }
 
     // Create public playlist
@@ -81,6 +82,7 @@ export class PlaylistPage {
             await this.publicSwitch.click(); 
         }
         await this.saveButton.click();
+        await this.getPlaylistRowByName(playlistName).waitFor();
     }
 
     // Get a specific playlist row by playlist's name

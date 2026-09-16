@@ -27,12 +27,15 @@ test.describe('Public playlist visibility', () => {
         playlistId = await playlistService.getPlaylistIdByName(playlistName);
         if (playlistId){
             playlistIdArray.push(playlistId);
+        } else {   
+            throw new Error('Playlist not found after creation');
         }
     });
 
     test.afterAll(async () => {
         for (let i=0; i<playlistIdArray.length; i++) {
             const response = await playlistService.deletePlaylistById(playlistIdArray[i]);
+            console.log(`DELETE ${playlistIdArray[i]} -> ${response?.status()}`);
         }
         await playlistService.dispose();
         await page.close();
@@ -90,12 +93,15 @@ test.describe('Private playlist visibility', () => {
         playlistId = await playlistService.getPlaylistIdByName(playlistName);
         if (playlistId){
             playlistIdArray.push(playlistId);
+        } else {
+            throw new Error('Playlist not found after creation');
         }
     });
 
     test.afterAll(async () => {
         for (let i=0; i<playlistIdArray.length; i++) {
             const response = await playlistService.deletePlaylistById(playlistIdArray[i]);
+            console.log(`DELETE ${playlistIdArray[i]} -> ${response?.status()}`);
         }
         await playlistService.dispose();
         await page.close();
