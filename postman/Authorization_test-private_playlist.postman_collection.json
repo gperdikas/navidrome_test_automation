@@ -15,7 +15,7 @@
           "script": {
             "type": "text/javascript",
             "exec": [
-              "const response = pm.response.json();\r\nconst token_user1 = response.token;\r\npm.environment.set(\"token_user1\", token_user1);"
+              "const response = pm.response.json();\r\n\r\nconst token_user1 = response.token;\r\npm.environment.set(\"token_user1\", token_user1);\r\n\r\nconst user1Id = response.id;\r\npm.collectionVariables.set(\"user1Id\", user1Id);\r\n\r\nconst user1Name = response.name;\r\npm.collectionVariables.set(\"user1Name\", user1Name);\r\n\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"userTest1 login returns a token\", () => {\r\n    pm.expect(token_user1).to.be.a(\"string\").and.not.be.empty;\r\n});\r\n\r\npm.test(\"userTest1 login returns an id\", () => {\r\n    pm.expect(user1Id).to.be.a(\"string\").and.not.be.empty;\r\n});\r\n\r\npm.test(\"userTest1 login returns a name\", () => {\r\n    pm.expect(user1Name).to.be.a(\"string\").and.not.be.empty;\r\n})"
             ]
           }
         }
@@ -53,7 +53,7 @@
           "script": {
             "type": "text/javascript",
             "exec": [
-              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Playlist is private\", function () {\r\n    pm.response.to.have.public(false);\r\n});\r\n\r\nconst body = pm.response.json();\r\nconst privatePlaylistId = body.id;\r\npm.collectionVariables.set(\"privatePlaylistId\", privatePlaylistId);"
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst body = pm.response.json();\r\n\r\nconst privatePlaylistId = body.id;\r\npm.collectionVariables.set(\"privatePlaylistId\", privatePlaylistId);\r\n"
             ]
           }
         },
@@ -105,7 +105,7 @@
           "script": {
             "type": "text/javascript",
             "exec": [
-              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});"
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst body = pm.response.json();\r\n\r\nconst publicState = body.public;\r\npm.test(\"Playlist is private\", function () {\r\n    pm.expect(publicState).to.be.false;\r\n});"
             ]
           }
         }
@@ -140,7 +140,7 @@
           "script": {
             "type": "text/javascript",
             "exec": [
-              "const response = pm.response.json();\r\nconst token_user2 = response.token;\r\npm.environment.set(\"token_user2\", token_user2);"
+              "const response = pm.response.json();\r\n\r\nconst token_user2 = response.token;\r\npm.environment.set(\"token_user2\", token_user2);\r\n\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"userTest2 login returns a token\", () => {\r\n    pm.expect(token_user2).to.be.a(\"string\").and.not.be.empty;\r\n});\r\n"
             ]
           }
         }
@@ -207,55 +207,221 @@
     },
     {
       "name": "Admin logs in",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const response = pm.response.json();\r\nconst token_admin = response.token;\r\npm.environment.set(\"token_admin\", token_admin);\r\n\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Admin login returns a token\", () => {\r\n    pm.expect(token_admin).to.be.a(\"string\").and.not.be.empty;\r\n});\r\n\r\n"
+            ]
+          }
+        }
+      ],
       "request": {
         "method": "POST",
         "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"adminTest\",\r\n    \"password\": \"adminTest\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
         "url": {
-          "raw": ""
+          "raw": "{{baseUrl}}/auth/login",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
         }
       },
       "response": []
     },
     {
       "name": "Admin is able to see User1 private playlist",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});"
+            ]
+          }
+        }
+      ],
       "request": {
         "method": "GET",
-        "header": [],
+        "header": [
+          {
+            "key": "x-nd-authorization",
+            "value": "Bearer {{token_admin}}"
+          }
+        ],
         "url": {
-          "raw": ""
+          "raw": "{{baseUrl}}/api/playlist/{{privatePlaylistId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "playlist",
+            "{{privatePlaylistId}}"
+          ]
         }
       },
       "response": []
     },
     {
       "name": "Admin is able to edit User1 private playlist",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "x-nd-authorization",
+            "value": "Bearer {{token_admin}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"imageAbsent\":true,\"id\":\"{{privatePlaylistId}}\",\"name\":\"{{playlistName}}\",\"comment\":\"Comment to test edit\",\"duration\":0,\"size\":0,\"songCount\":0,\"ownerName\":\"{{owners1Name}}\",\"ownerId\":\"{{user1Id}}\",\"public\":false,\"path\":\"\",\"sync\":false,\"uploadedImage\":\"\",\"rules\":null,\"evaluatedAt\":null}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/playlist/{{privatePlaylistId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "playlist",
+            "{{privatePlaylistId}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Admin is able to see edited User1's playlist",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst body = pm.response.json();\r\n\r\nconst comment = body.comment;\r\npm.test(\"Edited playlist is shown\", () => {\r\n    pm.expect(comment).to.include(\"Comment to test edit\");\r\n});"
+            ]
+          }
+        }
+      ],
       "request": {
         "method": "GET",
-        "header": [],
+        "header": [
+          {
+            "key": "x-nd-authorization",
+            "value": "Bearer {{token_admin}}"
+          }
+        ],
         "url": {
-          "raw": ""
+          "raw": "{{baseUrl}}/api/playlist/{{privatePlaylistId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "playlist",
+            "{{privatePlaylistId}}"
+          ]
         }
       },
       "response": []
     },
     {
       "name": "Admin is able to delete User1 private playlist",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});"
+            ]
+          }
+        }
+      ],
       "request": {
-        "method": "GET",
-        "header": [],
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "x-nd-authorization",
+            "value": "Bearer {{token_admin}}"
+          }
+        ],
         "url": {
-          "raw": ""
+          "raw": "{{baseUrl}}/api/playlist/{{privatePlaylistId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "playlist",
+            "{{privatePlaylistId}}"
+          ]
         }
       },
       "response": []
     },
     {
       "name": "User1 fails to see their private playlist",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst body = pm.response.json();\r\npm.test(\"Response is an array\", function () {\r\n    pm.expect(body).to.be.an('array');\r\n});\r\n\r\nconst foundPlaylist = body.some(item => item.id === pm.collectionVariables.get(\"privatePlaylistId\"));\r\npm.test(\"Deleted playlist cannot be found\", function() {\r\n    pm.expect(foundPlaylist).to.be.false;\r\n});"
+            ]
+          }
+        }
+      ],
       "request": {
         "method": "GET",
-        "header": [],
+        "header": [
+          {
+            "key": "x-nd-authorization",
+            "value": "Bearer {{token_user1}}"
+          }
+        ],
         "url": {
-          "raw": ""
+          "raw": "{{baseUrl}}/api/playlist",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "playlist"
+          ]
         }
       },
       "response": []
@@ -272,6 +438,14 @@
     },
     {
       "key": "privatePlaylistId",
+      "value": ""
+    },
+    {
+      "key": "user1Id",
+      "value": ""
+    },
+    {
+      "key": "user1Name",
       "value": ""
     }
   ]
