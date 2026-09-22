@@ -41,8 +41,12 @@ export default defineConfig({
       testDir: './tests/logged-out',  
       use: { 
         ...devices['Desktop Chrome'],
-        storageState: { cookies: [], origins: [] },
+        storageState: {cookies: [], origins: []},
       },
+    },
+    {
+      name: 'multiple-users-paths',
+      testDir: './tests/multiple-users-paths',
     }
   ],
 });
