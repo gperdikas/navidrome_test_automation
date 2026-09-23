@@ -1,11 +1,5 @@
 import {test, expect} from '@playwright/test';
 import * as fs from 'fs';
-import {AuthService} from '../../api-helpers/AuthService';
-
-/*
-10. admin is able to delete the playlsit
-11. user1 is not able to see the playlist
-*/
 
 test('Private playlist authorization test', async ({request}) => {
     let playlistId: string;
@@ -79,9 +73,7 @@ test('Private playlist authorization test', async ({request}) => {
                 },
             }
         )
-        /////
-        expect.soft(response.status()).toBe(404);
-        /////
+        expect(response.status()).toBe(404);
     });
 
     await test.step('Admin is able to see the created private playlist', async() => {
@@ -147,9 +139,7 @@ test('Private playlist authorization test', async ({request}) => {
                 },
             }
         )
-        /////
-        expect.soft(response.status()).toBe(404);
-        /////
+        expect(response.status()).toBe(404);
     });
 
     await test.step('User1 is not able to see the created private playlist', async() => {
@@ -161,8 +151,6 @@ test('Private playlist authorization test', async ({request}) => {
                 },
             }
         )
-        /////
-        expect.soft(response.status()).toBe(404);
-        /////
+        expect(response.status()).toBe(404);
     });
 });
