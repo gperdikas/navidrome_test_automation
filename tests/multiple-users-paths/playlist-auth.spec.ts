@@ -8,6 +8,20 @@ test.describe('Playlist authorization tests', () => {
     let tokenUser2: string;
     let tokenAdmin: string;
 
+    test.beforeAll(async () => {
+        const fileTextUser1 = fs.readFileSync('api-token.json', 'utf-8');
+        const fileDataUser1 = JSON.parse(fileTextUser1);
+        tokenUser1 = fileDataUser1.token;
+
+        const fileTextUser2 = fs.readFileSync('api-token-user2.json', 'utf-8');
+        const fileDataUser2 = JSON.parse(fileTextUser2);
+        tokenUser2 = fileDataUser2.token;
+
+        const fileTextAdmin = fs.readFileSync('admin-api-token.json', 'utf-8');
+        const fileDataAdmin = JSON.parse(fileTextAdmin);
+        tokenAdmin = fileDataAdmin.token;
+    });
+
     test.afterEach(async ({request}) => {
         while (idArray.length > 0){
             const id = idArray[0];
@@ -30,20 +44,6 @@ test.describe('Playlist authorization tests', () => {
         const playlistComment = 'created by API test';
         const editedPlaylistName = 'EDITED playlist name';
         const editedPlaylistComment = 'EDITED playlist comment';
-
-        await test.step('Get users and admin tokens', async() => {
-            const fileTextUser1 = fs.readFileSync('api-token.json', 'utf-8');
-            const fileDataUser1 = JSON.parse(fileTextUser1);
-            tokenUser1 = fileDataUser1.token;
-
-            const fileTextUser2 = fs.readFileSync('api-token-user2.json', 'utf-8');
-            const fileDataUser2 = JSON.parse(fileTextUser2);
-            tokenUser2 = fileDataUser2.token;
-
-            const fileTextAdmin = fs.readFileSync('admin-api-token.json', 'utf-8');
-            const fileDataAdmin = JSON.parse(fileTextAdmin);
-            tokenAdmin = fileDataAdmin.token;
-        });
 
         await test.step('User1 creates private playlist', async() => {
             const response = await request.post(
@@ -177,5 +177,106 @@ test.describe('Playlist authorization tests', () => {
         });
     });
 
+    test('Public playlist authorization test', async ({request}) => {
 
+    /*
+        7. user1 deletes public playlist
+        8. user2 fails to see public playlist
+    */
+
+        const playlistName = 'API public playlist';
+        const playlistComment = 'created by API test';
+        const editedPlaylistName = 'EDITED playlist name';
+        const editedPlaylistComment = 'EDITED playlist comment';
+
+        await test.step('User1 creates public playlist', async() => {
+            const response = await request.post(
+                `${process.env.BASE_URL}/api/playlist`,
+                {
+                    headers: {
+                        'x-nd-authorization': `Bearer ${tokenUser1}`,
+                    },
+                    data: {
+                        name: playlistName,
+                        comment: playlistComment,
+                        public: true,
+                    }
+                }
+            )
+            expect(response.status()).toBe(200);
+
+            const responseBody = await response.json();
+            playlistId = responseBody.id;
+            idArray.push(playlistId);
+        });
+
+        await test.step('User2 is able to see the created public playlist', async() => {
+            const response = await request.get(
+                `${process.env.BASE_URL}/api/playlist/${playlistId}`,
+                {
+                    headers: {
+                        'x-nd-authorization': `Bearer ${tokenUser2}`,
+                    },
+                }
+            )
+            expect(response.status()).toBe(200);
+
+            const responseBody = await response.json();
+            expect(responseBody.id).toEqual(playlistId);
+            expect(responseBody.public).toBe(true);
+        });
+
+        await test.step('User2 is not able to edit user1 public playlist', async() => {
+            const response = await request.put(
+                `${process.env.BASE_URL}/api/playlist/${playlistId}`,
+                {
+                    headers: {
+                        'x-nd-authorization': `Bearer ${tokenUser2}`,
+                    },
+                    data: {
+                        name: editedPlaylistName,
+                        comment: editedPlaylistComment,
+                    }
+                }
+            )
+            expect(response.status()).toBe(403);  
+        });
+
+        await test.step('User2 is not able to delete user1 public playlist', async() => {
+            const response = await request.delete(
+                `${process.env.BASE_URL}/api/playlist/${playlistId}`,
+                {
+                    headers: {
+                        'x-nd-authorization': `Bearer ${tokenUser2}`,
+                    },
+                }
+            )
+            expect(response.status()).toBe(403);
+        });
+
+        await test.step('User1 is able to delete public playlist', async() => {
+            const response = await request.delete(
+                `${process.env.BASE_URL}/api/playlist/${playlistId}`,
+                {
+                    headers: {
+                        'x-nd-authorization': `Bearer ${tokenUser1}`,
+                    },
+                }
+            )
+            expect(response.status()).toBe(200);
+            idArray = idArray.filter(item => item !== playlistId);
+        });
+
+        await test.step('User2 is not able to see the created public playlist', async() => {
+            const response = await request.get(
+                `${process.env.BASE_URL}/api/playlist/${playlistId}`,
+                {
+                    headers: {
+                        'x-nd-authorization': `Bearer ${tokenUser2}`,
+                    },
+                }
+            )
+            expect(response.status()).toBe(404);
+        });
+    });
 });
