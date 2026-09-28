@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { LogoutPage } from '../../pages/logout-page';
-import * as dotenv from 'dotenv';
+import { LogoutPage } from '../../../pages/logout-page';
 
 test.describe('Logout UI Tests', () => {
     let logoutPage: LogoutPage;
@@ -16,8 +15,14 @@ test.describe('Logout UI Tests', () => {
         await expect(tokenBeforeLogout).not.toBeNull();
 
         await logoutPage.logout();
-        const tokenAfterLogout = await page.evaluate(() => localStorage.getItem('token'));
-        await expect(tokenAfterLogout).toBeNull();
+        // const tokenAfterLogout = await page.evaluate(() => localStorage.getItem('token'));
+        await expect.poll(async ()=> {
+            const tokenAfterLogout = await page.evaluate(() => localStorage.getItem('token'));
+            return tokenAfterLogout;
+        }).toBeNull();
         await expect(page).toHaveURL(/\/app\/#\/login/);
     });
 });
+
+
+
