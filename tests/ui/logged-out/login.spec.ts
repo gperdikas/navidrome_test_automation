@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { AuthService } from '../../api-helpers/AuthService';
-import { LoginPage } from '../../pages/login-page';
-import * as dotenv from 'dotenv';
+import { AuthService } from '../../../api-helpers/AuthService';
+import { LoginPage } from '../../../pages/login-page';
+// import * as dotenv from 'dotenv';
 
 test.describe.serial('Login Tests', () => {
     test.describe('Login API Tests', () => {

@@ -22,7 +22,7 @@ export default defineConfig({
   projects: [
     {
       name: 'user-logged-in',
-      testDir: './tests/user-logged-in',  
+      testDir: './tests/ui/user-logged-in',  
       use: { 
         ...devices['Desktop Chrome'],
         storageState: 'auth.json',
@@ -30,7 +30,7 @@ export default defineConfig({
     },
     {
       name: 'admin-logged-in',
-      testDir: './tests/admin-logged-in',  
+      testDir: './tests/ui/admin-logged-in',  
       use: { 
         ...devices['Desktop Chrome'],
         storageState: 'admin-auth.json',
@@ -38,15 +38,15 @@ export default defineConfig({
     },
     {
       name: 'logged-out',
-      testDir: './tests/logged-out',  
+      testDir: './tests/ui/logged-out',  
       use: { 
         ...devices['Desktop Chrome'],
         storageState: {cookies: [], origins: []},
       },
     },
     {
-      name: 'multiple-users-paths',
-      testDir: './tests/multiple-users-paths',
+      name: 'api',
+      testDir: './tests/api',
     }
   ],
 });

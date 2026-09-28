@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { HeaderPage } from '../../pages/header-page';
+import { HeaderPage } from '../../../pages/header-page';
 
 test.describe('User is able to see Headers', () => {
     test('User is able to see header', {tag: ['@loggedin', '@ui', '@header']}, async ({page}) => {

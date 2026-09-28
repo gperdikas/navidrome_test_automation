@@ -1,15 +1,15 @@
 import { test, expect } from '@playwright/test';
-import { PlaylistPage } from '../../pages/playlist-page';
-import { PlaylistService } from '../../api-helpers/PlaylistService';
-import { randomString } from '../../helpers/random-string-generator';
+import { PlaylistPage } from '../../../pages/playlist-page';
+import { PlaylistService } from '../../../api-helpers/PlaylistService';
+import { randomString } from '../../../helpers/random-string-generator';
 
 test.describe('Edit playlist tests', () => {
     let playlistService: PlaylistService;
     let playlistName: string;
-    let playlistId: string | null;
+    // let playlistId: string | null;
     let playlistIdArray: string[];
     let isPublic: boolean;
-    let playlistRow: any;
+    // let playlistRow: any;
 
     test.beforeEach(async ({page}) => {
         playlistService = new PlaylistService();

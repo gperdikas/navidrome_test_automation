@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { PlaylistPage } from '../../pages/playlist-page';
-import { PlaylistService } from '../../api-helpers/PlaylistService';
-import { randomString } from '../../helpers/random-string-generator';
+import { PlaylistPage } from '../../../pages/playlist-page';
+import { PlaylistService } from '../../../api-helpers/PlaylistService';
+import { randomString } from '../../../helpers/random-string-generator';
 
 test.describe('Public playlist visibility', () => {
     let playlistService: PlaylistService;

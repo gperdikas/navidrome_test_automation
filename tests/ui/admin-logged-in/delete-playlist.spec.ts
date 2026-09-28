@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { PlaylistPage } from '../../pages/playlist-page';
-import { PlaylistService } from '../../api-helpers/PlaylistService';
-import { randomString } from '../../helpers/random-string-generator';
+import { PlaylistPage } from '../../../pages/playlist-page';
+import { PlaylistService } from '../../../api-helpers/PlaylistService';
+import { randomString } from '../../../helpers/random-string-generator';
 
 test.describe('Delete playlist tests', () => {
     let playlistService: PlaylistService;
@@ -9,7 +9,7 @@ test.describe('Delete playlist tests', () => {
     let playlistId: string | null;
     let playlistIdArray: string[];
     let isPublic: boolean;
-    let playlistRow: any;
+    // let playlistRow: any;
 
     test.beforeEach(async ({page}) => {
         playlistService = new PlaylistService();

@@ -1,18 +1,17 @@
 import { test, expect } from '@playwright/test';
-import { PlayerPage } from '../../pages/player-page';
-import { PlaylistPage } from '../../pages/playlist-page';
-import { PlayerService } from '../../api-helpers/PlayerService';
-import { randomString } from '../../helpers/random-string-generator';
-import { PlaylistService } from '../../api-helpers/PlaylistService';
-import { report } from 'process';
-
+import { PlayerPage } from '../../../pages/player-page';
+import { PlaylistPage } from '../../../pages/playlist-page';
+// import { PlayerService } from '../../../api-helpers/PlayerService';
+import { randomString } from '../../../helpers/random-string-generator';
+import { PlaylistService } from '../../../api-helpers/PlaylistService';
+// import { report } from 'process';
 
 test.describe('Music player usability', () => {
     let playlistService: PlaylistService;
     let playlistId: string | null;
     let playlistName: string;
     let playlistIdArray: string[];
-    let playlistPage : PlaylistPage;
+    // let playlistPage : PlaylistPage;
     let playerPage : PlayerPage;
 
     test.beforeAll(async () => {
