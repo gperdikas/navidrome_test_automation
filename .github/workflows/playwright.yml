@@ -80,7 +80,7 @@ jobs:
         path: allure-report/
         retention-days: 30
     
-    - name: Deploy Allure report to HitHub Pages
+    - name: Deploy Allure report to GitHub Pages
       if: ${{!cancelled()}}
       uses: peaceiris/actions-gh-pages@v3
       with:
