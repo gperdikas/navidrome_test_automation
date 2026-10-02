@@ -8,7 +8,13 @@ test.describe('Logout UI Tests', () => {
         logoutPage = new LogoutPage(page);
     });
 
-    test('Admin is able to log out from Navidrome', {tag: ['@loggedin', '@logout']}, async ({page}) => {
+    test('Admin is able to log out from Navidrome', {
+        tag: ['@loggedin', '@logout'],
+        annotation: {
+            type: 'Issue',
+            description: 'This test might fail because of a known issue, already reported to Navidrome.'
+        }    
+    }, async ({page}) => {
         const logoutPage = new LogoutPage(page);
         await logoutPage.goto();
         const tokenBeforeLogout = await page.evaluate(() => localStorage.getItem('token'));
