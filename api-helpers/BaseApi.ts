@@ -1,5 +1,5 @@
 import { request, APIRequestContext } from '@playwright/test';
-import * as fs from 'fs';
+import { readToken } from '../helpers/token-reader';
 
 export class BaseApi {
   protected baseURL: string;
@@ -10,9 +10,7 @@ export class BaseApi {
   }
 
   async init() {
-    const fileContent = fs.readFileSync('admin-api-token.json', 'utf-8');
-    const tokenData = JSON.parse(fileContent);
-    const token = tokenData.token;
+    const token = readToken('admin-api-token.json');
     this.apiContext = await request.newContext({
       baseURL: this.baseURL,
       extraHTTPHeaders: {

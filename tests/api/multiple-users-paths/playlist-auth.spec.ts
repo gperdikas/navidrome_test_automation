@@ -1,5 +1,5 @@
 import {test, expect} from '@playwright/test';
-import * as fs from 'fs';
+import { readToken } from '../../../helpers/token-reader';
 
 test.describe('Playlist authorization tests', () => {
     let idArray: string[] = [];
@@ -9,17 +9,9 @@ test.describe('Playlist authorization tests', () => {
     let tokenAdmin: string;
 
     test.beforeAll(async () => {
-        const fileTextUser1 = fs.readFileSync('api-token.json', 'utf-8');
-        const fileDataUser1 = JSON.parse(fileTextUser1);
-        tokenUser1 = fileDataUser1.token;
-
-        const fileTextUser2 = fs.readFileSync('api-token-user2.json', 'utf-8');
-        const fileDataUser2 = JSON.parse(fileTextUser2);
-        tokenUser2 = fileDataUser2.token;
-
-        const fileTextAdmin = fs.readFileSync('admin-api-token.json', 'utf-8');
-        const fileDataAdmin = JSON.parse(fileTextAdmin);
-        tokenAdmin = fileDataAdmin.token;
+        tokenUser1 = readToken('api-token.json')
+        tokenUser2 = readToken('api-token-user2.json')
+        tokenAdmin = readToken('admin-api-token.json')
     });
 
     test.afterEach(async ({request}) => {
@@ -178,12 +170,6 @@ test.describe('Playlist authorization tests', () => {
     });
 
     test('Public playlist authorization test', async ({request}) => {
-
-    /*
-        7. user1 deletes public playlist
-        8. user2 fails to see public playlist
-    */
-
         const playlistName = 'API public playlist';
         const playlistComment = 'created by API test';
         const editedPlaylistName = 'EDITED playlist name';
