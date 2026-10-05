@@ -31,10 +31,7 @@ jobs:
    
     - name: Start Navidrome
       run: docker compose -f docker-compose.ci.yml up -d
-    
-    - name: Wait for Navidrome
-      run: sleep 10
-    
+        
     - name: Install dependencies
       run: npm ci
     - uses: actions/setup-java@v4
@@ -53,6 +50,10 @@ jobs:
           unzip -o history.zip -d allure-results
           rm history.zip
         fi
+
+    - name: Wait for Navidrome
+      run: timeout 60 bash -c 'until curl -sf http://localhost:4533 > /dev/null; do sleep 1; done'
+
     - name: Run Playwright tests
       run: npx playwright test
     
