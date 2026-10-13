@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { PlaylistPage } from '../../../pages/playlist-page';
 import { PlaylistService } from '../../../api-helpers/PlaylistService';
 import { randomString } from '../../../helpers/random-string-generator';
+import {readToken} from '../../../helpers/token-reader';
 
 test.describe('Public playlist visibility', () => {
     let playlistService: PlaylistService;
@@ -12,8 +13,11 @@ test.describe('Public playlist visibility', () => {
     // let playlistRow: any;
     let context: any;
     let page: any;
+    let tokenUser1: string;
+
 
     test.beforeAll(async ({browser}) => {
+        tokenUser1 = readToken('api-token.json');
         context = await browser.newContext({storageState: 'auth.json'});
         page = await context.newPage();
         playlistService = new PlaylistService();
@@ -34,7 +38,7 @@ test.describe('Public playlist visibility', () => {
 
     test.afterAll(async () => {
         for (let i=0; i<playlistIdArray.length; i++) {
-            const response = await playlistService.deletePlaylistById(playlistIdArray[i]);
+            const response = await playlistService.deletePlaylistById(playlistIdArray[i], tokenUser1);
             console.log(`DELETE ${playlistIdArray[i]} -> ${response?.status()}`);
         }
         await playlistService.dispose();
@@ -78,8 +82,10 @@ test.describe('Private playlist visibility', () => {
     // let playlistRow: any;
     let context: any;
     let page: any;
+    let tokenUser1: string;
 
     test.beforeAll(async ({browser}) => {
+        tokenUser1 = readToken('api-token.json');
         context = await browser.newContext({storageState: 'auth.json'});
         page = await context.newPage();
         playlistService = new PlaylistService();
@@ -100,7 +106,7 @@ test.describe('Private playlist visibility', () => {
 
     test.afterAll(async () => {
         for (let i=0; i<playlistIdArray.length; i++) {
-            const response = await playlistService.deletePlaylistById(playlistIdArray[i]);
+            const response = await playlistService.deletePlaylistById(playlistIdArray[i], tokenUser1);
             console.log(`DELETE ${playlistIdArray[i]} -> ${response?.status()}`);
         }
         await playlistService.dispose();

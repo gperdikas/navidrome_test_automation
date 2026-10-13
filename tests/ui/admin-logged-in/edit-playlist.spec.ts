@@ -2,34 +2,42 @@ import { test, expect } from '@playwright/test';
 import { PlaylistPage } from '../../../pages/playlist-page';
 import { PlaylistService } from '../../../api-helpers/PlaylistService';
 import { randomString } from '../../../helpers/random-string-generator';
+import { readToken } from '../../../helpers/token-reader';
 
 test.describe('Edit playlist tests', () => {
     let playlistService: PlaylistService;
     let playlistName: string;
+    let playlistComment: string;
     // let playlistId: string | null;
     let playlistIdArray: string[];
     let isPublic: boolean;
     // let playlistRow: any;
+    let tokenAdmin: string;
+
+    test.beforeAll(async ({browser}) => {
+        tokenAdmin = readToken('admin-api-token.json');
+    });
 
     test.beforeEach(async ({page}) => {
         playlistService = new PlaylistService();
         const playlistPage = new PlaylistPage(page);
         const randomStringResult = randomString();
         playlistName = `Test playlist ${Date.now()}_${randomStringResult}`;
+        playlistComment = 'playlist_comment';
         playlistIdArray = [];
         isPublic = true;
     });
 
     test.afterEach(async () => {
         for (let i=0; i<playlistIdArray.length; i++) {
-            const response = await playlistService.deletePlaylistById(playlistIdArray[i]);
+            const response = await playlistService.deletePlaylistById(playlistIdArray[i], tokenAdmin);
         }
         await playlistService.dispose();
     });
 
     test('Admin is able to edit playlist Name', {tag: ['@loggedin', '@ui', '@admin', '@createplaylist']}, async ({page}) => {
         const playlistPage = new PlaylistPage(page);
-        await playlistService.createPlaylist(playlistName, isPublic);
+        await playlistService.createPlaylist(playlistName, isPublic, playlistComment, tokenAdmin);
         const playlistId = await playlistService.getPlaylistIdByName(playlistName);
         playlistIdArray.push(playlistId!);
         await playlistPage.goto();
@@ -41,7 +49,7 @@ test.describe('Edit playlist tests', () => {
 
     test('Admin is able to edit playlist Comment', {tag: ['@loggedin', '@ui', '@admin', '@editplaylist']}, async ({page}) => {
         const playlistPage = new PlaylistPage(page);
-        await playlistService.createPlaylist(playlistName, isPublic);
+        await playlistService.createPlaylist(playlistName, isPublic, playlistComment, tokenAdmin);
         const playlistId = await playlistService.getPlaylistIdByName(playlistName);
         playlistIdArray.push(playlistId!);
         await playlistPage.goto();
@@ -54,7 +62,7 @@ test.describe('Edit playlist tests', () => {
     test('Admin is able to edit playlist Owner', {tag: ['@loggedin', '@ui', '@admin', '@editplaylist']}, async ({page}) => {
         const playlistPage = new PlaylistPage(page);
         await playlistPage.goto();
-        await playlistService.createPlaylist(playlistName, isPublic);
+        await playlistService.createPlaylist(playlistName, isPublic, playlistComment, tokenAdmin);
         const playlistId = await playlistService.getPlaylistIdByName(playlistName);
         playlistIdArray.push(playlistId!);
         await playlistService.createTestUser();
@@ -68,7 +76,7 @@ test.describe('Edit playlist tests', () => {
 
     test('Admin is able to edit playlist publicity status', {tag: ['@loggedin', '@ui', '@admin', '@editplaylist']}, async ({page}) => {
         const playlistPage = new PlaylistPage(page);
-        await playlistService.createPlaylist(playlistName, isPublic);
+        await playlistService.createPlaylist(playlistName, isPublic, playlistComment, tokenAdmin);
         await playlistPage.goto();
         const playlistId = await playlistService.getPlaylistIdByName(playlistName);
         playlistIdArray.push(playlistId!);

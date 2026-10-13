@@ -1,24 +1,30 @@
 import { test, expect } from '@playwright/test';
 import { PlayerPage } from '../../../pages/player-page';
 import { PlaylistPage } from '../../../pages/playlist-page';
-// import { PlayerService } from '../../../api-helpers/PlayerService';
 import { randomString } from '../../../helpers/random-string-generator';
 import { PlaylistService } from '../../../api-helpers/PlaylistService';
-// import { report } from 'process';
+import {readToken} from '../../../helpers/token-reader';
+
 
 test.describe('Music player usability', () => {
     let playlistService: PlaylistService;
     let playlistId: string | null;
     let playlistName: string;
+    let playlistComment: string;
     let playlistIdArray: string[];
-    // let playlistPage : PlaylistPage;
     let playerPage : PlayerPage;
+    let isPublic: boolean;
+    let tokenUser1: string;
+  
 
     test.beforeAll(async () => {
+        tokenUser1 = readToken('api-token.json');
         playlistService = new PlaylistService();
         const randomStringResult = randomString();
+        isPublic = true;
         playlistName = `Test playlist ${Date.now()}_${randomStringResult}`;
-        await playlistService.createPlaylist(playlistName, true);
+        playlistComment = 'playlist_comment';
+        await playlistService.createPlaylist(playlistName, isPublic, playlistComment, tokenUser1);
         playlistId = await playlistService.getPlaylistIdByName(playlistName);
         playlistIdArray = [];
         if (playlistId) {
@@ -35,7 +41,7 @@ test.describe('Music player usability', () => {
 
     test.afterAll(async () => {
         for (let i=0; i<playlistIdArray.length; i++) {
-            const response = await playlistService.deletePlaylistById(playlistIdArray[i]);
+            const response = await playlistService.deletePlaylistById(playlistIdArray[i], tokenUser1, );
             console.log(`DELETE ${playlistIdArray[i]} -> ${response?.status()}`);
         }
         await playlistService.dispose();
