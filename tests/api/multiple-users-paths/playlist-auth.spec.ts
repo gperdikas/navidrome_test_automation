@@ -23,13 +23,7 @@ test.describe('Playlist authorization tests', () => {
     test.afterEach(async ({request}) => {
         while (idArray.length > 0){
             const id = idArray[0];
-            const response = await request.delete(
-            `${process.env.BASE_URL}/api/playlist/${id}`,
-            {
-                headers: {
-                    'x-nd-authorization': `Bearer ${tokenAdmin}`,
-                },
-            });
+            const response = await playlistService.deletePlaylistById(playlistId, tokenAdmin);
             if(response.status() !== 200){
                 console.warn(`Cleanup: Could not delete playlist with id: ${id}.`);
             }
