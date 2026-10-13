@@ -4,19 +4,70 @@ import { BaseApi } from './BaseApi';
 export class PlaylistService extends BaseApi {
   
     // Creates a playlist
-    async createPlaylist(playlistName: string, isPublic: boolean): Promise<APIResponse> {
+     async createPlaylist(playlistName:string, isPublic: boolean, playlistComment: string, token: string): Promise<APIResponse> {
         await this.init();
-        const response = await this.apiContext.post('/api/playlist/', {data: {name: playlistName, public: isPublic}});
+        const response = await this.apiContext.post(
+            `${process.env.BASE_URL}/api/playlist`,
+            {
+                headers: {
+                    'x-nd-authorization': `Bearer ${token}`,
+                },
+                data: {
+                    name: playlistName,
+                    comment: playlistComment,
+                    public: isPublic,
+                }
+            }
+        )
+        return response;
+    };
+
+    // Get existing playlist by its Id
+    async getPlaylistById(playlistId: string, token: string): Promise<APIResponse> {
+        await this.init();
+        const response = await this.apiContext.get(
+            `${process.env.BASE_URL}/api/playlist/${playlistId}`,
+            {
+                headers: {
+                    'x-nd-authorization': `Bearer ${token}`,
+                }
+            }
+        )
         return response;
     }
 
-    // Deletes a playlist
-    async deletePlaylistById(playlistId: string): Promise<APIResponse> {
+    // Edit playlist by Id
+    async editPlaylistById(playlistId: string, token: string, editedPlaylistName: string, editedPlaylistComment:string): Promise<APIResponse> {
         await this.init();
-        const response = await this.apiContext.delete(`/api/playlist/${playlistId}`);
+        const response = await this.apiContext.put(
+            `${process.env.BASE_URL}/api/playlist/${playlistId}`,
+            {
+                headers: {
+                    'x-nd-authorization': `Bearer ${token}`,
+                },
+                data: {
+                    name: editedPlaylistName,
+                    comment: editedPlaylistComment,
+                }
+            }    
+        )
         return response;
     }
 
+    // Deletes playlist by Id
+    async deletePlaylistById(playlistId: string, token: string): Promise<APIResponse> {
+        await this.init();
+        const response = await this.apiContext.delete(
+           `${process.env.BASE_URL}/api/playlist/${playlistId}`,
+            {
+                headers: {
+                    'x-nd-authorization': `Bearer ${token}`,
+                },
+            } 
+        )
+        return response;
+    }
+    
     // Gets a playlist's id by its name
     async getPlaylistIdByName(name: string): Promise<string | null> {
         await this.init();

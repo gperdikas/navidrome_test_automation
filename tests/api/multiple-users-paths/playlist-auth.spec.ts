@@ -1,5 +1,6 @@
 import {test, expect} from '@playwright/test';
-import { readToken } from '../../../helpers/token-reader';
+import {readToken} from '../../../helpers/token-reader';
+import { PlaylistService } from '../../../api-helpers/PlaylistService';
 
 test.describe('Playlist authorization tests', () => {
     let idArray: string[] = [];
@@ -7,11 +8,16 @@ test.describe('Playlist authorization tests', () => {
     let tokenUser1: string;
     let tokenUser2: string;
     let tokenAdmin: string;
+    let playlistService: PlaylistService;
 
     test.beforeAll(async () => {
         tokenUser1 = readToken('api-token.json')
         tokenUser2 = readToken('api-token-user2.json')
         tokenAdmin = readToken('admin-api-token.json')
+    });
+
+    test.beforeEach(async () => {
+        playlistService = new PlaylistService();
     });
 
     test.afterEach(async ({request}) => {
@@ -36,21 +42,10 @@ test.describe('Playlist authorization tests', () => {
         const playlistComment = 'created by API test';
         const editedPlaylistName = 'EDITED playlist name';
         const editedPlaylistComment = 'EDITED playlist comment';
+        const isPublic = false;
 
         await test.step('User1 creates private playlist', async() => {
-            const response = await request.post(
-                `${process.env.BASE_URL}/api/playlist`,
-                {
-                    headers: {
-                        'x-nd-authorization': `Bearer ${tokenUser1}`,
-                    },
-                    data: {
-                        name: playlistName,
-                        comment: playlistComment,
-                        public: false,
-                    }
-                }
-            )
+            const response = await playlistService.createPlaylist(playlistName, isPublic, playlistComment, tokenUser1)
             expect(response.status()).toBe(200);
 
             const responseBody = await response.json();
@@ -59,18 +54,10 @@ test.describe('Playlist authorization tests', () => {
         });
 
         await test.step('User1 is able to see the created private playlist', async() => {
-            const response = await request.get(
-                `${process.env.BASE_URL}/api/playlist/${playlistId}`,
-                {
-                    headers: {
-                        'x-nd-authorization': `Bearer ${tokenUser1}`,
-                    },
-                }
-            )
+            const response = await playlistService.getPlaylistById(playlistId, tokenUser1)
             expect(response.status()).toBe(200);
 
             const responseBody = await response.json();
-
             expect(responseBody.id).toEqual(playlistId);
             expect(responseBody.public).toBe(false);
             expect(responseBody.name).toEqual(playlistName);
@@ -78,30 +65,15 @@ test.describe('Playlist authorization tests', () => {
         });
     
         await test.step('User2 is not able to see the created private playlist', async() => {
-            const response = await request.get(
-                `${process.env.BASE_URL}/api/playlist/${playlistId}`,
-                {
-                    headers: {
-                        'x-nd-authorization': `Bearer ${tokenUser2}`,
-                    },
-                }
-            )
+            const response = await playlistService.getPlaylistById(playlistId, tokenUser2)
             expect(response.status()).toBe(404);
         });
 
         await test.step('Admin is able to see the created private playlist', async() => {
-            const response = await request.get(
-                `${process.env.BASE_URL}/api/playlist/${playlistId}`,
-                {
-                    headers: {
-                        'x-nd-authorization': `Bearer ${tokenAdmin}`,
-                    },
-                }
-            )
+            const response = await playlistService.getPlaylistById(playlistId, tokenAdmin)
             expect(response.status()).toBe(200);
 
             const responseBody = await response.json();
-
             expect(responseBody.id).toEqual(playlistId);
             expect(responseBody.public).toBe(false);
             expect(responseBody.name).toEqual(playlistName);
@@ -109,22 +81,10 @@ test.describe('Playlist authorization tests', () => {
         });
 
         await test.step('Admin is able to edit user1 private playlist', async() => {
-            const response = await request.put(
-                `${process.env.BASE_URL}/api/playlist/${playlistId}`,
-                {
-                    headers: {
-                        'x-nd-authorization': `Bearer ${tokenAdmin}`,
-                    },
-                    data: {
-                        name: editedPlaylistName,
-                        comment: editedPlaylistComment,
-                    }
-                }
-            )
+            const response = await playlistService.editPlaylistById(playlistId, tokenAdmin, editedPlaylistName, editedPlaylistComment)
             expect(response.status()).toBe(200);
 
             const responseBody = await response.json();
-
             expect(responseBody.id).toEqual(playlistId);
             expect(responseBody.public).toBe(false);
             expect(responseBody.name).toEqual(editedPlaylistName);
@@ -132,39 +92,19 @@ test.describe('Playlist authorization tests', () => {
         });
 
         await test.step('Admin is able to delete user1 private playlist', async() => {
-            const response = await request.delete(
-                `${process.env.BASE_URL}/api/playlist/${playlistId}`,
-                {
-                    headers: {
-                        'x-nd-authorization': `Bearer ${tokenAdmin}`,
-                    },
-                }
-            )
+            const response = await playlistService.deletePlaylistById(playlistId, tokenAdmin)
             expect(response.status()).toBe(200);
+
             idArray = idArray.filter(item => item !== playlistId);
         });
 
         await test.step('Admin is not able to see the created private playlist', async() => {
-            const response = await request.get(
-                `${process.env.BASE_URL}/api/playlist/${playlistId}`,
-                {
-                    headers: {
-                        'x-nd-authorization': `Bearer ${tokenAdmin}`,
-                    },
-                }
-            )
+            const response = await playlistService.getPlaylistById(playlistId, tokenAdmin)
             expect(response.status()).toBe(404);
         });
 
         await test.step('User1 is not able to see the created private playlist', async() => {
-            const response = await request.get(
-                `${process.env.BASE_URL}/api/playlist/${playlistId}`,
-                {
-                    headers: {
-                        'x-nd-authorization': `Bearer ${tokenUser1}`,
-                    },
-                }
-            )
+            const response = await playlistService.getPlaylistById(playlistId, tokenUser1)
             expect(response.status()).toBe(404);
         });
     });
@@ -174,21 +114,10 @@ test.describe('Playlist authorization tests', () => {
         const playlistComment = 'created by API test';
         const editedPlaylistName = 'EDITED playlist name';
         const editedPlaylistComment = 'EDITED playlist comment';
+        const isPublic = true;
 
         await test.step('User1 creates public playlist', async() => {
-            const response = await request.post(
-                `${process.env.BASE_URL}/api/playlist`,
-                {
-                    headers: {
-                        'x-nd-authorization': `Bearer ${tokenUser1}`,
-                    },
-                    data: {
-                        name: playlistName,
-                        comment: playlistComment,
-                        public: true,
-                    }
-                }
-            )
+            const response = await playlistService.createPlaylist(playlistName, isPublic, playlistComment, tokenUser1)
             expect(response.status()).toBe(200);
 
             const responseBody = await response.json();
@@ -197,14 +126,7 @@ test.describe('Playlist authorization tests', () => {
         });
 
         await test.step('User2 is able to see the created public playlist', async() => {
-            const response = await request.get(
-                `${process.env.BASE_URL}/api/playlist/${playlistId}`,
-                {
-                    headers: {
-                        'x-nd-authorization': `Bearer ${tokenUser2}`,
-                    },
-                }
-            )
+            const response = await playlistService.getPlaylistById(playlistId, tokenUser2);
             expect(response.status()).toBe(200);
 
             const responseBody = await response.json();
@@ -213,55 +135,29 @@ test.describe('Playlist authorization tests', () => {
         });
 
         await test.step('User2 is not able to edit user1 public playlist', async() => {
-            const response = await request.put(
-                `${process.env.BASE_URL}/api/playlist/${playlistId}`,
-                {
-                    headers: {
-                        'x-nd-authorization': `Bearer ${tokenUser2}`,
-                    },
-                    data: {
-                        name: editedPlaylistName,
-                        comment: editedPlaylistComment,
-                    }
-                }
-            )
+            const response = await playlistService.editPlaylistById(playlistId, tokenUser2, editedPlaylistName, editedPlaylistComment);
             expect(response.status()).toBe(403);  
         });
 
         await test.step('User2 is not able to delete user1 public playlist', async() => {
-            const response = await request.delete(
-                `${process.env.BASE_URL}/api/playlist/${playlistId}`,
-                {
-                    headers: {
-                        'x-nd-authorization': `Bearer ${tokenUser2}`,
-                    },
-                }
-            )
+            const response = await playlistService.deletePlaylistById(playlistId, tokenUser2);
             expect(response.status()).toBe(403);
         });
 
         await test.step('User1 is able to delete public playlist', async() => {
-            const response = await request.delete(
-                `${process.env.BASE_URL}/api/playlist/${playlistId}`,
-                {
-                    headers: {
-                        'x-nd-authorization': `Bearer ${tokenUser1}`,
-                    },
-                }
-            )
+            const response = await playlistService.deletePlaylistById(playlistId, tokenUser1);
             expect(response.status()).toBe(200);
+
             idArray = idArray.filter(item => item !== playlistId);
         });
 
-        await test.step('User2 is not able to see the created public playlist', async() => {
-            const response = await request.get(
-                `${process.env.BASE_URL}/api/playlist/${playlistId}`,
-                {
-                    headers: {
-                        'x-nd-authorization': `Bearer ${tokenUser2}`,
-                    },
-                }
-            )
+        await test.step('User1 is not able to see the deleted public playlist', async() => {
+            const response = await playlistService.getPlaylistById(playlistId, tokenUser1)
+            expect(response.status()).toBe(404);
+        });
+
+        await test.step('User2 is not able to see the deleted public playlist', async() => {
+            const response = await playlistService.getPlaylistById(playlistId, tokenUser2)
             expect(response.status()).toBe(404);
         });
     });
