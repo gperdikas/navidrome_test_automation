@@ -12,7 +12,7 @@ test.describe('Logout UI Tests', () => {
         tag: ['@loggedin', '@logout'],
         annotation: {
             type: 'Issue',
-            description: 'This test might fail because of a known issue, already reported to Navidrome.'
+            description: 'This test might fail because of a known issue, already reported to Navidrome. If fail, rerun.'
         }
     }, async ({page}) => {
         const logoutPage = new LogoutPage(page);
@@ -21,7 +21,6 @@ test.describe('Logout UI Tests', () => {
         await expect(tokenBeforeLogout).not.toBeNull();
 
         await logoutPage.logout();
-        // const tokenAfterLogout = await page.evaluate(() => localStorage.getItem('token'));
         await expect.poll(async ()=> {
             const tokenAfterLogout = await page.evaluate(() => localStorage.getItem('token'));
             return tokenAfterLogout;

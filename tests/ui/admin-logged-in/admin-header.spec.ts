@@ -27,7 +27,7 @@ test.describe('Admin is able to see Headers', () => {
         await expect(headerPage.nowPlayingButton).toBeVisible();
     });
 
-    test('User clicks Now Playing button and popup opens', {tag: ['@loggedin', '@ui', '@header', '@admin']}, async ({page}) => {
+    test('Admin clicks Now Playing button and popup opens', {tag: ['@loggedin', '@ui', '@header', '@admin']}, async ({page}) => {
         const headerPage = new HeaderPage(page);
         await headerPage.goto();
         await headerPage.clickNowPlaying();
